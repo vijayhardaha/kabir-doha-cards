@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import debounce from "lodash/debounce";
+import { Hind } from "next/font/google";
 import PropTypes from "prop-types";
 import { PiSpinnerGapLight } from "react-icons/pi";
 import { RiSearchLine } from "react-icons/ri";
-import { Hind } from "next/font/google";
+
 const hind = Hind({ weight: ["400", "700"], subsets: ["latin", "devanagari"] });
 
 /**
