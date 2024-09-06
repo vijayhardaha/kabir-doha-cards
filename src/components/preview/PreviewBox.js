@@ -43,32 +43,55 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 	}, []);
 
 	return (
-		<div
-			className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-gray-200"
-			ref={elementRef}
-		>
-			<div className="absolute -bottom-8 left-2/4 -translate-x-2/4 z-50 md:hidden">
-				<RandomButton setCouplet={setCouplet} />
-			</div>
-			<div className="relative w-full aspect-square">
-				<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
-					{/* Background element */}
-					<BackgroundElement color={color} elementWidth={elementWidth} />
+		<>
+			<div
+				className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-gray-200"
+				ref={elementRef}
+			>
+				<div className="absolute -bottom-8 left-2/4 -translate-x-2/4 z-50 md:hidden">
+					<RandomButton setCouplet={setCouplet} />
+				</div>
+				<div className="relative w-full aspect-square">
+					<div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
+						{/* Background element */}
+						<BackgroundElement color={color} elementWidth={elementWidth} />
 
-					{/* Couplet content */}
-					<CoupletContent
-						couplet={couplet}
-						color={color}
-						elementWidth={elementWidth}
-						fontSize={fontSize}
-						lineHeight={lineHeight}
-					/>
+						{/* Couplet content */}
+						<CoupletContent
+							couplet={couplet}
+							color={color}
+							elementWidth={elementWidth}
+							fontSize={fontSize}
+							lineHeight={lineHeight}
+						/>
 
-					{/* SideAuthor */}
-					<SideAuthor color={color} elementWidth={elementWidth} />
+						{/* SideAuthor */}
+						<SideAuthor color={color} elementWidth={elementWidth} />
+					</div>
 				</div>
 			</div>
-		</div>
+
+			<div className="fixed z-50 top-0 left-0 w-[600px] h-auto overflow-visible visibility-hidden opacity-0">
+				<div className="relative w-full aspect-square">
+					<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
+						{/* Background element */}
+						<BackgroundElement color={color} elementWidth={600} />
+
+						{/* Couplet content */}
+						<CoupletContent
+							couplet={couplet}
+							color={color}
+							elementWidth={600}
+							fontSize={fontSize}
+							lineHeight={lineHeight}
+						/>
+
+						{/* SideAuthor */}
+						<SideAuthor color={color} elementWidth={600} />
+					</div>
+				</div>
+			</div>
+		</>
 	);
 };
 
