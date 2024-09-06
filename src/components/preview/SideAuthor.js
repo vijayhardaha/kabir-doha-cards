@@ -40,7 +40,7 @@ const SideAuthor = ({ color, elementWidth }) => (
 					marginRight: calcFontSize(elementWidth, 3),
 				}}
 			/>
-			<span className="font-medium">Kabir Ke Dohe</span>
+			<span className="font-medium whitespace-nowrap">Kabir Ke Dohe</span>
 		</p>
 	</div>
 );
