@@ -22,7 +22,7 @@ import { calcFontSize } from "@/utils/preview";
  */
 const CoupletContent = ({ color, couplet, elementWidth, fontSize, lineHeight }) => (
 	<div
-		className="relative flex flex-col items-start justify-end h-full"
+		className="relative flex flex-col items-start justify-end h-full z-100"
 		style={{
 			paddingBottom: calcFontSize(elementWidth, 1.125), // Dynamic padding based on container width.
 			paddingLeft: calcFontSize(elementWidth, 7), // Dynamic padding based on container width.
