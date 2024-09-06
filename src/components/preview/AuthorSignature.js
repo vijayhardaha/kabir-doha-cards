@@ -15,8 +15,8 @@ import { calcFontSize } from "@/utils/preview";
  * @returns {JSX.Element} The rendered author signature.
  */
 const AuthorSignature = ({ author, color, elementWidth }) => (
-	<p
-		className="relative"
+	<div
+		className="relative block"
 		style={{
 			marginTop: calcFontSize(elementWidth, 1.125), // Dynamic margin top based on container width.
 		}}
@@ -52,7 +52,7 @@ const AuthorSignature = ({ author, color, elementWidth }) => (
 				/>
 			</svg>
 		</span>
-	</p>
+	</div>
 );
 
 AuthorSignature.propTypes = {

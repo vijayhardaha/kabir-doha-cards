@@ -57,6 +57,9 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 						{/* Background element */}
 						<BackgroundElement color={color} elementWidth={elementWidth} />
 
+						{/* SideAuthor */}
+						<SideAuthor color={color} elementWidth={elementWidth} />
+
 						{/* Couplet content */}
 						<CoupletContent
 							couplet={couplet}
@@ -65,9 +68,6 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 							fontSize={fontSize}
 							lineHeight={lineHeight}
 						/>
-
-						{/* SideAuthor */}
-						<SideAuthor color={color} elementWidth={elementWidth} />
 					</div>
 				</div>
 			</div>

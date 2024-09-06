@@ -19,8 +19,8 @@ const hind = Hind({ weight: ["400", "700"], subsets: ["latin", "devanagari"] });
  * @returns {JSX.Element} The rendered couplet text.
  */
 const CoupletText = ({ couplet, elementWidth, fontSize, lineHeight }) => (
-	<p
-		className={`font-bold ${hind.className}`}
+	<div
+		className={`relative block w-full font-bold ${hind.className}`}
 		style={{
 			fontSize: calcFontSize(elementWidth, fontSize),
 			lineHeight: calcFontSize(elementWidth, lineHeight),
@@ -28,19 +28,13 @@ const CoupletText = ({ couplet, elementWidth, fontSize, lineHeight }) => (
 	>
 		{formatCouplet(couplet).map((line, index) => (
 			<span
+				className="block w-full truncate"
 				key={index}
-				style={{
-					display: "block",
-					overflow: "hidden",
-					textOverflow: "ellipsis",
-					whiteSpace: "nowrap",
-					width: "100%",
-				}}
 			>
 				{line}
 			</span>
 		))}
-	</p>
+	</div>
 );
 
 CoupletText.propTypes = {

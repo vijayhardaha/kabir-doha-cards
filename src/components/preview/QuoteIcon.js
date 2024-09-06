@@ -15,8 +15,8 @@ import { calcFontSize } from "@/utils/preview";
  * @returns {JSX.Element} The rendered quote icon.
  */
 const QuoteIcon = ({ color, elementWidth }) => (
-	<span
-		className="relative inline-block"
+	<div
+		className="relative block"
 		style={{
 			marginLeft: calcFontSize(elementWidth, -1.25),
 			marginBottom: calcFontSize(elementWidth, 1.5),
@@ -29,7 +29,7 @@ const QuoteIcon = ({ color, elementWidth }) => (
 				height: calcFontSize(elementWidth, 7.5),
 			}}
 		/>
-	</span>
+	</div>
 );
 
 QuoteIcon.propTypes = {

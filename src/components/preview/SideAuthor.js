@@ -19,7 +19,7 @@ const montserrat = Montserrat({ weight: ["400", "500"], subsets: ["latin"] });
  */
 const SideAuthor = ({ color, elementWidth }) => (
 	<div
-		className="absolute bottom-0 z-[11]"
+		className="absolute bottom-0 z-10"
 		style={{
 			paddingLeft: calcFontSize(elementWidth, 4),
 		}}

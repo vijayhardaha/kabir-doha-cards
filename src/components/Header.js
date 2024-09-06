@@ -11,7 +11,7 @@ import { getShareUrl } from "@/utils/share";
  * @returns {JSX.Element} The rendered header component.
  */
 const Header = () => (
-	<header className="mb-4 py-4">
+	<header className="mb-8 py-4">
 		<div className="container mx-auto">
 			<div className="flex items-center justify-between">
 				<h1 className="flex items-center justify-center gap-2 text-stone-900 font-bold">
