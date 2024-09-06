@@ -52,7 +52,7 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 					<RandomButton setCouplet={setCouplet} />
 				</div>
 				<div className="relative w-full aspect-square">
-					<div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
+					<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
 						{/* Background element */}
 						<BackgroundElement color={color} elementWidth={elementWidth} />
 
@@ -67,27 +67,6 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 
 						{/* SideAuthor */}
 						<SideAuthor color={color} elementWidth={elementWidth} />
-					</div>
-				</div>
-			</div>
-
-			<div className="fixed -z-10 top-0 left-0 w-[600px] h-auto overflow-visible opacity-0">
-				<div className="relative w-full aspect-square">
-					<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
-						{/* Background element */}
-						<BackgroundElement color={color} elementWidth={600} />
-
-						{/* Couplet content */}
-						<CoupletContent
-							couplet={couplet}
-							color={color}
-							elementWidth={600}
-							fontSize={fontSize}
-							lineHeight={lineHeight}
-						/>
-
-						{/* SideAuthor */}
-						<SideAuthor color={color} elementWidth={600} />
 					</div>
 				</div>
 			</div>
