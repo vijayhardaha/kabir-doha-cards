@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { AiOutlineCopy, AiOutlineCheck } from "react-icons/ai";
 
 import { showToast } from "@/utils/toast";
+import { getSiteUrl } from "@/utils/url";
 
 /**
  * CopyButton component copies the current Doha text to the clipboard.
@@ -20,7 +21,8 @@ const CopyButton = ({ couplet }) => {
 	 * Copies the Doha couplet along with attribution to the clipboard and displays a toast notification.
 	 */
 	const handleCopy = () => {
-		const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nVisit here for more information`;
+		const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nFor more insights and wisdom, visit: ${getSiteUrl()}`;
+
 		navigator.clipboard
 			.writeText(textToCopy)
 			.then(() => {
