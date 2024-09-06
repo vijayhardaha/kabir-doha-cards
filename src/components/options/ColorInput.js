@@ -57,7 +57,7 @@ const ColorInput = ({ color, setColor }) => {
 	 * @type {Array<Array<string>>} - An array of rows, where each row is an array of color strings.
 	 */
 	const groupedColors = colors.reduce((acc, color, index) => {
-		const rowIndex = Math.floor(index / 8);
+		const rowIndex = Math.floor(index / 6);
 		if (!acc[rowIndex]) acc[rowIndex] = [];
 		acc[rowIndex].push(color);
 		return acc;

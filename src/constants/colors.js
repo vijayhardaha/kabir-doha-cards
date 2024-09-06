@@ -18,20 +18,10 @@ export const PICKER_COLORS = {
 		ring: "ring-[#8bc34a]",
 		text: "text-[#8bc34a]",
 	},
-	"#388e3c": {
-		bg: "bg-[#388e3c]",
-		ring: "ring-[#388e3c]",
-		text: "text-[#388e3c]",
-	},
 	"#cddc39": {
 		bg: "bg-[#cddc39]",
 		ring: "ring-[#cddc39]",
 		text: "text-[#cddc39]",
-	},
-	"#ffeb3b": {
-		bg: "bg-[#ffeb3b]",
-		ring: "ring-[#ffeb3b]",
-		text: "text-[#ffeb3b]",
 	},
 	"#fbc02d": {
 		bg: "bg-[#fbc02d]",
@@ -42,11 +32,6 @@ export const PICKER_COLORS = {
 		bg: "bg-[#ff9800]",
 		ring: "ring-[#ff9800]",
 		text: "text-[#ff9800]",
-	},
-	"#ef6c00": {
-		bg: "bg-[#ef6c00]",
-		ring: "ring-[#ef6c00]",
-		text: "text-[#ef6c00]",
 	},
 	"#f44336": {
 		bg: "bg-[#f44336]",
@@ -67,11 +52,6 @@ export const PICKER_COLORS = {
 		bg: "bg-[#9c27b0]",
 		ring: "ring-[#9c27b0]",
 		text: "text-[#9c27b0]",
-	},
-	"#7b1fa2": {
-		bg: "bg-[#7b1fa2]",
-		ring: "ring-[#7b1fa2]",
-		text: "text-[#7b1fa2]",
 	},
 	"#5e35b1": {
 		bg: "bg-[#5e35b1]",
@@ -112,16 +92,6 @@ export const PICKER_COLORS = {
 		bg: "bg-[#00ccff]",
 		ring: "ring-[#00ccff]",
 		text: "text-[#00ccff]",
-	},
-	"#00ff00": {
-		bg: "bg-[#00ff00]",
-		ring: "ring-[#00ff00]",
-		text: "text-[#00ff00]",
-	},
-	"#ff6600": {
-		bg: "bg-[#ff6600]",
-		ring: "ring-[#ff6600]",
-		text: "text-[#ff6600]",
 	},
 	"#cc33ff": {
 		bg: "bg-[#cc33ff]",
