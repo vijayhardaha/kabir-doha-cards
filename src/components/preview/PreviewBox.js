@@ -71,7 +71,7 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 				</div>
 			</div>
 
-			<div className="fixed z-50 top-0 left-0 w-[600px] h-auto overflow-visible visibility-hidden opacity-0">
+			<div className="fixed -z-10 top-0 left-0 w-[600px] h-auto overflow-visible opacity-0">
 				<div className="relative w-full aspect-square">
 					<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
 						{/* Background element */}
