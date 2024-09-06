@@ -43,14 +43,13 @@ const RandomButton = ({ setCouplet }) => {
 
 			if (data.success && data.couplet) {
 				setCouplet(data.couplet);
-				showToast("Doha fetched successfully!");
 			} else {
 				console.warn("No results found for random Doha.");
 				showToast("No Doha found, try again!", "error");
 			}
 		} catch (error) {
 			console.error("Error fetching random Doha:", error);
-			showToast("Error fetching Doha. Please try again.", "error");
+			showToast("Error fetching Doha, try again!", "error");
 		} finally {
 			setProcessing(false); // Reset processing state after the request completes.
 		}

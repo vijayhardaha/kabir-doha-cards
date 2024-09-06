@@ -52,11 +52,11 @@ const DownloadButton = () => {
 				})
 				.catch((error) => {
 					console.error("Failed to download: ", error);
-					showToast("Download failed. Please try again.", "error");
+					showToast("Download failed, try again!", "error");
 				});
 		} else {
 			console.error("Element with id 'doha-preview' not found.");
-			showToast("Download failed. Element not found.", "error");
+			showToast("Failed: Element not found!", "error");
 		}
 	};
 

@@ -30,7 +30,7 @@ const CopyButton = ({ couplet }) => {
 			})
 			.catch((error) => {
 				console.error("Failed to copy: ", error);
-				showToast("Failed to copy. Please try again.", "error");
+				showToast("Failed to copy, try again!", "error");
 			});
 	};
 
