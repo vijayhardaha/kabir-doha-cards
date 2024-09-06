@@ -48,7 +48,7 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 				className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-stone-100"
 				ref={elementRef}
 			>
-				<div className="absolute z-20 bottom-4 right-4  md:hidden">
+				<div className="absolute z-20 bottom-3 right-3 md:hidden">
 					<RandomButton setCouplet={setCouplet} />
 				</div>
 
