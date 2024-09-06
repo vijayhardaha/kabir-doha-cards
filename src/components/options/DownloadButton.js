@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import domtoimage from "dom-to-image";
 import { AiOutlineCloudDownload, AiOutlineCheck } from "react-icons/ai";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 
 import { extractExtensionFromBase64, generateUniqueId } from "@/utils/download";
 import { showToast } from "@/utils/toast";
@@ -91,9 +90,6 @@ const DownloadButton = () => {
 				)}
 				{isDownloaded ? "Downloaded!" : "Download"}
 			</button>
-
-			{/* Tooltip */}
-			<ReactTooltip id="download-doha-tooltip" place="top" type="dark" effect="solid" content="Download Image" />
 		</>
 	);
 };

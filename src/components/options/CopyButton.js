@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import PropTypes from "prop-types";
 import { AiOutlineCopy, AiOutlineCheck } from "react-icons/ai";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 
 import { showToast } from "@/utils/toast";
 
@@ -52,7 +51,6 @@ const CopyButton = ({ couplet }) => {
 				onClick={handleCopy}
 				className="inline-flex items-center justify-center h-10 px-4 text-primary border-2 border-primary rounded-lg bg-white font-semibold hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-slate-50 md:hidden"
 				aria-label="Copy Doha to clipboard"
-				data-tooltip-id="copy-doha-tooltip"
 			>
 				{isCopied ? (
 					<AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
@@ -61,9 +59,6 @@ const CopyButton = ({ couplet }) => {
 				)}
 				{isCopied ? "Copied!" : "Copy"}
 			</button>
-
-			{/* Tooltip */}
-			<ReactTooltip id="copy-doha-tooltip" place="top" type="dark" effect="solid" content="Copy Doha" />
 		</>
 	);
 };

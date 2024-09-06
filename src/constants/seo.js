@@ -12,7 +12,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
  *
  * @type {string}
  */
-export const SITE_TITLE = "Kabir Doha Cards: Create Personalized Spiritual Wisdom Cards";
+export const SITE_TITLE = "Kabir Doha Cards - Create Personalized Spiritual Wisdom Cards";
 
 /**
  * Short version of the site title for SEO and display purposes.

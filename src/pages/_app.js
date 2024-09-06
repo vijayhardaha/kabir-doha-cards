@@ -1,7 +1,6 @@
 import { Space_Grotesk } from "next/font/google";
 import PropTypes from "prop-types";
 import { Toaster } from "react-hot-toast";
-import "react-tooltip/dist/react-tooltip.css";
 
 import "../styles/globals.css";
 import SEO from "@/components/SEO";
