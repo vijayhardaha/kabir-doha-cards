@@ -138,7 +138,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 				<div
 					ref={modalRef}
 					role="document"
-					className="relative my-10 mx-auto w-full max-w-[480px] rounded-lg bg-white shadow-lg overflow-hidden"
+					className="relative mt-20 mb-0 mx-auto w-full max-w-[480px] rounded-lg bg-white shadow-lg overflow-hidden"
 					tabIndex="-1" // Allow focus for accessibility
 				>
 					<span className="sr-only" id="search-modal-title">
