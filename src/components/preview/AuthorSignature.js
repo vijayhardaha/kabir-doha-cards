@@ -22,7 +22,7 @@ const AuthorSignature = ({ author, color, elementWidth }) => (
 		}}
 	>
 		<span
-			className="text-2xl font-semibold"
+			className="text-2xl font-semibold whitespace-nowrap"
 			style={{
 				fontSize: calcFontSize(elementWidth, 1.5), // Dynamic font size based on container width.
 				lineHeight: calcFontSize(elementWidth, 2), // Dynamic line height based on container width.
