@@ -13,8 +13,8 @@ import { getShareUrl } from "@/utils/share";
  */
 const Footer = () => (
 	<footer>
-		{/* Top section with light gray background */}
-		<div className="bg-zinc-50 text-gray-800 py-16">
+		{/* Top section with light stone background */}
+		<div className="bg-stone-100 text-stone-800 py-16">
 			<div className="container mx-auto">
 				<p className="mb-8 text-lg font-medium leading-relaxed">
 					Kabir Doha Cards is an innovative platform that allows you to create beautiful and personalized Kabir Doha
@@ -104,7 +104,7 @@ const Footer = () => (
 		</div>
 
 		{/* Bottom section with dark background */}
-		<div className="bg-gray-800 text-white p-6 text-center">
+		<div className="bg-stone-800 text-white p-6 text-center">
 			<div className="container mx-auto">
 				<p className="text-sm leading-loose">
 					Copyright &copy; 2024 {SITE_TITLE_SHORT}. All rights reserved.

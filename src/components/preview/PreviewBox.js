@@ -45,13 +45,14 @@ const PreviewBox = ({ color, couplet, setCouplet, fontSize, lineHeight }) => {
 	return (
 		<>
 			<div
-				className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-gray-200"
+				className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-stone-100"
 				ref={elementRef}
 			>
-				<div className="absolute -bottom-8 left-2/4 -translate-x-2/4 z-50 md:hidden">
+				<div className="absolute z-20 bottom-4 right-4  md:hidden">
 					<RandomButton setCouplet={setCouplet} />
 				</div>
-				<div className="relative w-full aspect-square">
+
+				<div className="relative z-10 w-full aspect-square">
 					<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
 						{/* Background element */}
 						<BackgroundElement color={color} elementWidth={elementWidth} />

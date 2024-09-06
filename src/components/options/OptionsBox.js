@@ -37,31 +37,28 @@ const OptionsBox = ({
 	setLineHeight,
 }) => {
 	return (
-		<div
-			id="options"
-			className="mt-14 md:mt-6 md:p-6 rounded-lg md:shadow-xl flex flex-col gap-y-5 md:flex-row md:items-center md:gap-4"
-		>
-			<div className="flex flex-col gap-y-5 md:gap-2 md:flex-row md:items-center">
+		<div className="flex flex-col gap-y-5 mt-8 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:p-6 md:shadow-xl md:border md:border-stone-100">
+			<div className="flex flex-col gap-y-5 md:flex-row md:items-center md:gap-2">
 				<SearchInput setCouplet={setCouplet} couplets={couplets} className="w-full md:w-auto" />
 				<ColorInput color={color} setColor={setColor} couplet={couplet} className="w-full md:w-auto" />
 			</div>
 
-			<div className="flex flex-col gap-y-5 md:gap-3 md:flex-row md:items-center md:flex-1">
+			<div className="flex flex-col gap-y-5 md:flex-row md:items-center md:flex-1 md:gap-3">
 				<div className="flex flex-1 items-center gap-3">
-					<AiOutlineFontSize className="h-8 w-8 text-gray-700" />
-					<div className="w-full ml-2 mr-4">
+					<AiOutlineFontSize className="h-8 w-8 text-stone-700" />
+					<div className="ml-2 mr-4 w-full">
 						<RangeSliderInput min={2} max={4} step={0.125} value={fontSize} setValue={setFontSize} />
 					</div>
 				</div>
 				<div className="flex flex-1 items-center gap-3">
-					<AiOutlineLineHeight className="h-8 w-8 text-gray-700" />
-					<div className="w-full ml-2 mr-4">
+					<AiOutlineLineHeight className="h-8 w-8 text-stone-700" />
+					<div className="ml-2 mr-4 w-full">
 						<RangeSliderInput min={3} max={6} step={0.125} value={lineHeight} setValue={setLineHeight} />
 					</div>
 				</div>
 			</div>
 
-			<div className="mt-4 md:mt-0 flex flex-row items-center justify-center gap-3 md:gap-2">
+			<div className="flex flex-row items-center justify-center gap-3 mt-4 md:mt-0 md:gap-2">
 				<DownloadButton couplet={couplet} />
 				<CopyButton couplet={couplet} />
 

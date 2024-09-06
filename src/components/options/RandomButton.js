@@ -58,7 +58,7 @@ const RandomButton = ({ setCouplet }) => {
 	return (
 		<button
 			onClick={fetchRandomDoha}
-			className="relative flex items-center justify-center h-16 w-16 p-2 text-xl text-white bg-primary rounded-full transform transition-transform duration-100 ease-in-out active:scale-90 active:rotate-180 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-white"
+			className="relative flex items-center justify-center h-16 w-16 p-2 text-xl text-white bg-primary rounded-full transform transition-transform duration-200 ease-in-out hover:bg-opacity-85 active:scale-90 active:rotate-[270deg] focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-30"
 			aria-label="Get Random Doha"
 		>
 			<TfiReload aria-hidden="true" size={30} />

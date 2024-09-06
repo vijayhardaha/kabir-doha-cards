@@ -41,7 +41,7 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ...props }) => {
 			}}
 			renderTrack={({ props, children }) => (
 				<div className="h-6 flex w-full">
-					<div ref={props.ref} className="bg-gray-100 h-1 w-full rounded-full self-center">
+					<div ref={props.ref} className="bg-stone-200 h-1 w-full rounded-full self-center">
 						{children}
 					</div>
 				</div>
@@ -60,7 +60,7 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ...props }) => {
 					>
 						{formatValue(values[0])}
 						{/* Tooltip Arrow */}
-						<div className="absolute left-1/2 transform -translate-x-1/2 -bottom-1 w-0 h-0 border-l-4 border-r-4 border-l-transparent border-r-transparent border-t-4 border-t-slate-900"></div>
+						<div className="absolute left-1/2 transform -translate-x-1/2 -bottom-[6px] w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent  border-t-slate-900"></div>
 					</div>
 				</div>
 			)}

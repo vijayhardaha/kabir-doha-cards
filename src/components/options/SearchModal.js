@@ -145,22 +145,22 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 					<span className="sr-only" id="search-modal-title">
 						Search doha
 					</span>
-					<div className="flex items-center px-4 py-2 border-b border-gray-200">
-						<RiSearchLine className="block text-gray-500 w-7 h-7 mr-3" aria-hidden="true" />
+					<div className="flex items-center px-4 py-2 border-b border-stone-200">
+						<RiSearchLine className="block text-stone-500 w-7 h-7 mr-3" aria-hidden="true" />
 
 						<input
 							type="text"
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
 							placeholder="Search for Doha..."
-							className="w-full py-2 px-2 pl-0 border-none outline-none placeholder-gray-400 bg-white rounded-lg text-sm"
+							className="w-full py-2 px-2 pl-0 border-none outline-none placeholder-stone-400 bg-white rounded-lg text-sm"
 							aria-label="Search"
 							ref={inputRef}
 						/>
 						<PiSpinnerGapLight size={24} className={`ml-2 ${isLoading ? "animate-spin" : "opacity-0"}`} />
 						<button
 							onClick={onClose}
-							className="ml-2 cursor-pointer rounded-lg border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-gray-500 shadow-md hover:text-gray-700"
+							className="ml-2 cursor-pointer rounded-lg border border-stone-200 bg-white px-3 py-1 text-xs font-semibold text-stone-500 shadow-md hover:text-stone-700"
 							aria-label="Close"
 						>
 							<span aria-hidden="true">Esc</span>
@@ -170,7 +170,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 					{/* Search results */}
 					<div className="py-2 relative">
 						{isLoading && (
-							<div className="absolute z-10 bg-gray-200 bg-opacity-35 w-full h-full top-0 left-0 flex items-center justify-center">
+							<div className="absolute z-10 bg-stone-200 bg-opacity-35 w-full h-full top-0 left-0 flex items-center justify-center">
 								<PiSpinnerGapLight size={30} className="animate-spin" />
 							</div>
 						)}
@@ -180,7 +180,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 								<button
 									key={index}
 									onClick={() => onSelect(text)}
-									className={`${hind.className} block w-full px-6 py-3 text-left tracking-wide text-sm font-medium border-b border-gray-100 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 whitespace-pre-wrap ${
+									className={`${hind.className} block w-full px-6 py-3 text-left tracking-wide text-sm font-medium border-b border-stone-100 hover:bg-stone-100 focus:outline-none focus:bg-stone-200 whitespace-pre-wrap ${
 										index === searchResults.length - 1 ? "border-b-0" : ""
 									}`}
 									aria-label={`Select ${text}`}
@@ -189,7 +189,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 								</button>
 							))
 						) : (
-							<p className="px-6 py-3 text-gray-500 text-lg font-semibold">No results found</p>
+							<p className="px-6 py-3 text-stone-500 text-lg font-semibold">No results found</p>
 						)}
 					</div>
 				</div>

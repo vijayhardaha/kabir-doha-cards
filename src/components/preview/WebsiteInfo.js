@@ -15,7 +15,7 @@ import { getSiteUrl } from "@/utils/url";
  */
 const WebsiteInfo = ({ elementWidth }) => (
 	<div
-		className="relative block text-xs text-gray-400 whitespace-nowrap"
+		className="relative block text-xs text-stone-400 whitespace-nowrap"
 		style={{
 			marginTop: calcFontSize(elementWidth, 1.25),
 			fontSize: calcFontSize(elementWidth, 0.75),

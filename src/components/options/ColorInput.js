@@ -71,7 +71,7 @@ const ColorInput = ({ color, setColor }) => {
 					value={selectedColor}
 					readOnly
 					onClick={() => setIsOpen(!isOpen)}
-					className="w-full md:w-44 h-10 py-2 px-4 text-base text-gray-800 border-2 border-gray-100 bg-gray-100 rounded-lg cursor-pointer outline-none focus:border-primary focus:ring-4 focus:ring-green-100 transition-all duration-300 ease-in-out"
+					className="w-full md:w-44 h-12 py-2 px-4 text-base text-stone-800 border-2 border-stone-100 bg-stone-100 rounded-lg cursor-pointer outline-none focus:border-primary focus:ring-4 focus:ring-green-100 transition-all duration-300 ease-in-out"
 					aria-label="Selected color"
 				/>
 				<button
@@ -82,7 +82,7 @@ const ColorInput = ({ color, setColor }) => {
 				></button>
 			</div>
 			{isOpen && (
-				<div className="absolute top-full left-0 z-50 bg-white rounded-md shadow-lg px-4 py-3 pb-1">
+			<div className="absolute left-0 top-full mt-1 z-50 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
 					{groupedColors.map((row, rowIndex) => (
 						<div key={rowIndex} className="flex flex-row gap-2 mb-2">
 							{row.map((color) => (

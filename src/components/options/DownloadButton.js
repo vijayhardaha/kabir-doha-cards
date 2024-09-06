@@ -65,7 +65,7 @@ const DownloadButton = () => {
 			{/* Desktop Button */}
 			<button
 				onClick={handleDownload}
-				className="hidden md:inline-flex items-center justify-center h-12 w-12 p-2 text-lg text-primary border-2 border-primary rounded-full hover:bg-primary hover:bg-opacity-10 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50"
+				className="hidden md:inline-flex items-center justify-center h-12 w-12 p-2 text-lg text-primary border-2 border-primary rounded-full hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-30"
 				aria-label="Download image"
 			>
 				{isDownloaded ? (
@@ -79,7 +79,7 @@ const DownloadButton = () => {
 			{/* Mobile Button */}
 			<button
 				onClick={handleDownload}
-				className="inline-flex items-center justify-center h-10 px-4 text-white font-semibold bg-primary rounded-lg md:hidden hover:bg-primary hover:bg-opacity-85 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-slate-50"
+				className="inline-flex items-center justify-center h-10 px-4 text-white font-semibold bg-primary rounded-lg md:hidden hover:bg-primary hover:bg-opacity-85 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-30 focus:ring-offset-2 focus:ring-offset-slate-50"
 				aria-label="Download image"
 				data-tooltip-id="download-doha-tooltip"
 			>

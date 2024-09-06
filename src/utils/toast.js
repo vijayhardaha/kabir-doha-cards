@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 export const showToast = (message, type = "success") => {
 	const options = {
 		style: {
-			backgroundColor: "#1f2937", // Dark mode background (gray-800)
+			backgroundColor: "#1f2937", // Dark mode background (stone-800)
 			color: "#ffffff", // White text
 		},
 	};

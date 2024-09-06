@@ -41,7 +41,7 @@ const CopyButton = ({ couplet }) => {
 			{/* Desktop Button */}
 			<button
 				onClick={handleCopy}
-				className="hidden md:inline-flex items-center justify-center h-12 w-12 p-2 text-lg text-primary border-2 border-primary rounded-full hover:bg-primary hover:bg-opacity-10 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50"
+				className="hidden md:inline-flex items-center justify-center h-12 w-12 p-2 text-lg text-primary border-2 border-primary rounded-full hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-30"
 				aria-label="Copy Doha to clipboard"
 			>
 				{isCopied ? <AiOutlineCheck aria-hidden="true" size={24} /> : <AiOutlineCopy aria-hidden="true" size={24} />}
@@ -51,7 +51,7 @@ const CopyButton = ({ couplet }) => {
 			{/* Mobile Button */}
 			<button
 				onClick={handleCopy}
-				className="inline-flex items-center justify-center h-10 px-4 text-primary border-2 border-primary rounded-lg bg-white font-semibold hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-slate-50 md:hidden"
+				className="inline-flex items-center justify-center h-10 px-4 text-primary border-2 border-primary rounded-lg bg-white font-semibold hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-30 focus:ring-offset-2 focus:ring-offset-slate-50 md:hidden"
 				aria-label="Copy Doha to clipboard"
 			>
 				{isCopied ? (

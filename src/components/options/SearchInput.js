@@ -32,7 +32,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
 				<button
 					onClick={handleSearch}
 					aria-label="Open search"
-					className="flex items-center justify-center w-10 h-10 py-2 px-2 text-base text-gray-700 border-2 border-gray-100 bg-gray-100 rounded-lg outline-none focus:border-primary focus:ring-4 focus:ring-green-100"
+					className="flex items-center justify-center w-12 h-12 py-2 px-2 text-base text-stone-700 border-2 border-stone-100 bg-stone-100 rounded-lg outline-none focus:border-primary focus:ring-4 focus:ring-green-100"
 				>
 					<RiSearchLine aria-hidden="true" className="h-5 w-5" />
 				</button>
@@ -41,7 +41,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
 			{/* Mobile Input */}
 			<div className="relative md:hidden">
 				<span className="absolute top-2/4 left-3 -translate-y-2/4">
-					<RiSearchLine aria-hidden="true" className="h-5 w-5 text-gray-400" />
+					<RiSearchLine aria-hidden="true" className="h-5 w-5 text-stone-400" />
 				</span>
 				<input
 					type="text"
@@ -50,7 +50,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
 					onClick={handleSearch}
 					readOnly
 					aria-label="Search doha"
-					className="w-full h-10 py-2 px-4 pl-9 text-base text-gray-700 border-2 border-gray-100 bg-gray-100 rounded-lg outline-none focus:border-primary focus:ring-4 focus:ring-green-100 cursor-pointer truncate transition-all duration-300 ease-in-out"
+					className="w-full h-12 py-2 px-4 pl-9 text-base text-stone-700 border-2 border-stone-100 bg-stone-100 rounded-lg outline-none focus:border-primary focus:ring-4 focus:ring-green-100 cursor-pointer truncate transition-all duration-300 ease-in-out"
 				/>
 			</div>
 
