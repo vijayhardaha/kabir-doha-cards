@@ -24,15 +24,15 @@ const DownloadButton = () => {
 		if (node) {
 			// Ensure that the node exists before proceeding.
 			const rect = node.getBoundingClientRect();
-			const width = rect.width * 4;
-			const height = rect.height * 4;
+			const width = rect.width * 6;
+			const height = rect.height * 6;
 
 			const options = {
 				width,
 				height,
-				quality: 0.7,
+				quality: 0.75,
 				style: {
-					transform: "scale(4)",
+					transform: "scale(6)",
 					transformOrigin: "top left",
 				},
 			};
