@@ -27,22 +27,25 @@ const Header = () => (
 						href="https://github.com/vijayhardaha/kabir-doha-cards"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="hidden sm:inline-flex items-center justify-center h-8 px-3 text-sm text-white bg-gray-800 border-2 border-gray-800 font-medium rounded-lg hover:bg-white hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
+						className="items-center text-sm font-medium text-gray-800 hover:underline hidden sm:flex"
 						aria-label="View the source code on GitHub"
 					>
-						<AiOutlineGithub aria-hidden="true" className="mr-1 text-base" />
-						<span>Source Code</span>
+						<AiOutlineGithub aria-hidden="true" className="mr-1 text-sm" />
+						View Source Code
 					</a>
+
+					{/* Vertical Divider */}
+					<span className="h-3 border-l border-gray-300 hidden sm:flex"></span>
 
 					<a
 						href={getShareUrl()}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center justify-center h-8 px-3 text-sm text-gray-800 bg-white border-2 border-gray-800 font-medium rounded-lg hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+						className="flex items-center text-sm font-medium text-green-600 hover:underline"
 						aria-label="Share on WhatsApp"
 					>
-						<AiOutlineWhatsApp aria-hidden="true" className="mr-1 text-base" />
-						<span>Share</span>
+						<AiOutlineWhatsApp aria-hidden="true" className="mr-1 text-sm" />
+						Share the App
 					</a>
 				</div>
 			</div>
