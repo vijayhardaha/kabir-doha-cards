@@ -27,7 +27,7 @@ const MainContent = ({ couplets }) => {
 	}, [couplets]);
 
 	return (
-		<main className="relative mb-14">
+		<main className="relative">
 			<PreviewBox
 				color={color}
 				couplet={couplet}

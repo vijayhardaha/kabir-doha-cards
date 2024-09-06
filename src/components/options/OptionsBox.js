@@ -37,7 +37,7 @@ const OptionsBox = ({
 	setLineHeight,
 }) => {
 	return (
-		<div className="flex flex-col gap-y-5 mt-8 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:p-6 md:shadow-xl md:border md:border-stone-100">
+		<div className="flex flex-col gap-y-5 mt-8 mb-20 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:px-6 md:py-3 md:shadow-xl md:border md:border-stone-100">
 			<div className="flex flex-col gap-y-5 md:flex-row md:items-center md:gap-2">
 				<SearchInput setCouplet={setCouplet} couplets={couplets} className="w-full md:w-auto" />
 				<ColorInput color={color} setColor={setColor} couplet={couplet} className="w-full md:w-auto" />
