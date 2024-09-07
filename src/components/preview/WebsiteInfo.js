@@ -1,8 +1,3 @@
-import React from "react";
-
-import PropTypes from "prop-types";
-
-import { calcFontSize } from "@/utils/preview";
 import { getSiteUrl } from "@/utils/url";
 
 /**
@@ -13,21 +8,17 @@ import { getSiteUrl } from "@/utils/url";
  * @param {number} props.elementWidth - The width of the container element, used for responsive sizing.
  * @returns {JSX.Element} The rendered website info message.
  */
-const WebsiteInfo = ({ elementWidth }) => (
+const WebsiteInfo = () => (
 	<div
 		className="relative block text-xs text-stone-400 whitespace-nowrap"
 		style={{
-			marginTop: calcFontSize(elementWidth, 1.25),
-			fontSize: calcFontSize(elementWidth, 0.75),
-			lineHeight: calcFontSize(elementWidth, 1),
+			marginTop: "var(--kdc-website-info-mt)",
+			fontSize: "var(--kdc-website-info-fs)",
+			lineHeight: "var(--kdc-website-info-lh)",
 		}}
 	>
 		Image sourced from <span className="underline">{getSiteUrl(false)}</span>
 	</div>
 );
-
-WebsiteInfo.propTypes = {
-	elementWidth: PropTypes.number.isRequired, // Width of the container element for responsive sizing.
-};
 
 export default WebsiteInfo;
