@@ -15,6 +15,7 @@ module.exports = {
 		node: true, // Add Node.js environment for server-side code.
 		es6: true, // Enable ES6 syntax.
 	},
+	parser: "@babel/eslint-parser",
 	parserOptions: {
 		ecmaVersion: 2024, // Set to latest ECMAScript version.
 		sourceType: "module",
