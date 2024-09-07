@@ -28,13 +28,7 @@ const MainContent = ({ couplets }) => {
 
 	return (
 		<main className="relative" aria-hidden="true">
-			<PreviewBox
-				color={color}
-				couplet={couplet}
-				setCouplet={setCouplet}
-				fontSize={fontSize}
-				lineHeight={lineHeight}
-			/>
+			<PreviewBox color={color} couplet={couplet} setCouplet={setCouplet} fontSize={fontSize} lineHeight={lineHeight} />
 
 			<OptionsBox
 				color={color}

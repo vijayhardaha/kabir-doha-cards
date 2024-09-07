@@ -27,10 +27,7 @@ const CoupletText = ({ couplet, elementWidth, fontSize, lineHeight }) => (
 		}}
 	>
 		{formatCouplet(couplet).map((line, index) => (
-			<span
-				className="block w-full truncate"
-				key={index}
-			>
+			<span className="block w-full truncate" key={index}>
 				{line}
 			</span>
 		))}

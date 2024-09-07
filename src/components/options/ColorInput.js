@@ -82,7 +82,7 @@ const ColorInput = ({ color, setColor }) => {
 				></button>
 			</div>
 			{isOpen && (
-			<div className="absolute left-0 top-full mt-1 z-50 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
+				<div className="absolute left-0 top-full mt-1 z-50 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
 					{groupedColors.map((row, rowIndex) => (
 						<div key={rowIndex} className="flex flex-row gap-2 mb-2">
 							{row.map((color) => (
