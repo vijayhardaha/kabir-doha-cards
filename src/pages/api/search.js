@@ -18,7 +18,13 @@ export default async function handler(req, res) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ search, orderBy: "couplet_hindi", order: "ASC", perPage: 10 }),
+				body: JSON.stringify({
+					s: search,
+					searchWithin: "couplet",
+					orderBy: "couplet_hindi",
+					order: "ASC",
+					perPage: 10,
+				}),
 			});
 
 			if (!response.ok) {
