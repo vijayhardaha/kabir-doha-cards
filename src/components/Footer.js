@@ -16,7 +16,7 @@ const Footer = () => (
 		{/* Top section with light stone background */}
 		<div className="bg-stone-100 text-stone-800 py-16">
 			<div className="container mx-auto">
-				<p className="mb-8 text-lg font-medium leading-relaxed">
+				<p className="mb-12 text-lg font-medium leading-relaxed">
 					Kabir Doha Cards is an innovative platform that allows you to create beautiful and personalized Kabir Doha
 					cards effortlessly. Whether for inspiration, sharing wisdom, or celebrating special occasions, our tool
 					provides a simple and elegant way to craft and share these timeless pieces of wisdom.
@@ -25,7 +25,7 @@ const Footer = () => (
 				<h2 className="mb-4 text-2xl font-bold border-l-4 border-primary pl-3" id="about-kabir-das">
 					About Kabir Das
 				</h2>
-				<p className="mb-8 leading-relaxed">
+				<p className="mb-12 leading-relaxed">
 					Kabir Das was a 15th-century Indian poet and saint whose verses have had a profound influence on Indian
 					literature and spirituality. His poetry, written in the vernacular, addresses themes of devotion and
 					mysticism, transcending religious boundaries.
@@ -47,7 +47,7 @@ const Footer = () => (
 				<h3 className="mb-4 text-xl font-semibold border-l-4 border-primary pl-3" id="contact">
 					Contact
 				</h3>
-				<p className="mb-8 leading-relaxed">
+				<p className="mb-12 leading-relaxed">
 					For new projects or work opportunities, feel free to reach out to me on Twitter at{" "}
 					<a
 						href="https://twitter.com/vijayhardaha"
