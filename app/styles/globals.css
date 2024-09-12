@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--kdc-color: #12b848;
+
+	--kdc-blob-t: -6.5rem;
+	--kdc-blob-r: -6.5rem;
+	--kdc-blob-w: 23.125rem;
+	--kdc-blob-h: 18.75rem;
+
+	--kdc-sideauth-block-pl: 4rem;
+	--kdc-sideauth-text-fs: 0.875rem;
+	--kdc-sideauth-text-lh: 1.25rem;
+	--kdc-sideauth-text-ls: 0.525rem;
+	--kdc-sideauth-text-to: 1.25rem;
+	--kdc-sideauth-line-w: 6.25rem;
+	--kdc-sideauth-line-mr: 3rem;
+
+	--kdc-couplet-content-p: 0 1rem 1.125rem 7rem;
+
+	--kdc-couplet-text-fs: fontSizerem;
+	--kdc-couplet-text-lh: lineHeightrem;
+
+	--kdc-quote-block-ml: -1.25rem;
+	--kdc-quote-block-mb: 1.5rem;
+	--kdc-quote-w: 7.5rem;
+	--kdc-quote-h: 7.5rem;
+
+	--kdc-author-sign-block-mt: 1.125rem;
+	--kdc-author-sign-text-fs: 1.5rem;
+	--kdc-author-sign-text-lh: 2rem;
+	--kdc-author-sign-underline-l: 5rem;
+	--kdc-author-sign-underline-w: 6.25rem;
+	--kdc-author-sign-underline-h: 0.563rem;
+
+	--kdc-website-info-mt: 1.25rem;
+	--kdc-website-info-fs: 0.75rem;
+	--kdc-website-info-lh: 1rem;
+}

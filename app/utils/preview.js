@@ -14,7 +14,7 @@ export function calcFontSize(screenWidth, baseFontSize = 3) {
 	const newFontSize = baseFontSize * ratio;
 
 	// Return the font size as a string with 'rem' units
-	return `${newFontSize}rem`; // Ensuring minimum font size of 1rem
+	return `${parseFloat(newFontSize).toFixed(3)}rem`; // Ensuring minimum font size of 1rem
 }
 
 /**

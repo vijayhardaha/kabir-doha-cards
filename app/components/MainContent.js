@@ -57,33 +57,7 @@ const MainContent = ({ couplets }) => {
 	const gs = (rem) => calcFontSize(elementWidth, rem);
 
 	return (
-		<main className="relative">
-			<div
-				className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-stone-100"
-				ref={elementRef}
-			>
-				<PreviewBox
-					color={color}
-					couplet={couplet}
-					setCouplet={setCouplet}
-					fontSize={fontSize}
-					lineHeight={lineHeight}
-					elementWidth={elementWidth}
-				/>
-			</div>
-
-			<OptionsBox
-				color={color}
-				couplet={couplet}
-				couplets={couplets}
-				fontSize={fontSize}
-				lineHeight={lineHeight}
-				setColor={setColor}
-				setCouplet={setCouplet}
-				setFontSize={setFontSize}
-				setLineHeight={setLineHeight}
-			/>
-
+		<>
 			<style jsx global>{`
 				:root {
 					--kdc-color: ${color};
@@ -123,7 +97,34 @@ const MainContent = ({ couplets }) => {
 					--kdc-website-info-lh: ${gs(1)};
 				}
 			`}</style>
-		</main>
+			<main className="relative">
+				<div
+					className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-stone-100"
+					ref={elementRef}
+				>
+					<PreviewBox
+						color={color}
+						couplet={couplet}
+						setCouplet={setCouplet}
+						fontSize={fontSize}
+						lineHeight={lineHeight}
+						elementWidth={elementWidth}
+					/>
+				</div>
+
+				<OptionsBox
+					color={color}
+					couplet={couplet}
+					couplets={couplets}
+					fontSize={fontSize}
+					lineHeight={lineHeight}
+					setColor={setColor}
+					setCouplet={setCouplet}
+					setFontSize={setFontSize}
+					setLineHeight={setLineHeight}
+				/>
+			</main>
+		</>
 	);
 };
 
