@@ -2,12 +2,11 @@ import { Suspense } from "react";
 
 import PropTypes from "prop-types";
 
-import { getSiteUrl } from "./utils/url";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Loader from "@/components/Loader";
 import MainContent from "@/components/MainContent";
 import { DEFAULT_SEO } from "@/constants/seo";
+import { getSiteUrl } from "@/utils/url";
 
 const siteUrl = getSiteUrl();
 
@@ -96,7 +95,7 @@ export default function Home() {
 			<Header />
 			<div className="container mx-auto">
 				<div className=" mb-20">
-					<Suspense fallback={<Loader />}>
+					<Suspense fallback={<></>}>
 						{/* The main content will be shown once the data is fetched */}
 						<CoupletContent />
 					</Suspense>
