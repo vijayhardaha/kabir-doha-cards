@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import domtoimage from "dom-to-image";
 import { AiOutlineCloudDownload, AiOutlineCheck } from "react-icons/ai";
+import { PiSpinnerGapLight } from "react-icons/pi";
 
 import { extractExtensionFromBase64, generateUniqueId } from "@/utils/download";
 import { showToast } from "@/utils/toast";
@@ -12,6 +13,7 @@ import { showToast } from "@/utils/toast";
  * @returns {JSX.Element} The rendered download button component.
  */
 const DownloadButton = () => {
+	const [isDownloading, setIsDownloading] = useState(false);
 	const [isDownloaded, setIsDownloaded] = useState(false);
 
 	/**
@@ -23,6 +25,7 @@ const DownloadButton = () => {
 
 		if (node) {
 			// Ensure that the node exists before proceeding.
+			setIsDownloading(true); // Set downloading state to true.
 			const rect = node.getBoundingClientRect();
 			const width = rect.width * 6;
 			const height = rect.height * 6;
@@ -47,12 +50,14 @@ const DownloadButton = () => {
 					link.href = dataUrl;
 					link.click();
 					setIsDownloaded(true);
+					setIsDownloading(false); // Reset downloading state.
 					showToast("Image downloaded successfully!");
 					setTimeout(() => setIsDownloaded(false), 1000); // Reset downloaded state after 1 second.
 				})
 				.catch((error) => {
 					console.error("Failed to download: ", error);
 					showToast("Download failed, try again!", "error");
+					setIsDownloading(false); // Reset downloading state on error.
 				});
 		} else {
 			console.error("Element with id 'doha-preview' not found.");
@@ -68,12 +73,14 @@ const DownloadButton = () => {
 				className="hidden md:inline-flex items-center justify-center h-12 w-12 p-2 text-lg text-primary border-2 border-primary rounded-full hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-30"
 				aria-label="Download image"
 			>
-				{isDownloaded ? (
+				{isDownloading ? (
+					<PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
+				) : isDownloaded ? (
 					<AiOutlineCheck aria-hidden="true" size={24} />
 				) : (
 					<AiOutlineCloudDownload aria-hidden="true" size={24} />
 				)}
-				<span className="sr-only">Download</span> {/* Screen reader only text */}
+				<span className="sr-only">Download</span>
 			</button>
 
 			{/* Mobile Button */}
@@ -83,12 +90,14 @@ const DownloadButton = () => {
 				aria-label="Download image"
 				data-tooltip-id="download-doha-tooltip"
 			>
-				{isDownloaded ? (
+				{isDownloading ? (
+					<PiSpinnerGapLight aria-hidden="true" size={20} className="animate-spin mr-2" />
+				) : isDownloaded ? (
 					<AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
 				) : (
 					<AiOutlineCloudDownload aria-hidden="true" size={20} className="mr-2" />
 				)}
-				{isDownloaded ? "Downloaded!" : "Download"}
+				{isDownloading ? "Downloading..." : isDownloaded ? "Downloaded!" : "Download"}
 			</button>
 		</>
 	);

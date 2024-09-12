@@ -14,7 +14,7 @@ import { getShareUrl } from "@/utils/share";
 const Footer = () => (
 	<footer>
 		{/* Top section with light stone background */}
-		<div className="bg-stone-100 text-stone-800 py-16">
+		<div className="bg-stone-100 py-16 text-stone-800">
 			<div className="container mx-auto">
 				<p className="mb-12 text-lg font-medium leading-relaxed">
 					Kabir Doha Cards is an innovative platform that allows you to create beautiful and personalized Kabir Doha
@@ -22,7 +22,7 @@ const Footer = () => (
 					provides a simple and elegant way to craft and share these timeless pieces of wisdom.
 				</p>
 
-				<h2 className="mb-4 text-2xl font-bold border-l-4 border-primary pl-3" id="about-kabir-das">
+				<h2 className="mb-4 border-l-4 border-primary pl-3 text-2xl font-bold" id="about-kabir-das">
 					About Kabir Das
 				</h2>
 				<p className="mb-12 leading-relaxed">
@@ -35,7 +35,7 @@ const Footer = () => (
 						href="https://en.wikipedia.org/wiki/Kabir"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 						aria-label="Kabir Das on Wikipedia"
 					>
 						Kabir Das on Wikipedia
@@ -44,7 +44,7 @@ const Footer = () => (
 					.
 				</p>
 
-				<h3 className="mb-4 text-xl font-semibold border-l-4 border-primary pl-3" id="contact">
+				<h3 className="mb-4 border-l-4 border-primary pl-3 text-xl font-semibold" id="contact">
 					Contact
 				</h3>
 				<p className="mb-12 leading-relaxed">
@@ -53,7 +53,7 @@ const Footer = () => (
 						href="https://twitter.com/vijayhardaha"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 						aria-label="Twitter profile of @vijayhardaha"
 					>
 						@vijayhardaha
@@ -64,7 +64,7 @@ const Footer = () => (
 						href="https://pph.me/vijayhardaha"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 						aria-label="PeoplePerHour profile of vijayhardaha"
 					>
 						pph.me/vijayhardaha
@@ -73,7 +73,7 @@ const Footer = () => (
 					.
 				</p>
 
-				<h3 className="mb-4 text-xl font-semibold border-l-4 border-primary pl-3" id="share">
+				<h3 className="mb-4 border-l-4 border-primary pl-3 text-xl font-semibold" id="share">
 					Share
 				</h3>
 				<p className="leading-relaxed">
@@ -82,7 +82,7 @@ const Footer = () => (
 						href={getShareUrl()}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 						aria-label="Share on WhatsApp"
 					>
 						Share on WhatsApp
@@ -93,7 +93,7 @@ const Footer = () => (
 						href={getShareUrl("x")}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 						aria-label="Share on Twitter"
 					>
 						Share on Twitter
@@ -104,7 +104,7 @@ const Footer = () => (
 		</div>
 
 		{/* Bottom section with dark background */}
-		<div className="bg-stone-800 text-white p-6 text-center">
+		<div className="bg-stone-800 p-6 text-center text-white">
 			<div className="container mx-auto">
 				<p className="text-sm leading-loose">
 					Copyright &copy; 2024 {SITE_TITLE_SHORT}. All rights reserved.
@@ -114,7 +114,7 @@ const Footer = () => (
 						href="https://twitter.com/vijayhardaha"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 					>
 						Vijay Hardaha
 						<MdArrowOutward aria-hidden="true" />
@@ -124,7 +124,7 @@ const Footer = () => (
 						href="https://nextjs.org/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 					>
 						Next.js
 						<MdArrowOutward aria-hidden="true" />
@@ -134,7 +134,7 @@ const Footer = () => (
 						href="https://tailwindcss.com/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center underline text-primary"
+						className="inline-flex items-center text-primary underline"
 					>
 						Tailwind CSS
 						<MdArrowOutward aria-hidden="true" />

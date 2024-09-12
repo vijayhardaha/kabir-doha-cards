@@ -84,6 +84,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 				try {
 					const response = await fetch("/api/search", {
 						method: "POST",
+						cache: "no-cache",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({ search: term }),
 					});

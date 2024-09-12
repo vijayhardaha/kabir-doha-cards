@@ -14,8 +14,8 @@ const Header = () => (
 	<header className="mb-8 py-4">
 		<div className="container mx-auto">
 			<div className="flex items-center justify-between">
-				<h1 className="flex items-center justify-center gap-2 text-stone-900 font-bold">
-					<Logo aria-hidden="true" className="w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16" />
+				<h1 className="flex items-center gap-2 text-stone-900 font-bold">
+					<Logo aria-hidden="true" className="h-10 w-10 md:h-12 md:w-12 lg:h-16 lg:w-16" />
 
 					<Link href="/" className="text-lg md:text-xl lg:text-2xl">
 						Kabir Doha Cards
@@ -27,7 +27,7 @@ const Header = () => (
 						href="https://github.com/vijayhardaha/kabir-doha-cards"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="items-center text-sm font-medium text-stone-800 hover:underline hidden sm:flex"
+						className="hidden items-center text-sm font-medium text-stone-800 hover:underline sm:flex"
 						aria-label="View the source code on GitHub"
 					>
 						<AiOutlineGithub aria-hidden="true" className="mr-1 text-sm" />
@@ -35,7 +35,7 @@ const Header = () => (
 					</a>
 
 					{/* Vertical Divider */}
-					<span className="h-3 border-l border-stone-300 hidden sm:flex"></span>
+					<span className="hidden h-3 border-l border-stone-300 sm:flex"></span>
 
 					<a
 						href={getShareUrl()}

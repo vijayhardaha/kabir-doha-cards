@@ -1,5 +1,3 @@
-import { getSiteUrl } from "@/utils/url";
-
 /**
  * The base URL of the site, retrieved from environment variables.
  * Defaults to an empty string if the environment variable is not set.
@@ -51,8 +49,8 @@ export const DEFAULT_SEO = {
 		"Kabir Doha, spiritual quotes, personalized cards, wisdom cards, Kabir teachings, inspirational quotes, custom cards, Kabir, spirituality, Kabir Doha cards",
 	language: "en-US",
 	author: "Vijay Hardaha",
-	image: `${getSiteUrl()}/thumbnail.png`,
-	url: getSiteUrl(),
+	image: "/thumbnail.png",
+	url: "",
 	googlebot: "index, follow",
 	robots: "index, follow",
 };

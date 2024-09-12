@@ -1,3 +1,14 @@
+import React from "react";
+
+import PropTypes from "prop-types";
+
+/**
+ * Logo component renders an SVG logo.
+ *
+ * @component
+ * @param {Object} props - The props passed to the component.
+ * @returns {JSX.Element} The rendered Logo component.
+ */
 const Logo = ({ ...props }) => {
 	return (
 		<svg {...props} viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,6 +30,11 @@ const Logo = ({ ...props }) => {
 			/>
 		</svg>
 	);
+};
+
+Logo.propTypes = {
+	// Any additional props that can be passed to the component
+	props: PropTypes.object,
 };
 
 export default Logo;

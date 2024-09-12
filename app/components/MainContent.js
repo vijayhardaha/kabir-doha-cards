@@ -1,3 +1,5 @@
+"use client"; // Marks this as a client component
+
 import React, { useState, useEffect, useRef } from "react";
 
 import PropTypes from "prop-types";
@@ -19,10 +21,10 @@ const MainContent = ({ couplets }) => {
 	const [couplet, setCouplet] = useState("");
 	const [fontSize, setFontSize] = useState(3);
 	const [lineHeight, setLineHeight] = useState(4.5);
-
 	const [elementWidth, setElementWidth] = useState(600);
 	const elementRef = useRef(null);
 
+	// Choose a random couplet on mount or whenever the couplets array changes.
 	useEffect(() => {
 		if (couplets.length > 0) {
 			const randomIndex = Math.floor(Math.random() * couplets.length);
@@ -30,10 +32,8 @@ const MainContent = ({ couplets }) => {
 		}
 	}, [couplets]);
 
+	// Resize handler to update the element width on window resize.
 	useEffect(() => {
-		/**
-		 * Handles resizing of the element to update the width.
-		 */
 		const handleResize = () => {
 			if (elementRef.current) {
 				setElementWidth(elementRef.current.offsetWidth);
@@ -41,10 +41,10 @@ const MainContent = ({ couplets }) => {
 		};
 
 		handleResize(); // Set initial width
-		window.addEventListener("resize", handleResize); // Attach resize event listener
+		window.addEventListener("resize", handleResize);
 
 		return () => {
-			window.removeEventListener("resize", handleResize); // Cleanup the event listener
+			window.removeEventListener("resize", handleResize); // Cleanup on unmount.
 		};
 	}, []);
 
