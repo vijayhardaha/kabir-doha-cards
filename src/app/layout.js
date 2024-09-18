@@ -2,7 +2,7 @@ import { Space_Grotesk } from "next/font/google";
 import PropTypes from "prop-types";
 import { Toaster } from "react-hot-toast";
 
-import "./styles/globals.css";
+import "@/styles/globals.css";
 
 // Load fonts
 const space = Space_Grotesk({

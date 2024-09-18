@@ -94,7 +94,7 @@ export default function Home() {
 		<div>
 			<Header />
 			<div className="container mx-auto">
-				<div className=" mb-20">
+				<div className="mb-20">
 					<Suspense fallback={<></>}>
 						{/* The main content will be shown once the data is fetched */}
 						<CoupletContent />
