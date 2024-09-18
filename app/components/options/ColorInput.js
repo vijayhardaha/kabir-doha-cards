@@ -71,26 +71,26 @@ const ColorInput = ({ color, setColor }) => {
 					value={selectedColor}
 					readOnly
 					onClick={() => setIsOpen(!isOpen)}
-					className="w-full md:w-44 h-12 py-2 px-4 text-base text-stone-800 border-2 border-stone-100 bg-stone-100 rounded-lg cursor-pointer outline-none focus:border-primary focus:ring-4 focus:ring-green-100 transition-all duration-300 ease-in-out"
+					className="h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-none transition-all duration-300 ease-in-out focus:border-primary focus:ring-4 focus:ring-green-100 md:w-44"
 					aria-label="Selected color"
 				/>
 				<button
 					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[color].bg} border-2 border-white rounded-lg transform -translate-y-1/2`}
+					className={`absolute right-2 top-1/2 h-8 w-8 ${PICKER_COLORS[color].bg} -translate-y-1/2 transform rounded-lg border-2 border-white`}
 					aria-label="Open color picker"
 				></button>
 			</div>
 			{isOpen && (
-				<div className="absolute left-0 top-full mt-1 z-50 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
+				<div className="absolute left-0 top-full z-50 mt-1 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
 					{groupedColors.map((row, rowIndex) => (
-						<div key={rowIndex} className="flex flex-row gap-2 mb-2">
+						<div key={rowIndex} className="mb-2 flex flex-row gap-2">
 							{row.map((color) => (
 								<button
 									key={color}
 									type="button"
 									onClick={() => handleColorClick(color)}
-									className={`w-8 h-8 rounded-md transition-all duration-300 ease-in-out ${color === selectedColor ? `ring-2 ${PICKER_COLORS[color].ring} ring-opacity-50 ring-offset-2` : ""}`}
+									className={`h-8 w-8 rounded-md transition-all duration-300 ease-in-out ${color === selectedColor ? `ring-2 ${PICKER_COLORS[color].ring} ring-opacity-50 ring-offset-2` : ""}`}
 									style={{ backgroundColor: color }}
 									aria-label={`Select color ${color}`}
 								/>

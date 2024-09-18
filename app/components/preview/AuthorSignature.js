@@ -6,9 +6,9 @@
  * @returns {JSX.Element} The rendered author signature.
  */
 const AuthorSignature = () => (
-	<div className="relative block mt-[var(--kdc-author-sign-block-mt)]">
+	<div className="relative mt-[var(--kdc-author-sign-block-mt)] block">
 		<span
-			className="text-2xl font-semibold whitespace-nowrap"
+			className="whitespace-nowrap text-2xl font-semibold"
 			style={{
 				fontSize: "var(--kdc-author-sign-text-fs)",
 				lineHeight: "var(--kdc-author-sign-text-lh)",

@@ -70,7 +70,7 @@ const DownloadButton = () => {
 			{/* Desktop Button */}
 			<button
 				onClick={handleDownload}
-				className="hidden md:inline-flex items-center justify-center h-12 w-12 p-2 text-lg text-primary border-2 border-primary rounded-full hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-30"
+				className="hidden h-12 w-12 items-center justify-center rounded-full border-2 border-primary p-2 text-lg text-primary hover:bg-primary hover:bg-opacity-5 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-30 md:inline-flex"
 				aria-label="Download image"
 			>
 				{isDownloading ? (
@@ -86,12 +86,12 @@ const DownloadButton = () => {
 			{/* Mobile Button */}
 			<button
 				onClick={handleDownload}
-				className="inline-flex items-center justify-center h-10 px-4 text-white font-semibold bg-primary rounded-lg md:hidden hover:bg-primary hover:bg-opacity-85 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-30 focus:ring-offset-2 focus:ring-offset-slate-50"
+				className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 font-semibold text-white hover:bg-primary hover:bg-opacity-85 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-30 focus:ring-offset-2 focus:ring-offset-slate-50 md:hidden"
 				aria-label="Download image"
 				data-tooltip-id="download-doha-tooltip"
 			>
 				{isDownloading ? (
-					<PiSpinnerGapLight aria-hidden="true" size={20} className="animate-spin mr-2" />
+					<PiSpinnerGapLight aria-hidden="true" size={20} className="mr-2 animate-spin" />
 				) : isDownloaded ? (
 					<AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
 				) : (

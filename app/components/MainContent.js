@@ -99,7 +99,7 @@ const MainContent = ({ couplets }) => {
 			`}</style>
 			<main className="relative">
 				<div
-					className="relative h-full w-full max-w-[600px] mx-auto border-2 border-dashed border-stone-100"
+					className="relative mx-auto h-full w-full max-w-[600px] border-2 border-dashed border-stone-100"
 					ref={elementRef}
 				>
 					<PreviewBox

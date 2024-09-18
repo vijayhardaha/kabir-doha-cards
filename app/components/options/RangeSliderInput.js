@@ -40,8 +40,8 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ...props }) => {
 				setValue(values[0]);
 			}}
 			renderTrack={({ props, children }) => (
-				<div className="h-6 flex w-full">
-					<div ref={props.ref} className="bg-stone-200 h-1 w-full rounded-full self-center">
+				<div className="flex h-6 w-full">
+					<div ref={props.ref} className="h-1 w-full self-center rounded-full bg-stone-200">
 						{children}
 					</div>
 				</div>
@@ -50,17 +50,17 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ...props }) => {
 				<div
 					{...props}
 					key={props.key}
-					className={`h-6 w-6 rounded-full bg-primary flex items-center justify-center outline-none ${isDragged ? "ring-4 ring-primary ring-opacity-70 ring-offset-2 ring-offset-white" : ""}`}
+					className={`flex h-6 w-6 items-center justify-center rounded-full bg-primary outline-none ${isDragged ? "ring-4 ring-primary ring-opacity-70 ring-offset-2 ring-offset-white" : ""}`}
 				>
 					{/* Tooltip */}
 					<div
-						className={`absolute -top-9 bg-slate-900 text-white text-xs py-1 px-3 outline-none rounded-md flex items-center justify-center ${!isDragged ? "hidden" : ""}`}
+						className={`absolute -top-9 flex items-center justify-center rounded-md bg-slate-900 px-3 py-1 text-xs text-white outline-none ${!isDragged ? "hidden" : ""}`}
 						role="tooltip"
 						aria-live="polite"
 					>
 						{formatValue(values[0])}
 						{/* Tooltip Arrow */}
-						<div className="absolute left-1/2 transform -translate-x-1/2 -bottom-[6px] w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent  border-t-slate-900"></div>
+						<div className="absolute -bottom-[6px] left-1/2 h-0 w-0 -translate-x-1/2 transform border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-slate-900"></div>
 					</div>
 				</div>
 			)}

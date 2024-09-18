@@ -37,13 +37,13 @@ const OptionsBox = ({
 	setLineHeight,
 }) => {
 	return (
-		<div className="flex flex-col gap-y-5 mt-8 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:px-6 md:py-3 md:shadow-xl md:border md:border-stone-100">
+		<div className="mt-8 flex flex-col gap-y-5 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl">
 			<div className="flex flex-col gap-y-5 md:flex-row md:items-center md:gap-2">
 				<SearchInput setCouplet={setCouplet} couplets={couplets} className="w-full md:w-auto" />
 				<ColorInput color={color} setColor={setColor} couplet={couplet} className="w-full md:w-auto" />
 			</div>
 
-			<div className="flex flex-col gap-y-5 md:flex-row md:items-center md:flex-1 md:gap-3">
+			<div className="flex flex-col gap-y-5 md:flex-1 md:flex-row md:items-center md:gap-3">
 				<div className="flex flex-1 items-center gap-3">
 					<AiOutlineFontSize className="h-8 w-8 text-stone-700" />
 					<div className="ml-2 mr-4 w-full">
@@ -58,7 +58,7 @@ const OptionsBox = ({
 				</div>
 			</div>
 
-			<div className="flex flex-row items-center justify-center gap-3 mt-4 md:mt-0 md:gap-2">
+			<div className="mt-4 flex flex-row items-center justify-center gap-3 md:mt-0 md:gap-2">
 				<DownloadButton couplet={couplet} />
 				<CopyButton couplet={couplet} />
 

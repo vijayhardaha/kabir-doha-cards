@@ -14,7 +14,7 @@ const Header = () => (
 	<header className="mb-8 py-4">
 		<div className="container mx-auto">
 			<div className="flex items-center justify-between">
-				<h1 className="flex items-center gap-2 text-stone-900 font-bold">
+				<h1 className="flex items-center gap-2 font-bold text-stone-900">
 					<Logo aria-hidden="true" className="h-10 w-10 md:h-12 md:w-12 lg:h-16 lg:w-16" />
 
 					<Link href="/" className="text-lg md:text-xl lg:text-2xl">

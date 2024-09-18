@@ -15,7 +15,7 @@ import WebsiteInfo from "./WebsiteInfo";
  * @returns {JSX.Element} The rendered couplet content.
  */
 const CoupletContent = ({ couplet }) => (
-	<div className="relative z-20 h-full flex flex-col items-start justify-end p-[var(--kdc-couplet-content-p)]">
+	<div className="relative z-20 flex h-full flex-col items-start justify-end p-[var(--kdc-couplet-content-p)]">
 		<QuoteIcon />
 		<CoupletText couplet={couplet} />
 		<AuthorSignature />

@@ -18,12 +18,12 @@ import RandomButton from "../options/RandomButton";
 const PreviewBox = ({ couplet, setCouplet }) => {
 	return (
 		<>
-			<div className="absolute z-20 bottom-3 right-3 md:hidden">
+			<div className="absolute bottom-3 right-3 z-20 md:hidden">
 				<RandomButton setCouplet={setCouplet} />
 			</div>
 
-			<div className="relative z-10 w-full aspect-square">
-				<div id="doha-preview" className="absolute inset-0 w-full h-full bg-white overflow-hidden">
+			<div className="relative z-10 aspect-square w-full">
+				<div id="doha-preview" className="absolute inset-0 h-full w-full overflow-hidden bg-white">
 					<BackgroundElement />
 					<SideAuthor />
 					<CoupletContent couplet={couplet} />

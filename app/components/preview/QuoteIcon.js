@@ -7,8 +7,8 @@ import { IoMdQuote } from "react-icons/io";
  * @returns {JSX.Element} The rendered quote icon.
  */
 const QuoteIcon = () => (
-	<div className="relative block text-[var(--kdc-color)] ml-[var(--kdc-quote-block-ml)] mb-[var(--kdc-quote-block-mb)]">
-		<IoMdQuote className="w-[var(--kdc-quote-w)] h-[var(--kdc-quote-h)]" />
+	<div className="relative mb-[var(--kdc-quote-block-mb)] ml-[var(--kdc-quote-block-ml)] block text-[var(--kdc-color)]">
+		<IoMdQuote className="h-[var(--kdc-quote-h)] w-[var(--kdc-quote-w)]" />
 	</div>
 );
 
