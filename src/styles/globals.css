@@ -39,7 +39,7 @@
 
   button {
     @apply relative cursor-pointer;
-    @apply transition-colors duration-200 ease-in-out;
+    @apply transition-colors duration-300 ease-in-out;
     @apply outline-none focus:outline-hidden;
     @apply inline-flex items-center justify-center;
   }
