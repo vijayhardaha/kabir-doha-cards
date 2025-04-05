@@ -46,13 +46,13 @@ const OptionsBox = ({
       <div className="flex flex-col gap-y-5 md:flex-1 md:flex-row md:items-center md:gap-3">
         <div className="flex flex-1 items-center gap-3">
           <AiOutlineFontSize className="h-8 w-8 text-stone-700" />
-          <div className="ml-2 mr-4 w-full">
+          <div className="mr-4 ml-2 w-full">
             <RangeSliderInput min={2} max={4} step={0.125} value={fontSize} setValue={setFontSize} />
           </div>
         </div>
         <div className="flex flex-1 items-center gap-3">
           <AiOutlineLineHeight className="h-8 w-8 text-stone-700" />
-          <div className="ml-2 mr-4 w-full">
+          <div className="mr-4 ml-2 w-full">
             <RangeSliderInput min={3} max={6} step={0.125} value={lineHeight} setValue={setLineHeight} />
           </div>
         </div>

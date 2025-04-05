@@ -125,7 +125,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-[2px]"
+        className="bg-opacity-50 fixed inset-0 z-40 bg-black backdrop-blur-[2px]"
         aria-hidden="true"
         onClick={onClose}
       ></div>
@@ -135,12 +135,12 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
         role="dialog"
         aria-labelledby="modal-title"
         aria-modal="true"
-        className="fixed inset-0 z-50 h-screen w-screen overflow-y-auto overflow-x-hidden px-5"
+        className="fixed inset-0 z-50 h-screen w-screen overflow-x-hidden overflow-y-auto px-5"
       >
         <div
           ref={modalRef}
           role="document"
-          className="relative mx-auto mb-0 mt-20 w-full max-w-[480px] overflow-hidden rounded-lg bg-white shadow-lg"
+          className="relative mx-auto mt-20 mb-0 w-full max-w-[480px] overflow-hidden rounded-lg bg-white shadow-lg"
           tabIndex="-1" // Allow focus for accessibility
         >
           <span className="sr-only" id="search-modal-title">
@@ -171,7 +171,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
           {/* Search results */}
           <div className="relative py-2">
             {isLoading && (
-              <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-stone-200 bg-opacity-35">
+              <div className="bg-opacity-35 absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-stone-200">
                 <PiSpinnerGapLight size={30} className="animate-spin" />
               </div>
             )}
@@ -181,7 +181,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
                 <button
                   key={index}
                   onClick={() => onSelect(text)}
-                  className={`${hind.className} block w-full whitespace-pre-wrap border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden ${
+                  className={`${hind.className} block w-full border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide whitespace-pre-wrap hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden ${
                     index === searchResults.length - 1 ? "border-b-0" : ""
                   }`}
                   aria-label={`Select ${text}`}
