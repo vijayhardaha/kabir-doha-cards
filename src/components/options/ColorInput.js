@@ -71,7 +71,7 @@ const ColorInput = ({ color, setColor }) => {
           value={selectedColor}
           readOnly
           onClick={() => setIsOpen(!isOpen)}
-          className="h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-none transition-all duration-300 ease-in-out focus:border-primary focus:ring-4 focus:ring-green-100 md:w-44"
+          className="h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-hidden transition-all duration-300 ease-in-out focus:border-primary focus:ring-4 focus:ring-green-100 md:w-44"
           aria-label="Selected color"
         />
         <button

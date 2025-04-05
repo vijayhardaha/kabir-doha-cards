@@ -1,6 +1,6 @@
 /**
  * An object representing a set of colors and their corresponding Tailwind CSS class names.
- * Each color is mapped to its background (`bg`), ring (`ring`), and text (`text`) Tailwind CSS classes.
+ * Each color is mapped to its background (`bg`), ring (`ring-3`), and text (`text`) Tailwind CSS classes.
  *
  * @type {Object<string, {bg: string, ring: string, text: string}>}
  * @property {string} bg - The Tailwind CSS background class for the color.

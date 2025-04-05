@@ -154,7 +154,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for Doha..."
-              className="w-full rounded-lg border-none bg-white px-2 py-2 pl-0 text-sm placeholder-stone-400 outline-none"
+              className="w-full rounded-lg border-none bg-white px-2 py-2 pl-0 text-sm placeholder-stone-400 outline-hidden"
               aria-label="Search"
               ref={inputRef}
             />
@@ -181,7 +181,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
                 <button
                   key={index}
                   onClick={() => onSelect(text)}
-                  className={`${hind.className} block w-full whitespace-pre-wrap border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide hover:bg-stone-100 focus:bg-stone-200 focus:outline-none ${
+                  className={`${hind.className} block w-full whitespace-pre-wrap border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden ${
                     index === searchResults.length - 1 ? "border-b-0" : ""
                   }`}
                   aria-label={`Select ${text}`}

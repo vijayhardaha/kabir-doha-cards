@@ -32,7 +32,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
         <button
           onClick={handleSearch}
           aria-label="Open search"
-          className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-stone-100 bg-stone-100 px-2 py-2 text-base text-stone-700 outline-none focus:border-primary focus:ring-4 focus:ring-green-100"
+          className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-stone-100 bg-stone-100 px-2 py-2 text-base text-stone-700 outline-hidden focus:border-primary focus:ring-4 focus:ring-green-100"
         >
           <RiSearchLine aria-hidden="true" className="h-5 w-5" />
         </button>
@@ -50,7 +50,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
           onClick={handleSearch}
           readOnly
           aria-label="Search doha"
-          className="h-12 w-full cursor-pointer truncate rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 pl-9 text-base text-stone-700 outline-none transition-all duration-300 ease-in-out focus:border-primary focus:ring-4 focus:ring-green-100"
+          className="h-12 w-full cursor-pointer truncate rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 pl-9 text-base text-stone-700 outline-hidden transition-all duration-300 ease-in-out focus:border-primary focus:ring-4 focus:ring-green-100"
         />
       </div>
 
