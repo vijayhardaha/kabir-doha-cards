@@ -95,7 +95,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <div className="container mx-auto">
+      <div className="container">
         <div className="mb-20">
           <Suspense fallback={<></>}>
             <KabirCoupletContent />

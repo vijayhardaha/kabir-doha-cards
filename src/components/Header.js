@@ -12,7 +12,7 @@ import { getShareUrl } from "@/utils/share";
  */
 const Header = () => (
   <header className="mb-8 py-2">
-    <div className="container mx-auto">
+    <div className="container">
       <div className="flex items-center justify-between">
         <h1 className="flex items-center gap-2 font-bold text-stone-900">
           <Logo aria-hidden="true" className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />
