@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import PropTypes from "prop-types";
-import { FiLoader } from "react-icons/fi";
+import { PiSpinnerGapLight } from "react-icons/pi";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -103,7 +103,7 @@ export default function Home() {
               <>
                 <div className="relative mx-auto aspect-square h-full w-full max-w-[700px] border-2 border-dashed border-stone-100">
                   <div className="flex h-full w-full flex-col items-center justify-center gap-4">
-                    <FiLoader className="text-primary-600 animate-spin" size={36} />
+                    <PiSpinnerGapLight aria-hidden="true" className="text-primary-600 animate-spin" size={36} />
                     <p className="text-lg text-stone-700">Loading...</p>
                   </div>
                 </div>

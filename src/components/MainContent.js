@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import PropTypes from "prop-types";
-import { FiLoader } from "react-icons/fi";
+import { PiSpinnerGapLight } from "react-icons/pi";
 
 import OptionsBox from "./options/OptionsBox";
 import PreviewBox from "./preview/PreviewBox";
@@ -107,7 +107,7 @@ const MainContent = ({ couplets }) => {
         >
           {loading ? (
             <div className="bg-opacity-75 absolute inset-0 flex items-center justify-center bg-white">
-              <FiLoader className="animate-spin text-4xl text-gray-500" />
+              <PiSpinnerGapLight aria-hidden="true" className="animate-spin text-4xl text-gray-500" />
             </div>
           ) : (
             <PreviewBox
