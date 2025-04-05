@@ -21,7 +21,7 @@ const MainContent = ({ couplets }) => {
   const [couplet, setCouplet] = useState("");
   const [fontSize, setFontSize] = useState(3);
   const [lineHeight, setLineHeight] = useState(4.5);
-  const [elementWidth, setElementWidth] = useState(600);
+  const [elementWidth, setElementWidth] = useState(700);
   const elementRef = useRef(null);
 
   // Choose a random couplet on mount or whenever the couplets array changes.
@@ -99,7 +99,7 @@ const MainContent = ({ couplets }) => {
       `}</style>
       <main className="relative">
         <div
-          className="relative mx-auto h-full w-full max-w-[600px] border-2 border-dashed border-stone-100"
+          className="relative mx-auto h-full w-full max-w-[700px] border-2 border-dashed border-stone-100"
           ref={elementRef}
         >
           <PreviewBox

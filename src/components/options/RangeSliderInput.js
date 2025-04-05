@@ -50,7 +50,7 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ...props }) => {
         <div
           {...props}
           key={props.key}
-          className={`bg-primary-600 flex h-6 w-6 items-center justify-center rounded-full outline-hidden ${isDragged ? "ring-primary-600 ring-opacity-70 ring-4 ring-offset-2 ring-offset-white" : ""}`}
+          className={`bg-primary-600 flex h-6 w-6 items-center justify-center rounded-full outline-hidden ${isDragged ? "ring-primary-200 ring-4" : ""}`}
         >
           {/* Tooltip */}
           <div
