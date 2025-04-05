@@ -17,7 +17,7 @@ const WebsiteInfo = () => (
       lineHeight: "var(--kdc-website-info-lh)",
     }}
   >
-    Image sourced from <span className="underline">{getSiteUrl(false)}</span>
+    Image generated from <span className="underline">{getSiteUrl(false)}</span>
   </div>
 );
 
