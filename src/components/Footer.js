@@ -16,13 +16,13 @@ const Footer = () => (
     {/* Top section with light stone background */}
     <div className="bg-stone-100 py-16 text-stone-800">
       <div className="container mx-auto">
-        <p className="mb-12 text-lg font-medium leading-relaxed">
+        <p className="mb-12 text-lg leading-relaxed font-medium">
           Kabir Doha Cards is an innovative platform that allows you to create beautiful and personalized Kabir Doha
           cards effortlessly. Whether for inspiration, sharing wisdom, or celebrating special occasions, our tool
           provides a simple and elegant way to craft and share these timeless pieces of wisdom.
         </p>
 
-        <h2 className="mb-4 border-l-4 border-primary pl-3 text-2xl font-bold" id="about-kabir-das">
+        <h2 className="border-primary-600 mb-4 border-l-4 pl-3 text-2xl font-bold" id="about-kabir-das">
           About Kabir Das
         </h2>
         <p className="mb-12 leading-relaxed">
@@ -35,7 +35,7 @@ const Footer = () => (
             href="https://en.wikipedia.org/wiki/Kabir"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
             aria-label="Kabir Das on Wikipedia"
           >
             Kabir Das on Wikipedia
@@ -44,7 +44,7 @@ const Footer = () => (
           .
         </p>
 
-        <h3 className="mb-4 border-l-4 border-primary pl-3 text-xl font-semibold" id="contact">
+        <h3 className="border-primary-600 mb-4 border-l-4 pl-3 text-xl font-semibold" id="contact">
           Contact
         </h3>
         <p className="mb-12 leading-relaxed">
@@ -53,7 +53,7 @@ const Footer = () => (
             href="https://twitter.com/vijayhardaha"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
             aria-label="Twitter profile of @vijayhardaha"
           >
             @vijayhardaha
@@ -64,7 +64,7 @@ const Footer = () => (
             href="https://pph.me/vijayhardaha"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
             aria-label="PeoplePerHour profile of vijayhardaha"
           >
             pph.me/vijayhardaha
@@ -73,7 +73,7 @@ const Footer = () => (
           .
         </p>
 
-        <h3 className="mb-4 border-l-4 border-primary pl-3 text-xl font-semibold" id="share">
+        <h3 className="border-primary-600 mb-4 border-l-4 pl-3 text-xl font-semibold" id="share">
           Share
         </h3>
         <p className="leading-relaxed">
@@ -82,7 +82,7 @@ const Footer = () => (
             href={getShareUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
             aria-label="Share on WhatsApp"
           >
             Share on WhatsApp
@@ -93,7 +93,7 @@ const Footer = () => (
             href={getShareUrl("x")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
             aria-label="Share on Twitter"
           >
             Share on Twitter
@@ -114,7 +114,7 @@ const Footer = () => (
             href="https://twitter.com/vijayhardaha"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
           >
             Vijay Hardaha
             <MdArrowOutward aria-hidden="true" />
@@ -124,7 +124,7 @@ const Footer = () => (
             href="https://nextjs.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
           >
             Next.js
             <MdArrowOutward aria-hidden="true" />
@@ -134,7 +134,7 @@ const Footer = () => (
             href="https://tailwindcss.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary underline"
+            className="text-primary-600 inline-flex items-center underline"
           >
             Tailwind CSS
             <MdArrowOutward aria-hidden="true" />
