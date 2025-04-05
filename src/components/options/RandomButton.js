@@ -67,6 +67,7 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
         aria-label="Get Random Doha"
         data-tooltip-id="random-doha-tooltip"
         data-tooltip-content="Get a random Doha"
+        disabled={loading}
       >
         <TfiReload aria-hidden="true" size={30} />
         {/* Screen reader only text */}

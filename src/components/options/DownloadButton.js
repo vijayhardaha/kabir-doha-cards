@@ -14,8 +14,8 @@ import { showToast } from "@/utils/toast";
  * @returns {JSX.Element} The rendered download button component.
  */
 const DownloadButton = () => {
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [isDownloaded, setIsDownloaded] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
 
   /**
    * Handles the download of the Doha card and displays a toast notification.
@@ -26,7 +26,7 @@ const DownloadButton = () => {
 
     if (node) {
       // Ensure that the node exists before proceeding.
-      setIsDownloading(true); // Set downloading state to true.
+      setDownloading(true); // Set downloading state to true.
       const rect = node.getBoundingClientRect();
       const width = rect.width * 6;
       const height = rect.height * 6;
@@ -50,15 +50,15 @@ const DownloadButton = () => {
           link.download = `kabir-doha-card-${uniqueId}.${extension}`;
           link.href = dataUrl;
           link.click();
-          setIsDownloaded(true);
-          setIsDownloading(false); // Reset downloading state.
+          setDownloaded(true);
+          setDownloading(false);
           showToast("Image downloaded successfully!");
-          setTimeout(() => setIsDownloaded(false), 1000); // Reset downloaded state after 1 second.
+          setTimeout(() => setDownloaded(false), 1000);
         })
         .catch((error) => {
           console.error("Failed to download: ", error);
           showToast("Download failed, try again!", "error");
-          setIsDownloading(false); // Reset downloading state on error.
+          setDownloading(false);
         });
     } else {
       console.error("Element with id 'doha-preview' not found.");
@@ -77,11 +77,12 @@ const DownloadButton = () => {
         className="icon-btn"
         aria-label="Download image"
         data-tooltip-id="download-doha-tooltip"
-        data-tooltip-content={isDownloading ? "Downloading..." : isDownloaded ? "Downloaded!" : "Download image"}
+        data-tooltip-content={downloading ? "Downloading..." : downloaded ? "Downloaded!" : "Download image"}
+        disabled={downloading}
       >
-        {isDownloading ? (
+        {downloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
-        ) : isDownloaded ? (
+        ) : downloaded ? (
           <AiOutlineCheck aria-hidden="true" size={24} />
         ) : (
           <AiOutlineCloudDownload aria-hidden="true" size={24} />
@@ -90,15 +91,15 @@ const DownloadButton = () => {
       </button>
 
       {/* Mobile Button */}
-      <button onClick={handleDownload} className="text-btn" aria-label="Download image">
-        {isDownloading ? (
+      <button onClick={handleDownload} className="text-btn" aria-label="Download image" disabled={downloading}>
+        {downloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={20} className="mr-2 animate-spin" />
-        ) : isDownloaded ? (
+        ) : downloaded ? (
           <AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
         ) : (
           <AiOutlineCloudDownload aria-hidden="true" size={20} className="mr-2" />
         )}
-        {isDownloading ? "Downloading..." : isDownloaded ? "Downloaded!" : "Download"}
+        {downloading ? "Downloading..." : downloaded ? "Downloaded!" : "Download"}
       </button>
     </>
   );

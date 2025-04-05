@@ -44,6 +44,10 @@
     @apply inline-flex items-center justify-center;
   }
 
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
   .icon-btn {
     @apply hidden h-12 w-12 md:inline-flex;
     @apply rounded-full border-2 p-2 text-lg;
