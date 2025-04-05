@@ -4,6 +4,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 import { TfiReload } from "react-icons/tfi";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 import { showToast } from "@/utils/toast";
 
@@ -56,10 +57,22 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
   };
 
   return (
-    <button onClick={fetchRandomDoha} className="random-btn" aria-label="Get Random Doha">
-      <TfiReload aria-hidden="true" size={30} />
-      <span className="sr-only">Get Random Doha</span> {/* Screen reader only text */}
-    </button>
+    <>
+      {/* Initialize React Tooltip with id */}
+      <ReactTooltip id="random-doha-tooltip" effect="solid" />
+
+      <button
+        onClick={fetchRandomDoha}
+        className="random-btn"
+        aria-label="Get Random Doha"
+        data-tooltip-id="random-doha-tooltip"
+        data-tooltip-content="Get a random Doha"
+      >
+        <TfiReload aria-hidden="true" size={30} />
+        {/* Screen reader only text */}
+        <span className="sr-only">Get Random Doha</span>
+      </button>
+    </>
   );
 };
 

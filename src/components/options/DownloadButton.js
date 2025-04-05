@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import domtoimage from "dom-to-image";
 import { AiOutlineCloudDownload, AiOutlineCheck } from "react-icons/ai";
 import { PiSpinnerGapLight } from "react-icons/pi";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 import { extractExtensionFromBase64, generateUniqueId } from "@/utils/download";
 import { showToast } from "@/utils/toast";
@@ -67,8 +68,17 @@ const DownloadButton = () => {
 
   return (
     <>
+      {/* Initialize React Tooltip with id */}
+      <ReactTooltip id="download-doha-tooltip" effect="solid" />
+
       {/* Desktop Button */}
-      <button onClick={handleDownload} className="icon-btn" aria-label="Download image">
+      <button
+        onClick={handleDownload}
+        className="icon-btn"
+        aria-label="Download image"
+        data-tooltip-id="download-doha-tooltip"
+        data-tooltip-content={isDownloading ? "Downloading..." : isDownloaded ? "Downloaded!" : "Download image"}
+      >
         {isDownloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
         ) : isDownloaded ? (
@@ -80,12 +90,7 @@ const DownloadButton = () => {
       </button>
 
       {/* Mobile Button */}
-      <button
-        onClick={handleDownload}
-        className="text-btn"
-        aria-label="Download image"
-        data-tooltip-id="download-doha-tooltip"
-      >
+      <button onClick={handleDownload} className="text-btn" aria-label="Download image">
         {isDownloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={20} className="mr-2 animate-spin" />
         ) : isDownloaded ? (

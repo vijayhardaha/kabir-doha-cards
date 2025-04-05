@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import PropTypes from "prop-types";
 import { AiOutlineCopy, AiOutlineCheck } from "react-icons/ai";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 import { showToast } from "@/utils/toast";
 import { getSiteUrl } from "@/utils/url";
@@ -28,7 +29,7 @@ const CopyButton = ({ couplet }) => {
       .then(() => {
         setIsCopied(true);
         showToast("Couplet copied to clipboard!");
-        setTimeout(() => setIsCopied(false), 1000); // Reset copied state after 1 second.
+        setTimeout(() => setIsCopied(false), 1000);
       })
       .catch((error) => {
         console.error("Failed to copy: ", error);
@@ -38,10 +39,20 @@ const CopyButton = ({ couplet }) => {
 
   return (
     <>
+      {/* Initialize React Tooltip with id */}
+      <ReactTooltip id="copy-tooltip" effect="solid" />
+
       {/* Desktop Button */}
-      <button onClick={handleCopy} className="icon-btn" aria-label="Copy Doha to clipboard">
+      <button
+        onClick={handleCopy}
+        className="icon-btn"
+        aria-label="Copy Doha to clipboard"
+        data-tooltip-id="copy-tooltip"
+        data-tooltip-content={isCopied ? "Copied!" : "Copy doha to clipboard"}
+      >
         {isCopied ? <AiOutlineCheck aria-hidden="true" size={24} /> : <AiOutlineCopy aria-hidden="true" size={24} />}
-        <span className="sr-only">Copy Doha</span> {/* Screen reader only text */}
+        {/* Screen reader only text */}
+        <span className="sr-only">Copy Doha</span>
       </button>
 
       {/* Mobile Button */}
@@ -58,7 +69,7 @@ const CopyButton = ({ couplet }) => {
 };
 
 CopyButton.propTypes = {
-  couplet: PropTypes.string.isRequired, // The current Doha text.
+  couplet: PropTypes.string.isRequired,
 };
 
 export default CopyButton;
