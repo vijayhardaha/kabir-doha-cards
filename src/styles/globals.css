@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #12b848;
+  --color-primary-50: #effef3;
+  --color-primary-100: #dbfde6;
+  --color-primary-200: #b9f9cc;
+  --color-primary-300: #82f3a6;
+  --color-primary-400: #44e477;
+  --color-primary-500: #1ccb54;
+  --color-primary-600: #12b848;
+  --color-primary-700: #118437;
+  --color-primary-800: #13682f;
+  --color-primary-900: #125529;
+  --color-primary-950: #033014;
 }
 
 @utility container {
@@ -35,8 +45,46 @@
   }
 }
 
+@layer components {
+  button {
+    @apply relative cursor-pointer;
+    @apply transition-colors duration-200 ease-in-out;
+    @apply outline-none focus:outline-hidden;
+    @apply inline-flex items-center justify-center;
+  }
+
+  .icon-btn {
+    @apply hidden h-12 w-12 md:inline-flex;
+    @apply rounded-full border-2 p-2 text-lg;
+    @apply border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white;
+    @apply hover:ring-primary-200 hover:ring-4;
+  }
+
+  .text-btn {
+    @apply md:hidden;
+    @apply h-10 rounded-lg border-2 px-4;
+    @apply font-semibold;
+    @apply bg-primary-600 border-primary-600 hover:text-primary-600 text-white hover:bg-white;
+    @apply focus:ring-primary-600 focus:ring-2 focus:ring-offset-2;
+  }
+
+  .text-btn.outlined {
+    @apply border-primary-600 text-primary-600 hover:bg-primary-600 bg-white hover:text-white;
+    @apply focus:ring-primary-600 focus:ring-2 focus:ring-offset-2;
+  }
+
+  .random-btn {
+    @apply h-16 w-16 rounded-full p-2;
+    @apply text-xl;
+    @apply bg-primary-600 hover:bg-primary-500 text-white;
+    @apply hover:ring-primary-200 hover:ring-4;
+    @apply transform transition-transform;
+    @apply active:scale-90 active:rotate-[270deg];
+  }
+}
+
 :root {
-  --kdc-color: #12b848;
+  --kdc-color: var(--color-primary-600);
 
   --kdc-blob-t: -6.5rem;
   --kdc-blob-r: -6.5rem;

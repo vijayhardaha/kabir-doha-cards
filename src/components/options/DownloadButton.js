@@ -68,11 +68,7 @@ const DownloadButton = () => {
   return (
     <>
       {/* Desktop Button */}
-      <button
-        onClick={handleDownload}
-        className="hidden h-12 w-12 items-center justify-center rounded-full border-2 border-primary p-2 text-lg text-primary hover:bg-primary hover:bg-opacity-5 focus:outline-hidden focus:ring-4 focus:ring-primary focus:ring-opacity-30 md:inline-flex"
-        aria-label="Download image"
-      >
+      <button onClick={handleDownload} className="icon-btn" aria-label="Download image">
         {isDownloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
         ) : isDownloaded ? (
@@ -86,7 +82,7 @@ const DownloadButton = () => {
       {/* Mobile Button */}
       <button
         onClick={handleDownload}
-        className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 font-semibold text-white hover:bg-primary hover:bg-opacity-85 focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-opacity-30 focus:ring-offset-2 focus:ring-offset-slate-50 md:hidden"
+        className="text-btn"
         aria-label="Download image"
         data-tooltip-id="download-doha-tooltip"
       >

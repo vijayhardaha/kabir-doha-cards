@@ -58,11 +58,7 @@ const RandomButton = ({ setCouplet }) => {
   };
 
   return (
-    <button
-      onClick={fetchRandomDoha}
-      className="relative flex h-16 w-16 transform items-center justify-center rounded-full bg-primary p-2 text-xl text-white transition-transform duration-200 ease-in-out hover:bg-opacity-85 focus:outline-hidden focus:ring-4 focus:ring-primary focus:ring-opacity-30 active:rotate-[270deg] active:scale-90"
-      aria-label="Get Random Doha"
-    >
+    <button onClick={fetchRandomDoha} className="random-btn" aria-label="Get Random Doha">
       <TfiReload aria-hidden="true" size={30} />
       <span className="sr-only">Get Random Doha</span> {/* Screen reader only text */}
     </button>

@@ -71,18 +71,18 @@ const ColorInput = ({ color, setColor }) => {
           value={selectedColor}
           readOnly
           onClick={() => setIsOpen(!isOpen)}
-          className="h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-hidden transition-all duration-300 ease-in-out focus:border-primary focus:ring-4 focus:ring-green-100 md:w-44"
+          className="focus:border-primary-600 h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-hidden transition-all duration-300 ease-in-out focus:ring-4 focus:ring-green-100 md:w-44"
           aria-label="Selected color"
         />
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className={`absolute right-2 top-1/2 h-8 w-8 ${PICKER_COLORS[color].bg} -translate-y-1/2 transform rounded-lg border-2 border-white`}
+          className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[color].bg} -translate-y-1/2 transform rounded-lg border-2 border-white`}
           aria-label="Open color picker"
         ></button>
       </div>
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-1 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
+        <div className="absolute top-full left-0 z-50 mt-1 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg">
           {groupedColors.map((row, rowIndex) => (
             <div key={rowIndex} className="mb-2 flex flex-row gap-2">
               {row.map((color) => (
