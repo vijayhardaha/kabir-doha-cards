@@ -35,6 +35,8 @@ const OptionsBox = ({
   setFontSize,
   lineHeight,
   setLineHeight,
+  loading,
+  setLoading,
 }) => {
   return (
     <div className="mt-8 flex flex-col gap-y-5 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl">
@@ -63,7 +65,7 @@ const OptionsBox = ({
         <CopyButton couplet={couplet} />
 
         <span className="hidden md:inline-flex">
-          <RandomButton setCouplet={setCouplet} />
+          <RandomButton setCouplet={setCouplet} loading={loading} setLoading={setLoading} />
         </span>
       </div>
     </div>
@@ -80,6 +82,8 @@ OptionsBox.propTypes = {
   setFontSize: PropTypes.func.isRequired,
   lineHeight: PropTypes.number.isRequired,
   setLineHeight: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  setLoading: PropTypes.func.isRequired,
 };
 
 export default OptionsBox;

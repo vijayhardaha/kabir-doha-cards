@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import PropTypes from "prop-types";
 import { TfiReload } from "react-icons/tfi";
@@ -14,22 +14,20 @@ import { showToast } from "@/utils/toast";
  * @param {function(string): void} props.setCouplet - Function to set the random Doha.
  * @returns {JSX.Element} The rendered button component.
  */
-const RandomButton = ({ setCouplet }) => {
-  const [processing, setProcessing] = useState(false);
-
+const RandomButton = ({ setCouplet, loading, setLoading }) => {
   /**
    * Fetches a random Doha from the server and updates the state with the couplet.
    * Displays appropriate toast notifications for success or failure.
-   * Prevents duplicate requests while already processing.
+   * Prevents duplicate requests while already loading.
    *
    * @async
    * @function fetchRandomDoha
    * @returns {Promise<void>} Resolves once the Doha is fetched and state is updated.
    */
   const fetchRandomDoha = async () => {
-    if (processing) return; // Prevent multiple simultaneous requests.
+    if (loading) return; // Prevent multiple simultaneous requests.
 
-    setProcessing(true);
+    setLoading(true);
 
     try {
       const response = await fetch("/api/random", {
@@ -53,7 +51,7 @@ const RandomButton = ({ setCouplet }) => {
       console.error("Error fetching random Doha:", error);
       showToast("Error fetching Doha, try again!", "error");
     } finally {
-      setProcessing(false); // Reset processing state after the request completes.
+      setLoading(false); // Reset loading state after the request completes.
     }
   };
 
@@ -66,7 +64,9 @@ const RandomButton = ({ setCouplet }) => {
 };
 
 RandomButton.propTypes = {
-  setCouplet: PropTypes.func.isRequired, // Function to set the random Doha.
+  setCouplet: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  setLoading: PropTypes.func.isRequired,
 };
 
 export default RandomButton;

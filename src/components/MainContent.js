@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import PropTypes from "prop-types";
+import { FiLoader } from "react-icons/fi";
 
 import OptionsBox from "./options/OptionsBox";
 import PreviewBox from "./preview/PreviewBox";
@@ -22,6 +23,7 @@ const MainContent = ({ couplets }) => {
   const [fontSize, setFontSize] = useState(3);
   const [lineHeight, setLineHeight] = useState(4.5);
   const [elementWidth, setElementWidth] = useState(700);
+  const [loading, setLoading] = useState(true);
   const elementRef = useRef(null);
 
   // Choose a random couplet on mount or whenever the couplets array changes.
@@ -29,6 +31,7 @@ const MainContent = ({ couplets }) => {
     if (couplets.length > 0) {
       const randomIndex = Math.floor(Math.random() * couplets.length);
       setCouplet(couplets[randomIndex]);
+      setLoading(false);
     }
   }, [couplets]);
 
@@ -99,17 +102,23 @@ const MainContent = ({ couplets }) => {
       `}</style>
       <main className="relative">
         <div
-          className="relative mx-auto h-full w-full max-w-[700px] border-2 border-dashed border-stone-100"
+          className="relative mx-auto aspect-square h-full w-full max-w-[700px] border-2 border-dashed border-stone-100"
           ref={elementRef}
         >
-          <PreviewBox
-            color={color}
-            couplet={couplet}
-            setCouplet={setCouplet}
-            fontSize={fontSize}
-            lineHeight={lineHeight}
-            elementWidth={elementWidth}
-          />
+          {loading ? (
+            <div className="bg-opacity-75 absolute inset-0 flex items-center justify-center bg-white">
+              <FiLoader className="animate-spin text-4xl text-gray-500" />
+            </div>
+          ) : (
+            <PreviewBox
+              color={color}
+              couplet={couplet}
+              setCouplet={setCouplet}
+              fontSize={fontSize}
+              lineHeight={lineHeight}
+              elementWidth={elementWidth}
+            />
+          )}
         </div>
 
         <OptionsBox
@@ -122,6 +131,8 @@ const MainContent = ({ couplets }) => {
           setCouplet={setCouplet}
           setFontSize={setFontSize}
           setLineHeight={setLineHeight}
+          loading={loading}
+          setLoading={setLoading}
         />
       </main>
     </>
