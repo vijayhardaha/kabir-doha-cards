@@ -15,7 +15,7 @@ const Footer = () => (
   <footer>
     {/* Top section with light stone background */}
     <div className="bg-stone-100 py-16 text-stone-800">
-      <div className="container">
+      <div className="main-container">
         <p className="mb-12 text-lg leading-relaxed font-medium">
           Kabir Doha Cards is an innovative platform that allows you to create beautiful and personalized Kabir Doha
           cards effortlessly. Whether for inspiration, sharing wisdom, or celebrating special occasions, our tool
@@ -105,7 +105,7 @@ const Footer = () => (
 
     {/* Bottom section with dark background */}
     <div className="bg-stone-800 p-6 text-center text-white">
-      <div className="container">
+      <div className="main-container">
         <p className="text-sm leading-loose">
           Copyright &copy; 2024 {SITE_TITLE_SHORT}. All rights reserved.
           <br />
