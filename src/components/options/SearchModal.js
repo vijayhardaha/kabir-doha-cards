@@ -22,7 +22,7 @@ const hind = Hind({ weight: ["400", "700"], subsets: ["latin", "devanagari"] });
 const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState(couplets);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const modalRef = useRef(null);
   const inputRef = useRef(null); // Ref for the search input
 
@@ -80,7 +80,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
      */
     const fetchSearchResults = debounce(async (term) => {
       if (term) {
-        setIsLoading(true);
+        setLoading(true);
         try {
           const response = await fetch("/api/search", {
             method: "POST",
@@ -104,7 +104,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
           console.error("Error fetching search results:", error);
           setSearchResults([]);
         } finally {
-          setIsLoading(false);
+          setLoading(false);
         }
       } else {
         setSearchResults(couplets);
@@ -158,7 +158,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
               aria-label="Search"
               ref={inputRef}
             />
-            <PiSpinnerGapLight size={24} className={`ml-2 ${isLoading ? "animate-spin" : "opacity-0"}`} />
+            <PiSpinnerGapLight size={24} className={`ml-2 ${loading ? "animate-spin" : "opacity-0"}`} />
             <button
               onClick={onClose}
               className="ml-2 cursor-pointer rounded-lg border border-stone-200 bg-white px-3 py-1 text-xs font-semibold text-stone-500 shadow-md hover:text-stone-700"
@@ -170,7 +170,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
 
           {/* Search results */}
           <div className="relative py-2">
-            {isLoading && (
+            {loading && (
               <div className="bg-opacity-35 absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-stone-200">
                 <PiSpinnerGapLight size={30} className="animate-spin" />
               </div>
