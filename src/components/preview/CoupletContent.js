@@ -15,16 +15,16 @@ import WebsiteInfo from "./WebsiteInfo";
  * @returns {JSX.Element} The rendered couplet content.
  */
 const CoupletContent = ({ couplet }) => (
-	<div className="relative z-20 flex h-full flex-col items-start justify-end p-[var(--kdc-couplet-content-p)]">
-		<QuoteIcon />
-		<CoupletText couplet={couplet} />
-		<AuthorSignature />
-		<WebsiteInfo />
-	</div>
+  <div className="relative z-20 flex h-full flex-col items-start justify-end p-[var(--kdc-couplet-content-p)]">
+    <QuoteIcon />
+    <CoupletText couplet={couplet} />
+    <AuthorSignature />
+    <WebsiteInfo />
+  </div>
 );
 
 CoupletContent.propTypes = {
-	couplet: PropTypes.string.isRequired, // Text of the couplet.
+  couplet: PropTypes.string.isRequired, // Text of the couplet.
 };
 
 export default CoupletContent;

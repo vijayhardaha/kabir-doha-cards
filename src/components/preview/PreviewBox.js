@@ -16,26 +16,26 @@ import RandomButton from "../options/RandomButton";
  * @returns {JSX.Element} The rendered preview box.
  */
 const PreviewBox = ({ couplet, setCouplet }) => {
-	return (
-		<>
-			<div className="absolute bottom-3 right-3 z-20 md:hidden">
-				<RandomButton setCouplet={setCouplet} />
-			</div>
+  return (
+    <>
+      <div className="absolute bottom-3 right-3 z-20 md:hidden">
+        <RandomButton setCouplet={setCouplet} />
+      </div>
 
-			<div className="relative z-10 aspect-square w-full">
-				<div id="doha-preview" className="absolute inset-0 h-full w-full overflow-hidden bg-white">
-					<BackgroundElement />
-					<SideAuthor />
-					<CoupletContent couplet={couplet} />
-				</div>
-			</div>
-		</>
-	);
+      <div className="relative z-10 aspect-square w-full">
+        <div id="doha-preview" className="absolute inset-0 h-full w-full overflow-hidden bg-white">
+          <BackgroundElement />
+          <SideAuthor />
+          <CoupletContent couplet={couplet} />
+        </div>
+      </div>
+    </>
+  );
 };
 
 PreviewBox.propTypes = {
-	couplet: PropTypes.string.isRequired, // The text of the couplet to display.
-	setCouplet: PropTypes.func.isRequired, // Function to update the Doha.
+  couplet: PropTypes.string.isRequired, // The text of the couplet to display.
+  setCouplet: PropTypes.func.isRequired, // Function to update the Doha.
 };
 
 export default PreviewBox;

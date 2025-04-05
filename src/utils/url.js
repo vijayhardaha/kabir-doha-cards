@@ -15,7 +15,7 @@ import { SITE_URL } from "@/constants/seo";
  * removeProtocol("http://www.example.com");
  */
 export const removeProtocol = (url) => {
-	return url.replace(/^https?:\/\//, "");
+  return url.replace(/^https?:\/\//, "");
 };
 
 /**
@@ -25,7 +25,7 @@ export const removeProtocol = (url) => {
  * @returns {string} The URL without the trailing slash.
  */
 export function removeTrailingSlash(url) {
-	return url.endsWith("/") ? url.slice(0, -1) : url;
+  return url.endsWith("/") ? url.slice(0, -1) : url;
 }
 
 /**
@@ -35,11 +35,11 @@ export function removeTrailingSlash(url) {
  * @returns {string} The formatted SITE_URL, with or without the protocol, depending on the parameter.
  */
 export function getSiteUrl(protocol = true) {
-	let url = removeTrailingSlash(SITE_URL);
+  let url = removeTrailingSlash(SITE_URL);
 
-	if (!protocol) {
-		url = removeProtocol(url);
-	}
+  if (!protocol) {
+    url = removeProtocol(url);
+  }
 
-	return url;
+  return url;
 }

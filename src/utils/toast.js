@@ -6,18 +6,18 @@ import toast from "react-hot-toast";
  * @param {('success'|'error')} type - The type of toast ('success' or 'error').
  */
 export const showToast = (message, type = "success") => {
-	const options = {
-		style: {
-			backgroundColor: "#1f2937", // Dark mode background (stone-800)
-			color: "#ffffff", // White text
-		},
-	};
+  const options = {
+    style: {
+      backgroundColor: "#1f2937", // Dark mode background (stone-800)
+      color: "#ffffff", // White text
+    },
+  };
 
-	if (type === "success") {
-		toast.success(message, options);
-	} else if (type === "error") {
-		toast.error(message, options);
-	} else {
-		console.warn("Invalid toast type specified. Use 'success' or 'error'.");
-	}
+  if (type === "success") {
+    toast.success(message, options);
+  } else if (type === "error") {
+    toast.error(message, options);
+  } else {
+    console.warn("Invalid toast type specified. Use 'success' or 'error'.");
+  }
 };
