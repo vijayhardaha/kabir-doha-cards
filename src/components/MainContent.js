@@ -117,6 +117,8 @@ const MainContent = ({ couplets }) => {
               fontSize={fontSize}
               lineHeight={lineHeight}
               elementWidth={elementWidth}
+              loading={loading}
+              setLoading={setLoading}
             />
           )}
         </div>

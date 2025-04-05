@@ -13,6 +13,8 @@ import { showToast } from "@/utils/toast";
  * @component
  * @param {Object} props - The component props.
  * @param {function(string): void} props.setCouplet - Function to set the random Doha.
+ * @param {boolean} props.loading - Indicates if a request is in progress.
+ * @param {function(boolean): void} props.setLoading - Function to set the loading state.
  * @returns {JSX.Element} The rendered button component.
  */
 const RandomButton = ({ setCouplet, loading, setLoading }) => {
