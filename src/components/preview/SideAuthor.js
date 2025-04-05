@@ -20,7 +20,7 @@ const SideAuthor = () => (
       }}
     >
       <span className="relative mr-[var(--kdc-sideauth-line-mr)] block h-[2px] w-[var(--kdc-sideauth-line-w)] bg-current" />
-      <span className="whitespace-nowrap font-medium">Kabir Ke Dohe</span>
+      <span className="font-medium whitespace-nowrap">Kabir Ke Dohe</span>
     </p>
   </div>
 );

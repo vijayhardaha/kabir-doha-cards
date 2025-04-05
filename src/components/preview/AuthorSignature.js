@@ -8,7 +8,7 @@
 const AuthorSignature = () => (
   <div className="relative mt-[var(--kdc-author-sign-block-mt)] block">
     <span
-      className="whitespace-nowrap text-2xl font-semibold"
+      className="text-2xl font-semibold whitespace-nowrap"
       style={{
         fontSize: "var(--kdc-author-sign-text-fs)",
         lineHeight: "var(--kdc-author-sign-text-lh)",

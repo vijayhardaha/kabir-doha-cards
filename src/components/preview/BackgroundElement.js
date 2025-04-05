@@ -5,7 +5,7 @@
  * @returns {JSX.Element} The rendered background element with the SVG.
  */
 const BackgroundElement = () => (
-  <div className="absolute right-[var(--kdc-blob-r)] top-[var(--kdc-blob-t)] z-10 text-[var(--kdc-color)]">
+  <div className="absolute top-[var(--kdc-blob-t)] right-[var(--kdc-blob-r)] z-10 text-[var(--kdc-color)]">
     <svg
       width="369"
       height="299"

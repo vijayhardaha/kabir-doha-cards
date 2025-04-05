@@ -10,7 +10,7 @@ import { getSiteUrl } from "@/utils/url";
  */
 const WebsiteInfo = () => (
   <div
-    className="relative block whitespace-nowrap text-xs text-stone-400"
+    className="relative block text-xs whitespace-nowrap text-stone-400"
     style={{
       marginTop: "var(--kdc-website-info-mt)",
       fontSize: "var(--kdc-website-info-fs)",

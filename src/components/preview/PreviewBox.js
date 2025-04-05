@@ -18,7 +18,7 @@ import RandomButton from "../options/RandomButton";
 const PreviewBox = ({ couplet, setCouplet }) => {
   return (
     <>
-      <div className="absolute bottom-3 right-3 z-20 md:hidden">
+      <div className="absolute right-3 bottom-3 z-20 md:hidden">
         <RandomButton setCouplet={setCouplet} />
       </div>
 
