@@ -124,11 +124,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
   return (
     <>
       {/* Backdrop */}
-      <div
-        className="bg-opacity-50 fixed inset-0 z-40 bg-black backdrop-blur-[2px]"
-        aria-hidden="true"
-        onClick={onClose}
-      ></div>
+      <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-[2px]" aria-hidden="true" onClick={onClose}></div>
 
       {/* Modal */}
       <div
@@ -140,7 +136,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
         <div
           ref={modalRef}
           role="document"
-          className="relative mx-auto mt-20 mb-0 w-full max-w-[480px] overflow-hidden rounded-lg bg-white shadow-lg"
+          className="relative mx-auto mt-20 mb-0 w-full max-w-4xl overflow-hidden rounded-lg bg-white shadow-lg"
           tabIndex="-1" // Allow focus for accessibility
         >
           <span className="sr-only" id="search-modal-title">
