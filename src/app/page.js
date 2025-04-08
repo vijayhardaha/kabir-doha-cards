@@ -97,7 +97,7 @@ export default function Home() {
     <div>
       <Header />
       <div className="main-container">
-        <div className="mb-12">
+        <div className="mt-8 mb-8">
           <Suspense
             fallback={
               <>

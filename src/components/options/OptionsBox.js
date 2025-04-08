@@ -39,7 +39,7 @@ const OptionsBox = ({
   setLoading,
 }) => {
   return (
-    <div className="mt-8 flex flex-col gap-y-5 rounded-lg md:mt-12 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl">
+    <div className="mt-8 flex flex-col gap-y-5 rounded-lg bg-white md:sticky md:bottom-4 md:z-1000 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl">
       <div className="flex flex-col gap-y-5 md:flex-row md:items-center md:gap-2">
         <SearchInput setCouplet={setCouplet} couplets={couplets} className="w-full md:w-auto" />
         <ColorInput color={color} setColor={setColor} couplet={couplet} className="w-full md:w-auto" />

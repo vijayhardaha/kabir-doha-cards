@@ -21,7 +21,7 @@ const MainContent = ({ couplets }) => {
   const [color, setColor] = useState("#12b848");
   const [couplet, setCouplet] = useState("");
   const [fontSize, setFontSize] = useState(3);
-  const [lineHeight, setLineHeight] = useState(4.5);
+  const [lineHeight, setLineHeight] = useState(4.875);
   const [elementWidth, setElementWidth] = useState(700);
   const [loading, setLoading] = useState(true);
   const elementRef = useRef(null);
