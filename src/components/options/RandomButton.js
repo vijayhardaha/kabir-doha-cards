@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { TfiReload } from "react-icons/tfi";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
+import { cn } from "@/utils/classNameUtils";
 import { showToast } from "@/utils/toast";
 
 /**
@@ -75,7 +76,9 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
 
       <button
         onClick={fetchRandomDoha}
-        className={`random-btn ${loading ? "opacity-75" : ""}`}
+        className={cn("random-btn", {
+          "cursor-not-allowed opacity-75": loading,
+        })}
         aria-label="Get Random Doha"
         aria-busy={loading}
         data-tooltip-id="random-doha-tooltip"

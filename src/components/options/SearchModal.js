@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import { PiSpinnerGapLight } from "react-icons/pi";
 import { RiSearchLine } from "react-icons/ri";
 
+import { cn } from "@/utils/classNameUtils";
+
 const hind = Hind({ weight: ["400", "700"], subsets: ["latin", "devanagari"] });
 
 /**
@@ -36,10 +38,19 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
       if (inputRef.current) {
         inputRef.current.focus();
       }
+      // Disable body scrolling when modal is open
+      document.body.style.overflow = "hidden";
     } else {
       setShouldAttachListeners(false);
       setSearchTerm("");
+      // Re-enable body scrolling when modal is closed
+      document.body.style.overflow = "";
     }
+
+    // Cleanup function to ensure scrolling is restored when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -55,22 +66,10 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
       }
     };
 
-    /**
-     * Handles clicks outside the modal to close it.
-     * @param {MouseEvent} event - The mouse event.
-     */
-    const handleOutsideClick = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("click", handleOutsideClick);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("click", handleOutsideClick);
     };
   }, [shouldAttachListeners, onClose]);
 
@@ -110,7 +109,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
       } else {
         setSearchResults(couplets);
       }
-    }, 500);
+    }, 1000);
 
     fetchSearchResults(searchTerm);
 
@@ -151,20 +150,25 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for Doha..."
-              className="w-full rounded-lg border-none bg-white px-2 py-2 pl-0 text-sm placeholder-stone-400 outline-hidden"
+              className={cn(
+                "w-full rounded-lg border-none bg-white px-2 py-2 pl-0 text-sm placeholder-stone-400 outline-hidden"
+              )}
               aria-label="Search for Doha"
               ref={inputRef}
             />
             <PiSpinnerGapLight
               size={24}
-              className={`ml-2 ${loading ? "animate-spin" : "opacity-0"}`}
+              className={cn("ml-2", {
+                "animate-spin": loading,
+                hidden: !loading,
+              })}
               aria-hidden={!loading}
             />
             {loading && <span className="sr-only">Loading search results</span>}
 
             <button
               onClick={onClose}
-              className="ml-2 cursor-pointer rounded-lg border border-stone-200 bg-white px-3 py-1 text-xs font-semibold text-stone-500 shadow-md hover:text-stone-700"
+              className="ml-2 cursor-pointer rounded-lg border border-stone-200 bg-white px-3 py-1 text-xs font-semibold text-stone-500 shadow-md hover:text-stone-700 active:scale-95"
               aria-label="Close search"
             >
               <span aria-hidden="true">Esc</span>
@@ -187,9 +191,13 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
                   <li key={index}>
                     <button
                       onClick={() => onSelect(text)}
-                      className={`${hind.className} block w-full border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide whitespace-pre-wrap hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden ${
-                        index === searchResults.length - 1 ? "border-b-0" : ""
-                      }`}
+                      className={cn(
+                        "block w-full border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide whitespace-pre-wrap hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden",
+                        hind.className,
+                        {
+                          "border-b-0": index === searchResults.length - 1,
+                        }
+                      )}
                       aria-label={`Select doha: ${text.substring(0, 30)}...`}
                     >
                       {text}
