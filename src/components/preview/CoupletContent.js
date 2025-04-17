@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-import AuthorSignature from "./AuthorSignature";
-import CoupletText from "./CoupletText";
-import QuoteIcon from "./QuoteIcon";
-import WebsiteInfo from "./WebsiteInfo";
+import AuthorSignature from "@/components/preview/AuthorSignature";
+import CoupletText from "@/components/preview/CoupletText";
+import QuoteIcon from "@/components/preview/QuoteIcon";
+import WebsiteInfo from "@/components/preview/WebsiteInfo";
 
 /**
  * CoupletContent component displays the couplet with a quote icon, text, author signature, underline, and website information.

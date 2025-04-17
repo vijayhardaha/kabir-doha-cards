@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-import BackgroundElement from "./BackgroundElement";
-import CoupletContent from "./CoupletContent";
-import SideAuthor from "./SideAuthor";
-import RandomButton from "../options/RandomButton";
+import RandomButton from "@/components/options/RandomButton";
+import BackgroundElement from "@/components/preview/BackgroundElement";
+import CoupletContent from "@/components/preview/CoupletContent";
+import SideAuthor from "@/components/preview/SideAuthor";
 
 /**
  * PreviewBox component displays a formatted preview of a Kabir Doha card.

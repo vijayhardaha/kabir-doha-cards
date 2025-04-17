@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { RiSearchLine } from "react-icons/ri";
 
-import SearchModal from "./SearchModal";
+import SearchModal from "@/components/options/SearchModal";
 
 /**
  * SearchInput component allows users to search and select a Doha from a list.

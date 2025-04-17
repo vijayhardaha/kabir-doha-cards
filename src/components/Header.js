@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { AiOutlineWhatsApp, AiOutlineGithub } from "react-icons/ai";
 
-import Logo from "./Logo";
+import Logo from "@/components/Logo";
 import { getShareUrl } from "@/utils/share";
 
 /**

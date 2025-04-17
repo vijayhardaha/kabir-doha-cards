@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MainContent from "@/components/MainContent";
 import { DEFAULT_SEO } from "@/constants/seo";
+import { BYPASS_RATE_LIMIT_HASH } from "@/constants/skipHash";
 import { getSiteUrl } from "@/utils/url";
 
 const siteBaseUrl = getSiteUrl();
@@ -55,7 +56,7 @@ async function fetchKabirCouplets() {
       method: "POST",
       cache: "no-cache",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderBy: "random", perPage: 10 }),
+      body: JSON.stringify({ orderBy: "random", perPage: 10, skipHash: BYPASS_RATE_LIMIT_HASH }),
     });
 
     if (!response.ok) {

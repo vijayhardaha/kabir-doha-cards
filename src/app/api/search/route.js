@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { BYPASS_RATE_LIMIT_HASH } from "@/constants/skipHash";
+
 /**
  * Handles the API request to fetch search results from an external API.
  *
@@ -28,6 +30,7 @@ export async function POST(request) {
         orderBy: "couplet_hindi",
         order: "ASC",
         perPage: 10,
+        skipHash: BYPASS_RATE_LIMIT_HASH,
       }),
     });
 

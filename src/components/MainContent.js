@@ -5,8 +5,8 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { PiSpinnerGapLight } from "react-icons/pi";
 
-import OptionsBox from "./options/OptionsBox";
-import PreviewBox from "./preview/PreviewBox";
+import OptionsBox from "@/components/options/OptionsBox";
+import PreviewBox from "@/components/preview/PreviewBox";
 import { calcFontSize } from "@/utils/preview";
 
 /**
