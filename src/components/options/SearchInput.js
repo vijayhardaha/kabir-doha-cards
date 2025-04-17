@@ -7,19 +7,30 @@ import SearchModal from "./SearchModal";
 
 /**
  * SearchInput component allows users to search and select a Doha from a list.
+ * Provides both desktop and mobile interfaces for searching.
  *
+ * @component
  * @param {Object} props - The component props.
  * @param {function(string): void} props.setCouplet - Function to update the selected Doha.
  * @param {string[]} props.couplets - List of available Doha options.
- * @returns {JSX.Element} The rendered component.
+ * @returns {JSX.Element} The rendered search input component.
  */
 const SearchInput = ({ setCouplet, couplets }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  /**
+   * Opens the search modal
+   * @function
+   */
   const handleSearch = () => {
     setIsSearchOpen(true);
   };
 
+  /**
+   * Handles the selection of a Doha from search results
+   * @function
+   * @param {string} selectedDoha - The selected Doha text
+   */
   const handleSelectDoha = (selectedDoha) => {
     setCouplet(selectedDoha);
     setIsSearchOpen(false);
@@ -31,10 +42,12 @@ const SearchInput = ({ setCouplet, couplets }) => {
       <div className="relative hidden md:inline-flex">
         <button
           onClick={handleSearch}
-          aria-label="Open search"
+          aria-label="Open doha search"
+          aria-haspopup="dialog"
           className="focus:border-primary-600 flex h-12 w-12 items-center justify-center rounded-lg border-2 border-stone-100 bg-stone-100 px-2 py-2 text-base text-stone-700 outline-hidden focus:ring-4 focus:ring-green-100"
         >
           <RiSearchLine aria-hidden="true" className="h-5 w-5" />
+          <span className="sr-only">Search for doha</span>
         </button>
       </div>
 
@@ -50,6 +63,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
           onClick={handleSearch}
           readOnly
           aria-label="Search doha"
+          aria-haspopup="dialog"
           className="focus:border-primary-600 h-12 w-full cursor-pointer truncate rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 pl-9 text-base text-stone-700 outline-hidden transition-all duration-300 ease-in-out focus:ring-4 focus:ring-green-100"
         />
       </div>

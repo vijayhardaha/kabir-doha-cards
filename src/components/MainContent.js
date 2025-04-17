@@ -1,4 +1,4 @@
-"use client"; // Marks this as a client component
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 
@@ -100,13 +100,16 @@ const MainContent = ({ couplets }) => {
           --kdc-website-info-lh: ${gs(1)};
         }
       `}</style>
-      <main className="relative">
+      <main className="relative" aria-label="Kabir Doha Card Generator">
         <div
           className="relative mx-auto aspect-square h-full w-full max-w-[700px] border-2 border-dashed border-stone-100"
           ref={elementRef}
+          aria-live="polite"
+          aria-busy={loading}
         >
           {loading ? (
             <div className="bg-opacity-75 absolute inset-0 flex items-center justify-center bg-white">
+              <span className="sr-only">Loading couplet content, please wait</span>
               <PiSpinnerGapLight aria-hidden="true" className="animate-spin text-4xl text-gray-500" />
             </div>
           ) : (
@@ -119,6 +122,7 @@ const MainContent = ({ couplets }) => {
               elementWidth={elementWidth}
               loading={loading}
               setLoading={setLoading}
+              aria-label="Doha preview card"
             />
           )}
         </div>
@@ -135,6 +139,7 @@ const MainContent = ({ couplets }) => {
           setLineHeight={setLineHeight}
           loading={loading}
           setLoading={setLoading}
+          aria-label="Doha customization options"
         />
       </main>
     </>
@@ -142,6 +147,9 @@ const MainContent = ({ couplets }) => {
 };
 
 MainContent.propTypes = {
+  /**
+   * Array of couplet strings to be displayed in the preview box
+   */
   couplets: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

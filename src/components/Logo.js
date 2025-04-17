@@ -3,15 +3,27 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /**
- * Logo component renders an SVG logo.
+ * Logo component renders the SVG logo for Kabir Doha Cards.
+ * It displays a stylized "KDC" text inside a green blob-shaped background.
  *
  * @component
- * @param {Object} props - The props passed to the component.
- * @returns {JSX.Element} The rendered Logo component.
+ * @param {Object} props - All props are passed directly to the SVG element.
+ * @param {string} [props.className] - CSS classes to apply to the SVG.
+ * @param {string} [props.aria-hidden] - Whether the SVG should be hidden from screen readers.
+ * @param {string} [props.width] - Width of the SVG.
+ * @param {string} [props.height] - Height of the SVG.
+ * @returns {JSX.Element} The rendered Logo SVG component.
  */
 const Logo = ({ ...props }) => {
   return (
-    <svg {...props} viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      {...props}
+      viewBox="0 0 500 500"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label={props["aria-hidden"] ? undefined : "Kabir Doha Cards logo"}
+    >
       <path
         d="M323.06 464.766C235.498 490.477 109.91 472.899 53.3459 398.115C-2.82664 323.365 9.9931 191.767 86.5216 112.203C163.082 32.2829 302.959 4.36287 384.29 44.6468C465.622 84.9307 487.655 192.992 474.313 281.38C460.547 370.089 410.621 439.055 323.06 464.766Z"
         fill="#12B848"
@@ -33,8 +45,22 @@ const Logo = ({ ...props }) => {
 };
 
 Logo.propTypes = {
-  // Any additional props that can be passed to the component
-  props: PropTypes.object,
+  /**
+   * CSS classes to apply to the SVG
+   */
+  className: PropTypes.string,
+  /**
+   * Whether the SVG should be hidden from screen readers
+   */
+  "aria-hidden": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /**
+   * Width of the SVG
+   */
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Height of the SVG
+   */
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default Logo;

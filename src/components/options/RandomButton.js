@@ -10,6 +10,8 @@ import { showToast } from "@/utils/toast";
 
 /**
  * RandomButton component triggers the randomization of the Doha.
+ * Provides visual indication of loading state and tooltip functionality.
+ *
  * @component
  * @param {Object} props - The component props.
  * @param {function(string): void} props.setCouplet - Function to set the random Doha.
@@ -46,6 +48,11 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
 
       if (data.success && data.couplet) {
         setCouplet(data.couplet);
+        // Announce success to screen readers
+        const srAnnouncement = document.getElementById("sr-announcement");
+        if (srAnnouncement) {
+          srAnnouncement.textContent = "New random Doha loaded successfully";
+        }
       } else {
         console.warn("No results found for random Doha.");
         showToast("No Doha found, try again!", "error");
@@ -63,17 +70,20 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
       {/* Initialize React Tooltip with id */}
       <ReactTooltip id="random-doha-tooltip" effect="solid" />
 
+      {/* Visually hidden announcement for screen readers */}
+      <div id="sr-announcement" className="sr-only" aria-live="polite"></div>
+
       <button
         onClick={fetchRandomDoha}
-        className="random-btn"
+        className={`random-btn ${loading ? "opacity-75" : ""}`}
         aria-label="Get Random Doha"
+        aria-busy={loading}
         data-tooltip-id="random-doha-tooltip"
         data-tooltip-content="Get a random Doha"
         disabled={loading}
       >
-        <TfiReload aria-hidden="true" size={30} />
-        {/* Screen reader only text */}
-        <span className="sr-only">Get Random Doha</span>
+        <TfiReload aria-hidden="true" size={30} className={loading ? "animate-spin" : ""} />
+        <span className="sr-only">{loading ? "Loading random Doha..." : "Get Random Doha"}</span>
       </button>
     </>
   );

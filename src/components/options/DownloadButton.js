@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import domtoimage from "dom-to-image";
+import PropTypes from "prop-types";
 import { AiOutlineCloudDownload, AiOutlineCheck } from "react-icons/ai";
 import { PiSpinnerGapLight } from "react-icons/pi";
 import { Tooltip as ReactTooltip } from "react-tooltip";
@@ -9,34 +10,48 @@ import { extractExtensionFromBase64, generateUniqueId } from "@/utils/download";
 import { showToast } from "@/utils/toast";
 
 /**
- * DownloadButton component triggers the download of the Doha card.
+ * DownloadButton component triggers the download of the Doha card as an image.
+ *
  * @component
- * @returns {JSX.Element} The rendered download button component.
+ * @param {Object} props - Component props
+ * @param {string} [props.elementId="doha-preview"] - ID of the element to be downloaded
+ * @param {string} [props.fileNamePrefix="kabir-doha-card"] - Prefix for the downloaded file name
+ * @param {number} [props.scaleFactor=6] - Scale factor for the downloaded image
+ * @param {number} [props.quality=0.75] - Quality of the downloaded image (0-1)
+ * @returns {JSX.Element} The rendered download button component
  */
-const DownloadButton = () => {
+const DownloadButton = ({
+  elementId = "doha-preview",
+  fileNamePrefix = "kabir-doha-card",
+  scaleFactor = 6,
+  quality = 0.75,
+}) => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
   /**
    * Handles the download of the Doha card and displays a toast notification.
+   * Captures the specified element as an image and initiates download.
+   *
    * @function
+   * @returns {void}
    */
   const handleDownload = () => {
-    const node = document.getElementById("doha-preview");
+    const node = document.getElementById(elementId);
 
     if (node) {
       // Ensure that the node exists before proceeding.
       setDownloading(true); // Set downloading state to true.
       const rect = node.getBoundingClientRect();
-      const width = rect.width * 6;
-      const height = rect.height * 6;
+      const width = rect.width * scaleFactor;
+      const height = rect.height * scaleFactor;
 
       const options = {
         width,
         height,
-        quality: 0.75,
+        quality,
         style: {
-          transform: "scale(6)",
+          transform: `scale(${scaleFactor})`,
           transformOrigin: "top left",
         },
       };
@@ -47,7 +62,7 @@ const DownloadButton = () => {
           const extension = extractExtensionFromBase64(dataUrl);
           const uniqueId = generateUniqueId();
           const link = document.createElement("a");
-          link.download = `kabir-doha-card-${uniqueId}.${extension}`;
+          link.download = `${fileNamePrefix}-${uniqueId}.${extension}`;
           link.href = dataUrl;
           link.click();
           setDownloaded(true);
@@ -61,10 +76,17 @@ const DownloadButton = () => {
           setDownloading(false);
         });
     } else {
-      console.error("Element with id 'doha-preview' not found.");
+      console.error(`Element with id '${elementId}' not found.`);
       showToast("Failed: Element not found!", "error");
     }
   };
+
+  // Screen reader text based on current state
+  const screenReaderText = downloading
+    ? "Downloading your Doha card as an image"
+    : downloaded
+      ? "Doha card successfully downloaded"
+      : "Download your Doha card as an image";
 
   return (
     <>
@@ -75,10 +97,11 @@ const DownloadButton = () => {
       <button
         onClick={handleDownload}
         className="icon-btn"
-        aria-label="Download image"
+        aria-label={screenReaderText}
         data-tooltip-id="download-doha-tooltip"
         data-tooltip-content={downloading ? "Downloading..." : downloaded ? "Downloaded!" : "Download image"}
         disabled={downloading}
+        aria-busy={downloading}
       >
         {downloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
@@ -87,11 +110,17 @@ const DownloadButton = () => {
         ) : (
           <AiOutlineCloudDownload aria-hidden="true" size={24} />
         )}
-        <span className="sr-only">Download</span>
+        <span className="sr-only">{screenReaderText}</span>
       </button>
 
       {/* Mobile Button */}
-      <button onClick={handleDownload} className="text-btn" aria-label="Download image" disabled={downloading}>
+      <button
+        onClick={handleDownload}
+        className="text-btn"
+        aria-label={screenReaderText}
+        disabled={downloading}
+        aria-busy={downloading}
+      >
         {downloading ? (
           <PiSpinnerGapLight aria-hidden="true" size={20} className="mr-2 animate-spin" />
         ) : downloaded ? (
@@ -103,6 +132,17 @@ const DownloadButton = () => {
       </button>
     </>
   );
+};
+
+DownloadButton.propTypes = {
+  /** ID of the element to be downloaded */
+  elementId: PropTypes.string,
+  /** Prefix for the downloaded file name */
+  fileNamePrefix: PropTypes.string,
+  /** Scale factor for the downloaded image */
+  scaleFactor: PropTypes.number,
+  /** Quality of the downloaded image (0-1) */
+  quality: PropTypes.number,
 };
 
 export default DownloadButton;

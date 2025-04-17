@@ -10,6 +10,7 @@ const hind = Hind({ weight: ["400", "700"], subsets: ["latin", "devanagari"] });
 
 /**
  * Modal component for search input and results, styled similarly to Algolia's search box.
+ * Provides accessibility features including keyboard navigation and screen reader support.
  *
  * @component
  * @param {Object} props - The component props.
@@ -17,7 +18,7 @@ const hind = Hind({ weight: ["400", "700"], subsets: ["latin", "devanagari"] });
  * @param {function(): void} props.onClose - Function to close the modal.
  * @param {Array<string>} props.couplets - List of default couplets to display.
  * @param {function(string): void} props.onSelect - Function to handle the selection of a Doha.
- * @returns {JSX.Element}
+ * @returns {JSX.Element|null} The search modal component or null if closed.
  */
 const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -129,7 +130,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
       {/* Modal */}
       <div
         role="dialog"
-        aria-labelledby="modal-title"
+        aria-labelledby="search-modal-title"
         aria-modal="true"
         className="fixed inset-0 z-50 h-screen w-screen overflow-x-hidden overflow-y-auto px-5"
       >
@@ -137,10 +138,10 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
           ref={modalRef}
           role="document"
           className="relative mx-auto mt-20 mb-0 w-full max-w-4xl overflow-hidden rounded-lg bg-white shadow-lg"
-          tabIndex="-1" // Allow focus for accessibility
+          tabIndex="-1"
         >
           <span className="sr-only" id="search-modal-title">
-            Search doha
+            Search for Kabir Doha
           </span>
           <div className="flex items-center border-b border-stone-200 px-4 py-2">
             <RiSearchLine className="mr-3 block h-7 w-7 text-stone-500" aria-hidden="true" />
@@ -151,42 +152,55 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for Doha..."
               className="w-full rounded-lg border-none bg-white px-2 py-2 pl-0 text-sm placeholder-stone-400 outline-hidden"
-              aria-label="Search"
+              aria-label="Search for Doha"
               ref={inputRef}
             />
-            <PiSpinnerGapLight size={24} className={`ml-2 ${loading ? "animate-spin" : "opacity-0"}`} />
+            <PiSpinnerGapLight
+              size={24}
+              className={`ml-2 ${loading ? "animate-spin" : "opacity-0"}`}
+              aria-hidden={!loading}
+            />
+            {loading && <span className="sr-only">Loading search results</span>}
+
             <button
               onClick={onClose}
               className="ml-2 cursor-pointer rounded-lg border border-stone-200 bg-white px-3 py-1 text-xs font-semibold text-stone-500 shadow-md hover:text-stone-700"
-              aria-label="Close"
+              aria-label="Close search"
             >
               <span aria-hidden="true">Esc</span>
+              <span className="sr-only">Close search dialog</span>
             </button>
           </div>
 
           {/* Search results */}
-          <div className="relative py-2">
+          <div className="relative py-2" aria-live="polite" aria-atomic="true">
             {loading && (
               <div className="bg-opacity-35 absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-stone-200">
-                <PiSpinnerGapLight size={30} className="animate-spin" />
+                <PiSpinnerGapLight size={30} className="animate-spin" aria-hidden="true" />
+                <span className="sr-only">Searching...</span>
               </div>
             )}
 
             {searchResults.length > 0 ? (
-              searchResults.map((text, index) => (
-                <button
-                  key={index}
-                  onClick={() => onSelect(text)}
-                  className={`${hind.className} block w-full border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide whitespace-pre-wrap hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden ${
-                    index === searchResults.length - 1 ? "border-b-0" : ""
-                  }`}
-                  aria-label={`Select ${text}`}
-                >
-                  {text}
-                </button>
-              ))
+              <ul className="m-0 list-none p-0">
+                {searchResults.map((text, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() => onSelect(text)}
+                      className={`${hind.className} block w-full border-b border-stone-100 px-6 py-3 text-left text-sm font-medium tracking-wide whitespace-pre-wrap hover:bg-stone-100 focus:bg-stone-200 focus:outline-hidden ${
+                        index === searchResults.length - 1 ? "border-b-0" : ""
+                      }`}
+                      aria-label={`Select doha: ${text.substring(0, 30)}...`}
+                    >
+                      {text}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             ) : (
-              <p className="px-6 py-3 text-lg font-semibold text-stone-500">No results found</p>
+              <p className="px-6 py-3 text-lg font-semibold text-stone-500" role="status">
+                No results found
+              </p>
             )}
           </div>
         </div>

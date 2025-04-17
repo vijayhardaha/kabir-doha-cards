@@ -12,14 +12,18 @@ import { getSiteUrl } from "@/utils/url";
  *
  * @component
  * @param {Object} props - The component props.
- * @param {string} props.couplet - The current Doha text.
- * @returns {JSX.Element}
+ * @param {string} props.couplet - The current Doha text to be copied.
+ * @param {string} [props.screenReaderText="Copy Doha"] - Text for screen readers.
+ * @returns {JSX.Element} The rendered CopyButton component.
  */
-const CopyButton = ({ couplet }) => {
+const CopyButton = ({ couplet, screenReaderText = "Copy Doha" }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   /**
    * Copies the Doha couplet along with attribution to the clipboard and displays a toast notification.
+   *
+   * @function
+   * @returns {void}
    */
   const handleCopy = () => {
     const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nFor more insights and wisdom, visit: ${getSiteUrl()}`;
@@ -46,17 +50,21 @@ const CopyButton = ({ couplet }) => {
       <button
         onClick={handleCopy}
         className="icon-btn"
-        aria-label="Copy Doha to clipboard"
+        aria-label={isCopied ? "Copied to clipboard" : "Copy Doha to clipboard"}
         data-tooltip-id="copy-tooltip"
         data-tooltip-content={isCopied ? "Copied!" : "Copy doha to clipboard"}
       >
         {isCopied ? <AiOutlineCheck aria-hidden="true" size={24} /> : <AiOutlineCopy aria-hidden="true" size={24} />}
         {/* Screen reader only text */}
-        <span className="sr-only">Copy Doha</span>
+        <span className="sr-only">{isCopied ? "Copied to clipboard" : screenReaderText}</span>
       </button>
 
       {/* Mobile Button */}
-      <button onClick={handleCopy} className="text-btn outlined" aria-label="Copy Doha to clipboard">
+      <button
+        onClick={handleCopy}
+        className="text-btn outlined"
+        aria-label={isCopied ? "Copied to clipboard" : "Copy Doha to clipboard"}
+      >
         {isCopied ? (
           <AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
         ) : (
@@ -69,7 +77,10 @@ const CopyButton = ({ couplet }) => {
 };
 
 CopyButton.propTypes = {
+  /** The current Doha text to be copied */
   couplet: PropTypes.string.isRequired,
+  /** Custom text for screen readers */
+  screenReaderText: PropTypes.string,
 };
 
 export default CopyButton;
