@@ -68,7 +68,7 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
-        project: true, // This tells TypeScript ESLint to use the project configuration automatically
+        project: "./tsconfig.json",
       },
     },
 
