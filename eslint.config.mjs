@@ -1,7 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import babelParser from "@babel/eslint-parser";
 import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
@@ -11,6 +10,7 @@ import jsxA11Y from "eslint-plugin-jsx-a11y";
 import prettier from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import globals from "globals";
+import tseslint from "typescript-eslint";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,7 +42,8 @@ export default defineConfig([
       "eslint:recommended",
       "plugin:react/recommended",
       "plugin:jsx-a11y/recommended",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "plugin:@typescript-eslint/recommended"
     ),
 
     plugins: {
@@ -50,6 +51,7 @@ export default defineConfig([
       "jsx-a11y": jsxA11Y,
       importPlugin: fixupPluginRules(importPlugin),
       prettier,
+      typescript: tseslint.plugin,
     },
 
     languageOptions: {
@@ -58,7 +60,7 @@ export default defineConfig([
         ...globals.node,
       },
 
-      parser: babelParser,
+      parser: tseslint.parser,
       ecmaVersion: "latest",
       sourceType: "module",
 
@@ -66,6 +68,7 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
+        project: true, // This tells TypeScript ESLint to use the project configuration automatically
       },
     },
 
