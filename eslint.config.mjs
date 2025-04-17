@@ -1,15 +1,16 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import react from "eslint-plugin-react";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import importPlugin from "eslint-plugin-import";
-import prettier from "eslint-plugin-prettier";
-import { fixupPluginRules } from "@eslint/compat";
-import globals from "globals";
-import babelParser from "@babel/eslint-parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
+
+import babelParser from "@babel/eslint-parser";
+import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
+import importPlugin from "eslint-plugin-import";
+import jsxA11Y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
+import globals from "globals";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
