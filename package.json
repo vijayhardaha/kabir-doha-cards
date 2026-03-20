@@ -62,6 +62,8 @@
     "typescript-eslint": "^8.57.1"
   },
   "trustedDependencies": [
+    "@parcel/watcher",
+    "sharp",
     "unrs-resolver"
   ]
 }
