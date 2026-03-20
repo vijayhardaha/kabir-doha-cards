@@ -2,6 +2,8 @@ import type { JSX } from 'react';
 
 import { AiOutlineFontSize, AiOutlineLineHeight } from 'react-icons/ai';
 
+import type { OptionsBoxProps } from '@/types';
+
 import ColorInput from './ColorInput';
 import CopyButton from './CopyButton';
 import DownloadButton from './DownloadButton';
@@ -14,19 +16,8 @@ import SearchInput from './SearchInput';
  * It provides controls for customizing the appearance and content of the Doha display.
  *
  * @component
- * @param {Object} props - The component props.
- * @param {string[]} props.couplets - List of available Doha options.
- * @param {string} props.color - The currently selected background color.
- * @param {function(string): void} props.setColor - Function to update the selected color.
- * @param {string} props.couplet - The current Doha text.
- * @param {function(string): void} props.setCouplet - Function to update the Doha.
- * @param {number} props.fontSize - The current font size.
- * @param {function(number): void} props.setFontSize - Function to update the font size.
- * @param {number} props.lineHeight - The current line height.
- * @param {function(number): void} props.setLineHeight - Function to update the line height.
- * @param {boolean} props.loading - Indicates if a request is in progress.
- * @param {function(boolean): void} props.setLoading - Function to set the loading state.
- * @returns {JSX.Element} The rendered options box component.
+ * @param props - The component props
+ * @returns The rendered options box component
  */
 const OptionsBox = ({
   couplets,
@@ -40,19 +31,7 @@ const OptionsBox = ({
   setLineHeight,
   loading,
   setLoading,
-}: {
-  couplets: string[];
-  color: string;
-  setColor: (arg0: string) => void;
-  couplet: string;
-  setCouplet: (arg0: string) => void;
-  fontSize: number;
-  setFontSize: (arg0: number) => void;
-  lineHeight: number;
-  setLineHeight: (arg0: number) => void;
-  loading: boolean;
-  setLoading: (arg0: boolean) => void;
-}): JSX.Element => {
+}: OptionsBoxProps): JSX.Element => {
   return (
     <div
       className="mt-8 flex flex-col gap-y-5 rounded-lg bg-white md:sticky md:bottom-4 md:z-999 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl"

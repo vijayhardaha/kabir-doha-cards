@@ -1,39 +1,22 @@
 import { useState, useRef, useEffect, type JSX } from 'react';
 
 import { PICKER_COLORS } from '@/constants/colors';
+import type { ColorInputProps } from '@/types';
 
 /**
- * ColorInput component that displays a color picker and allows the user to select a color.
- * Provides a dropdown color palette for easy color selection with keyboard and screen reader support.
+ * ColorInput component that displays a color picker with a dropdown color palette.
+ * Provides keyboard and screen reader support.
  *
  * @component
- * @param {Object} props - Component props
- * @param {string} props.color - The currently selected color value
- * @param {function(string): void} props.setColor - Callback function to update the selected color
- * @param {string} [props.screenReaderLabel="Choose a color"] - Accessible label for screen readers
- * @returns {JSX.Element} - Rendered color picker component
+ * @param props - Component props
+ * @returns The rendered color picker component
  */
-const ColorInput = ({
-  color,
-  setColor,
-  screenReaderLabel = 'Choose a color',
-}: {
-  color: string;
-  setColor: (arg0: string) => void;
-  screenReaderLabel?: string;
-}): JSX.Element => {
+const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }: ColorInputProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState(color);
   const colorPickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    /**
-     * Handles clicks outside the color picker to close it if the click is outside the color picker element.
-     * Part of the accessibility and UX improvements for the component.
-     *
-     * @param {MouseEvent} event - The mouse event triggered by the user clicking
-     * @returns {void}
-     */
     const handleClickOutside = (event: MouseEvent): void => {
       if (colorPickerRef.current && !colorPickerRef?.current?.contains(event.target as Node)) {
         setIsOpen(false);
@@ -46,44 +29,33 @@ const ColorInput = ({
 
   /**
    * Handles the event when a color is clicked or selected.
-   * Sets the selected color and updates the parent component's color state.
    *
-   * @param {string} color - The color code or name that was selected
-   * @returns {void}
+   * @param selectedColor - The color code that was selected
    */
-  const handleColorClick = (color: string): void => {
-    setColor(color);
-    setSelectedColor(color);
-    setIsOpen(false); // Close the picker after selection for better UX
+  const handleColorClick = (selectedColor: string): void => {
+    setColor(selectedColor);
+    setSelectedColor(selectedColor);
+    setIsOpen(false);
   };
 
   /**
    * Toggles the color picker dropdown state.
-   *
-   * @returns {void}
    */
   const toggleColorPicker = (): void => {
     setIsOpen(!isOpen);
   };
 
-  /**
-   * Retrieves an array of color keys from the `PICKER_COLORS` object.
-   * This array contains the names of all available colors for the color picker.
-   *
-   * @type {Array<string>}
-   */
-  const colors: Array<string> = Object.keys(PICKER_COLORS);
+  const colors: string[] = Object.keys(PICKER_COLORS);
 
   /**
    * Groups colors into rows, each containing up to 6 colors.
-   * This helps in organizing the color picker display in a grid format.
    *
-   * @type {Array<Array<string>>} - An array of rows, where each row is an array of color strings
+   * @type {string[][]}
    */
-  const groupedColors: Array<Array<string>> = colors.reduce((acc: string[][], color, index) => {
+  const groupedColors: string[][] = colors.reduce((acc: string[][], colorKey, index) => {
     const rowIndex = Math.floor(index / 6);
     if (!acc[rowIndex]) acc[rowIndex] = [];
-    acc[rowIndex].push(color);
+    acc[rowIndex].push(colorKey);
     return acc;
   }, []);
 

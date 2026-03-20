@@ -5,6 +5,7 @@ import type { JSX } from 'react';
 import { TfiReload } from 'react-icons/tfi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
+import type { RandomButtonProps } from '@/types';
 import { cn } from '@/utils/classnames';
 import fetchCouplets from '@/utils/fetchCouplets';
 import { showToast } from '@/utils/toast';
@@ -14,32 +15,15 @@ import { showToast } from '@/utils/toast';
  * Provides visual indication of loading state and tooltip functionality.
  *
  * @component
- * @param {Object} props - The component props.
- * @param {function(string): void} props.setCouplet - Function to set the random Doha.
- * @param {boolean} props.loading - Indicates if a request is in progress.
- * @param {function(boolean): void} props.setLoading - Function to set the loading state.
- * @returns {JSX.Element} The rendered button component.
+ * @param props - The component props
+ * @returns The rendered button component
  */
-const RandomButton = ({
-  setCouplet,
-  loading,
-  setLoading,
-}: {
-  setCouplet: (arg0: string) => void;
-  loading: boolean;
-  setLoading: (arg0: boolean) => void;
-}): JSX.Element => {
+const RandomButton = ({ setCouplet, loading, setLoading }: RandomButtonProps): JSX.Element => {
   /**
-   * Fetches a random Doha from the server and updates the state with the couplet.
-   * Displays appropriate toast notifications for success or failure.
-   * Prevents duplicate requests while already loading.
-   *
-   * @async
-   * @function fetchRandomDoha
-   * @returns {Promise<void>} Resolves once the Doha is fetched and state is updated.
+   * Fetches a random Doha from the server and updates the state.
    */
   const fetchRandomDoha = async (): Promise<void> => {
-    if (loading) return; // Prevent multiple simultaneous requests.
+    if (loading) return;
 
     setLoading(true);
 
@@ -62,7 +46,6 @@ const RandomButton = ({
 
   return (
     <>
-      {/* Initialize React Tooltip with id */}
       <ReactTooltip id="random-doha-tooltip" />
 
       <button

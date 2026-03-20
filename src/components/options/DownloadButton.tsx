@@ -5,6 +5,7 @@ import { AiOutlineCloudDownload, AiOutlineCheck } from 'react-icons/ai';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
+import type { DownloadButtonProps } from '@/types';
 import { extractExtensionFromBase64, generateUniqueId } from '@/utils/download';
 import { showToast } from '@/utils/toast';
 
@@ -12,40 +13,26 @@ import { showToast } from '@/utils/toast';
  * DownloadButton component triggers the download of the Doha card as an image.
  *
  * @component
- * @param {Object} props - Component props
- * @param {string} [props.elementId="doha-preview"] - ID of the element to be downloaded
- * @param {string} [props.fileNamePrefix="kabir-doha-card"] - Prefix for the downloaded file name
- * @param {number} [props.scaleFactor=6] - Scale factor for the downloaded image
- * @param {number} [props.quality=0.75] - Quality of the downloaded image (0-1)
- * @returns {JSX.Element} The rendered download button component
+ * @param props - Component props
+ * @returns The rendered download button component
  */
 const DownloadButton = ({
   elementId = 'doha-preview',
   fileNamePrefix = 'kabir-doha-card',
   scaleFactor = 6,
   quality = 0.75,
-}: {
-  elementId?: string;
-  fileNamePrefix?: string;
-  scaleFactor?: number;
-  quality?: number;
-}): JSX.Element => {
+}: DownloadButtonProps): JSX.Element => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
   /**
-   * Handles the download of the Doha card and displays a toast notification.
-   * Captures the specified element as an image and initiates download.
-   *
-   * @function
-   * @returns {void}
+   * Handles the download of the Doha card as an image.
    */
   const handleDownload = (): void => {
     const node = document.getElementById(elementId);
 
     if (node) {
-      // Ensure that the node exists before proceeding.
-      setDownloading(true); // Set downloading state to true.
+      setDownloading(true);
       const rect = node.getBoundingClientRect();
       const width = rect.width * scaleFactor;
       const height = rect.height * scaleFactor;
@@ -72,7 +59,7 @@ const DownloadButton = ({
           setTimeout(() => setDownloaded(false), 1000);
         })
         .catch((error: Error) => {
-          console.error('Failed to download: ', error as Error);
+          console.error('Failed to download: ', error);
           showToast('Download failed, try again!', 'error');
           setDownloading(false);
         });
@@ -82,7 +69,6 @@ const DownloadButton = ({
     }
   };
 
-  // Screen reader text based on current state
   const screenReaderText = downloading
     ? 'Downloading your Doha card as an image'
     : downloaded
@@ -91,10 +77,8 @@ const DownloadButton = ({
 
   return (
     <>
-      {/* Initialize React Tooltip with id */}
       <ReactTooltip id="download-doha-tooltip" />
 
-      {/* Desktop Button */}
       <button
         onClick={handleDownload}
         className="icon-btn"
@@ -114,7 +98,6 @@ const DownloadButton = ({
         <span className="sr-only">{screenReaderText}</span>
       </button>
 
-      {/* Mobile Button */}
       <button
         onClick={handleDownload}
         className="text-btn"

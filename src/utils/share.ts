@@ -1,12 +1,15 @@
+import type { Platform } from '@/types';
+
 import { getBaseUrl } from './seo';
 
 /**
- * Generates a social media share URL (WhatsApp or Twitter) with the given message.
+ * Generates a social media share URL for the specified platform.
  *
- * @param {string} platform - The platform to generate the share URL for ('whatsapp' or 'twitter').
- * @returns {string} - The URL to share the message on the specified platform.
+ * @param platform - The platform to share on ('whatsapp', 'wa', 'twitter', or 'x')
+ * @returns The share URL for the specified platform
+ * @throws Error if an unsupported platform is provided
  */
-export const getShareUrl = (platform: string = 'wa'): string => {
+export const getShareUrl = (platform: Platform = 'wa'): string => {
   const message = 'Check out this amazing Kabir Doha Cards maker! Create and share beautiful cards easily.';
 
   const fullMessage = `${message} ${getBaseUrl()}`;
@@ -17,6 +20,6 @@ export const getShareUrl = (platform: string = 'wa'): string => {
   } else if (platform === 'twitter' || platform === 'x') {
     return `https://twitter.com/intent/tweet?text=${encodedMessage}`;
   } else {
-    throw new Error("Unsupported platform. Please use 'whatsapp' or 'twitter'.");
+    throw new Error("Unsupported platform. Please use 'whatsapp', 'wa', 'twitter', or 'x'.");
   }
 };

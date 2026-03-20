@@ -4,34 +4,17 @@ import RandomButton from '@/components/options/RandomButton';
 import BackgroundElement from '@/components/preview/BackgroundElement';
 import CoupletContent from '@/components/preview/CoupletContent';
 import SideAuthor from '@/components/preview/SideAuthor';
+import type { PreviewBoxProps } from '@/types';
 
 /**
  * PreviewBox component displays a formatted preview of a Kabir Doha card.
  * It dynamically adjusts the font size and layout based on the container width.
- * The component serves as a visual representation of the doha with styling elements.
  *
  * @component
- * @param {Object} props - The component props.
- * @param {string} props.couplet - The text of the couplet to display.
- * @param {function(string): void} props.setCouplet - Function to update the Doha.
- * @param {boolean} props.loading - Indicates if a request is in progress.
- * @param {function(boolean): void} props.setLoading - Function to set the loading state.
- * @param {string} [props.screenReaderText] - Additional text for screen readers (optional).
- * @returns {JSX.Element} The rendered preview box.
+ * @param props - The component props
+ * @returns The rendered preview box
  */
-const PreviewBox = ({
-  couplet,
-  setCouplet,
-  loading,
-  setLoading,
-  screenReaderText,
-}: {
-  couplet: string;
-  setCouplet: (arg0: string) => void;
-  loading: boolean;
-  setLoading: (arg0: boolean) => void;
-  screenReaderText?: string;
-}): JSX.Element => {
+const PreviewBox = ({ couplet, setCouplet, loading, setLoading, screenReaderText }: PreviewBoxProps): JSX.Element => {
   const srText = screenReaderText || 'Kabir Doha Preview Card';
 
   return (

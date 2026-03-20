@@ -3,32 +3,22 @@ import { useState, type JSX } from 'react';
 import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { showToast } from '@/utils/toast';
+import type { CopyButtonProps } from '@/types';
 import { getBaseUrl } from '@/utils/seo';
+import { showToast } from '@/utils/toast';
 
 /**
  * CopyButton component copies the current Doha text to the clipboard.
  *
  * @component
- * @param {Object} props - The component props.
- * @param {string} props.couplet - The current Doha text to be copied.
- * @param {string} [props.screenReaderText="Copy Doha"] - Text for screen readers.
- * @returns {JSX.Element} The rendered CopyButton component.
+ * @param props - The component props
+ * @returns The rendered CopyButton component
  */
-const CopyButton = ({
-  couplet,
-  screenReaderText = 'Copy Doha',
-}: {
-  couplet: string;
-  screenReaderText?: string;
-}): JSX.Element => {
+const CopyButton = ({ couplet, screenReaderText = 'Copy Doha' }: CopyButtonProps): JSX.Element => {
   const [isCopied, setIsCopied] = useState(false);
 
   /**
-   * Copies the Doha couplet along with attribution to the clipboard and displays a toast notification.
-   *
-   * @function
-   * @returns {void}
+   * Copies the Doha couplet along with attribution to the clipboard.
    */
   const handleCopy = (): void => {
     const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nFor more insights and wisdom, visit: ${getBaseUrl()}`;
@@ -48,10 +38,8 @@ const CopyButton = ({
 
   return (
     <>
-      {/* Initialize React Tooltip with id */}
       <ReactTooltip id="copy-tooltip" />
 
-      {/* Desktop Button */}
       <button
         onClick={handleCopy}
         className="icon-btn"
@@ -60,11 +48,9 @@ const CopyButton = ({
         data-tooltip-content={isCopied ? 'Copied!' : 'Copy doha to clipboard'}
       >
         {isCopied ? <AiOutlineCheck aria-hidden="true" size={24} /> : <AiOutlineCopy aria-hidden="true" size={24} />}
-        {/* Screen reader only text */}
         <span className="sr-only">{isCopied ? 'Copied to clipboard' : screenReaderText}</span>
       </button>
 
-      {/* Mobile Button */}
       <button
         onClick={handleCopy}
         className="text-btn outlined"

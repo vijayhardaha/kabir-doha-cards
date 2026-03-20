@@ -3,47 +3,38 @@ import { useState, type JSX } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 
 import SearchModal from '@/components/options/SearchModal';
+import type { SearchInputProps } from '@/types';
 
 /**
  * SearchInput component allows users to search and select a Doha from a list.
  * Provides both desktop and mobile interfaces for searching.
  *
  * @component
- * @param {Object} props - The component props.
- * @param {function(string): void} props.setCouplet - Function to update the selected Doha.
- * @param {string[]} props.couplets - List of available Doha options.
- * @returns {JSX.Element} The rendered search input component.
+ * @param props - The component props
+ * @returns The rendered search input component
  */
-const SearchInput = ({
-  setCouplet,
-  couplets,
-}: {
-  setCouplet: (arg0: string) => void;
-  couplets: string[];
-}): JSX.Element => {
+const SearchInput = ({ setCouplet, couplets }: SearchInputProps): JSX.Element => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   /**
-   * Opens the search modal
-   * @function
+   * Opens the search modal.
    */
-  const handleSearch = () => {
+  const handleSearch = (): void => {
     setIsSearchOpen(true);
   };
 
   /**
-   * Handles the selection of a Doha from search results
-   * @function
-   * @param {string} selectedDoha - The selected Doha text
+   * Handles the selection of a Doha from search results.
+   *
+   * @param selectedDoha - The selected Doha text
    */
-  const handleSelectDoha = (selectedDoha: string) => {
+  const handleSelectDoha = (selectedDoha: string): void => {
     setCouplet(selectedDoha);
     setIsSearchOpen(false);
   };
 
   return (
     <>
-      {/* Desktop Button */}
       <div className="relative hidden md:inline-flex">
         <button
           onClick={handleSearch}
@@ -56,7 +47,6 @@ const SearchInput = ({
         </button>
       </div>
 
-      {/* Mobile Input */}
       <div className="relative md:hidden">
         <span className="absolute top-2/4 left-3 -translate-y-2/4">
           <RiSearchLine aria-hidden="true" className="h-5 w-5 text-stone-400" />
@@ -73,7 +63,6 @@ const SearchInput = ({
         />
       </div>
 
-      {/* Modal for search input and results */}
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

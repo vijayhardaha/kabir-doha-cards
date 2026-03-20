@@ -5,6 +5,7 @@ import { Hind } from 'next/font/google';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { RiSearchLine } from 'react-icons/ri';
 
+import type { SearchModalProps } from '@/types';
 import { cn } from '@/utils/classnames';
 import fetchCouplets from '@/utils/fetchCouplets';
 import { formatCouplet } from '@/utils/preview';
@@ -16,78 +17,52 @@ const hind = Hind({ weight: ['400', '700'], subsets: ['latin', 'devanagari'] });
  * Provides accessibility features including keyboard navigation and screen reader support.
  *
  * @component
- * @param {Object} props - The component props.
- * @param {boolean} props.isOpen - Whether the modal is open.
- * @param {function(): void} props.onClose - Function to close the modal.
- * @param {Array<string>} props.couplets - List of default couplets to display.
- * @param {function(string): void} props.onSelect - Function to handle the selection of a Doha.
- * @returns {JSX.Element|null} The search modal component or null if closed.
+ * @param props - The component props
+ * @returns The search modal component or null if closed
  */
-const SearchModal = ({
-  isOpen,
-  onClose,
-  couplets,
-  onSelect,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  couplets: Array<string>;
-  onSelect: (arg0: string) => void;
-}): JSX.Element | null => {
+const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps): JSX.Element | null => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState(couplets);
   const [loading, setLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null); // Ref for the search input
-
-  // Flag to track if event listeners should be attached
-  const [shouldAttachListeners, setShouldAttachListeners] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      setShouldAttachListeners(true);
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-      // Disable body scrolling when modal is open
-      document.body.style.overflow = 'hidden';
-    } else {
-      setShouldAttachListeners(false);
+    if (!isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Resetting search term when modal closes
       setSearchTerm('');
-      // Re-enable body scrolling when modal is closed
-      document.body.style.overflow = '';
     }
-
-    // Cleanup function to ensure scrolling is restored when component unmounts
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isOpen]);
 
   useEffect(() => {
-    if (!shouldAttachListeners) return;
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
 
-    /**
-     * Handles keydown events to close the modal on Escape key press.
-     * @param {KeyboardEvent} event - The keyboard event.
-     */
-    const handleKeyDown = (event: KeyboardEvent) => {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
       if (event.key === 'Escape') {
         onClose();
       }
     };
 
+    document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      document.body.style.overflow = '';
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [shouldAttachListeners, onClose]);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     /**
      * Fetches search results based on the search term with a debounce delay.
-     * @param {string} term - The search term.
+     *
+     * @param term - The search term
      */
     const fetchSearchResults = debounce(async (term: string) => {
       if (term) {
@@ -103,32 +78,6 @@ const SearchModal = ({
         }
 
         setLoading(false);
-
-        try {
-          const response = await fetch('/api/search', {
-            method: 'POST',
-            cache: 'no-cache',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ search: term }),
-          });
-
-          if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.statusText}`);
-          }
-
-          const data = await response.json();
-
-          if (data.success && data.results) {
-            setSearchResults(data.results);
-          } else {
-            setSearchResults([]);
-          }
-        } catch (error) {
-          console.error('Error fetching search results:', error);
-          setSearchResults([]);
-        } finally {
-          setLoading(false);
-        }
       } else {
         setSearchResults(couplets);
       }
@@ -136,7 +85,6 @@ const SearchModal = ({
 
     fetchSearchResults(searchTerm);
 
-    // Cleanup the debounce function on unmount
     return () => {
       fetchSearchResults.cancel();
     };
@@ -146,10 +94,8 @@ const SearchModal = ({
 
   return (
     <>
-      {/* Backdrop */}
       <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-[2px]" aria-hidden="true" onClick={onClose}></div>
 
-      {/* Modal */}
       <div
         role="dialog"
         aria-labelledby="search-modal-title"
@@ -196,7 +142,6 @@ const SearchModal = ({
             </button>
           </div>
 
-          {/* Search results */}
           <div className="relative py-2" aria-live="polite" aria-atomic="true">
             {loading && (
               <div className="bg-opacity-35 absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-stone-200">
@@ -218,8 +163,8 @@ const SearchModal = ({
                       )}
                       aria-label={`Select doha: ${text.substring(0, 30)}...`}
                     >
-                      {formatCouplet(text).map((line: string, index: number) => (
-                        <span className="block w-full" key={index}>
+                      {formatCouplet(text).map((line: string, lineIndex: number) => (
+                        <span className="block w-full" key={lineIndex}>
                           {line}
                         </span>
                       ))}

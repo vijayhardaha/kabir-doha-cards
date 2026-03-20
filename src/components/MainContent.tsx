@@ -1,29 +1,25 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type JSX } from 'react';
 
 import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import OptionsBox from '@/components/options/OptionsBox';
 import PreviewBox from '@/components/preview/PreviewBox';
+import type { Couplet } from '@/types';
 import { calcFontSize } from '@/utils/preview';
-
-type Couplet = string;
 
 /**
  * MainContent component displays a preview of a random doha and an options panel.
  *
  * @component
- * @param {Object} props - Component props.
- * @param {Array<string>} props.couplets - Array of couplets as strings to choose from.
- * @returns {JSX.Element} The rendered component.
+ * @param props - Component props
+ * @param props.couplets - Array of couplets as strings to choose from
+ * @returns The rendered component
  */
-const MainContent = ({ couplets }: { couplets: Couplet[] }) => {
+const MainContent = ({ couplets }: { couplets: Couplet[] }): JSX.Element => {
   const [color, setColor] = useState('#12b848');
-  // Use lazy initialization to pick random couplet only on initial mount.
-  // The function runs only once, avoiding the impure function issue.
-  // Since couplets is a static prop from server-side data, this runs once and never again.
-  const [couplet, setCouplet] = useState(() => {
+  const [couplet, setCouplet] = useState<Couplet>(() => {
     if (couplets.length > 0) {
       const randomIndex = Math.floor(Math.random() * couplets.length);
       return couplets[randomIndex];
@@ -33,12 +29,9 @@ const MainContent = ({ couplets }: { couplets: Couplet[] }) => {
   const [fontSize, setFontSize] = useState(3);
   const [lineHeight, setLineHeight] = useState(4.875);
   const [elementWidth, setElementWidth] = useState(700);
-  // Loading is initially false because lazy initialization makes couplet available immediately.
-  // Loading state is still needed for async operations like search.
   const [loading, setLoading] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
-  // Resize handler to update the element width on window resize.
   useEffect(() => {
     const handleResize = () => {
       if (elementRef.current) {
@@ -46,20 +39,20 @@ const MainContent = ({ couplets }: { couplets: Couplet[] }) => {
       }
     };
 
-    handleResize(); // Set initial width
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); // Cleanup on unmount.
-      elementRef.current = null; // Clear ref on unmount to prevent memory leaks.
+      window.removeEventListener('resize', handleResize);
+      elementRef.current = null;
     };
   }, []);
 
   /**
-   * Calculates font size based on a global element width and a multiplier.
+   * Calculates font size based on element width and multiplier.
    *
-   * @param {number} rem - The multiplier to calculate the font size.
-   * @returns {string} - The calculated font size in pixels.
+   * @param rem - The multiplier to calculate the font size
+   * @returns The calculated font size in rem
    */
   const gs = (rem: number): string => calcFontSize(elementWidth, rem);
 

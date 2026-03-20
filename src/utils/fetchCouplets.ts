@@ -1,16 +1,14 @@
-type fetchType = 'random' | 'search';
+import type { FetchCoupletsResponse, FetchType } from '@/types';
 
 /**
- * Fetches random Doha couplets from the server.
+ * Fetches Doha couplets from the server.
  *
- * @param {number} perPage - The number of couplets to fetch.
- * @returns {Promise<Array<string> | null>} The fetched couplets or null in case of error.
+ * @param type - The type of fetch: 'random' or 'search'
+ * @param search - Optional search term for search type
+ * @returns The fetched couplets with any error message
  */
-export async function fetchCouplets(
-  type: fetchType,
-  search?: string
-): Promise<{ data: string[]; error: string | null }> {
-  const randomNumber = Math.round(Math.random() * (200 - 1)) + 1; // Random page number for random fetch
+export async function fetchCouplets(type: FetchType, search?: string): Promise<FetchCoupletsResponse> {
+  const randomNumber = Math.round(Math.random() * (200 - 1)) + 1;
   const body =
     type === 'search'
       ? { search: search, sort_by: 'text_hi', sort_order: 'asc', per_page: 10 }
@@ -38,7 +36,7 @@ export async function fetchCouplets(
       throw new Error('No results found for random Doha.');
     }
   } catch (error: Error | unknown) {
-    errorMessage = error instanceof Error ? error.message : 'Unknwn error occurred while fetching couplets';
+    errorMessage = error instanceof Error ? error.message : 'Unknown error occurred while fetching couplets';
   }
 
   return { data: results, error: errorMessage };

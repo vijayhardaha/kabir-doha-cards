@@ -1,17 +1,15 @@
 import toast from 'react-hot-toast';
 
+import type { ToastType } from '@/types';
+
 /**
- * Displays a toast notification based on the provided message and type (success or error).
- * @param {string} message - The message to display in the toast.
- * @param {('success'|'error')} type - The type of toast ('success' or 'error').
+ * Displays a toast notification based on the provided message and type.
+ *
+ * @param message - The message to display in the toast
+ * @param type - The type of toast ('success' or 'error')
  */
-export const showToast = (message: string, type: 'success' | 'error' = 'success') => {
-  const options = {
-    style: {
-      backgroundColor: '#1f2937', // Dark mode background (stone-800)
-      color: '#ffffff', // White text
-    },
-  };
+export const showToast = (message: string, type: ToastType = 'success'): void => {
+  const options = { style: { backgroundColor: '#1f2937', color: '#ffffff' } };
 
   if (type === 'success') {
     toast.success(message, options);
