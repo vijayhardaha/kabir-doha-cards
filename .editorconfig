@@ -1,32 +1,68 @@
-# Root EditorConfig file to maintain consistent coding style across editors and IDEs
+# ======================================================================
+# EditorConfig
+# ======================================================================
+# Purpose: Shared EditorConfig to enforce consistent formatting across
+#          editors
+# Docs: https://editorconfig.org/
+# ======================================================================
+# Usage:
+# 	- Ensure your editor supports EditorConfig (most IDEs support it
+#     by default)
+# 	- Rules are applied top-to-bottom; more specific file globs override
+# 	  earlier rules
+# 	- Update this file to change team-wide defaults; prefer small,
+# 	  focused sections
+# ======================================================================
+
+# Stop searching for other .editorconfig files in parent directories
 root = true
 
-# Default settings for all files
+# ----------------------------------------------------------------------
+# Global Settings (Applied to all files)
+# ----------------------------------------------------------------------
 [*]
-charset = utf-8                 # Set character encoding to UTF-8
-end_of_line = lf                # Use LF (Unix-style) for line endings
-indent_style = tab              # Use tabs for indentation
-indent_size = 2                 # Set indentation size to 2 spaces
-insert_final_newline = true     # Ensure a newline is present at end of files
-trim_trailing_whitespace = true # Remove trailing whitespace
+# Ensure cross-platform compatibility with standard UTF-8 encoding
+charset = utf-8
 
-# Override for text files (preserve trailing whitespace)
-[*.txt]
-trim_trailing_whitespace = false
+# Use Unix-style line feeds (\n) to prevent "mismatched line ending"
+# Git warnings
+end_of_line = lf
 
-# Override for Markdown, JSON, and YAML files
-[*.{md,yml}]
-indent_style = space  # Use spaces for indentation
-indent_size = 2       # Set indentation size to 2 spaces
-trim_trailing_whitespace = false
-
-# Override for JSON files (use tabs but keep indent size as 2)
-[*.json]
-indent_style = tab
-indent_size = 2
-trim_trailing_whitespace = false
-
-# Override for JavaScript, TypeScript, and JSX/TSX files
-[*.{js,mjs,cjs,jsx,ts,tsx}]
+# Project standard: Spaces are the industry standard for consistency
 indent_style = space
+
+# Default indent size (Will be overridden by specific languages below)
 indent_size = 2
+
+# Clean up: remove invisible spaces at the end of lines on save
+trim_trailing_whitespace = true
+
+# Standards: Ensure files end with a blank line for POSIX compatibility
+insert_final_newline = true
+
+# ----------------------------------------------------------------------
+# Language Specific Overrides
+# ----------------------------------------------------------------------
+# Applies language-specific EditorConfig rules that override the global
+# settings for targeted file types.
+# ----------------------------------------------------------------------
+
+# ---- Stylesheet languages ----
+# Standard: 2 spaces for CSS/SASS to avoid deep nesting indentation
+[*.{css,scss,sass}]
+indent_size = 2
+
+# ---- Scripting languages ----
+# Standard: 2 spaces for JS/TS and related files
+[*.{js,ts,mjs,cjs,jsx,tsx}]
+indent_size = 2
+
+# ---- Data & documentation ----
+# Standard: 2 spaces for JSON/YAML/Markdown files
+[*.{md,mdx,json,jsonc,yml,yaml}]
+indent_size = 2
+
+# ---- Backend languages ----
+# Standard: 4 spaces for Python/PHP (PEP8 / PSR-12)
+[*.{py,php}]
+indent_size = 4
