@@ -16,7 +16,7 @@ const config = {
   // processors that rely on generated utilities.
   plugins: [
     // Tailwind PostCSS plugin to transform utility classes
-    "@tailwindcss/postcss",
+    '@tailwindcss/postcss',
 
     // Optional browser prefixing plugin (enable if targeting older browsers)
     // "autoprefixer": {},
