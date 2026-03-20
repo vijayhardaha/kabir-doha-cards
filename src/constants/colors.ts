@@ -1,3 +1,6 @@
+// Define a type for the color properties used in the PICKER_COLORS object
+type PickerColor = { bg: string; ring: string; text: string };
+
 /**
  * An object representing a set of colors and their corresponding Tailwind CSS class names.
  * Each color is mapped to its background (`bg`), ring (`ring-3`), and text (`text`) Tailwind CSS classes.
@@ -7,7 +10,7 @@
  * @property {string} ring - The Tailwind CSS ring class for the color.
  * @property {string} text - The Tailwind CSS text color class for the color.
  */
-export const PICKER_COLORS = {
+export const PICKER_COLORS: Record<string, PickerColor> = {
   '#12b848': { bg: 'bg-[#12b848]', ring: 'ring-[#12b848]', text: 'text-[#12b848]' },
   '#8bc34a': { bg: 'bg-[#8bc34a]', ring: 'ring-[#8bc34a]', text: 'text-[#8bc34a]' },
   '#cddc39': { bg: 'bg-[#cddc39]', ring: 'ring-[#cddc39]', text: 'text-[#cddc39]' },

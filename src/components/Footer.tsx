@@ -1,9 +1,7 @@
-import React from 'react';
-
 import Link from 'next/link';
 import { MdArrowOutward } from 'react-icons/md';
 
-import { SITE_TITLE_SHORT } from '@/constants/seo';
+import { SITE_CONFIG } from '@/constants/seo';
 import { getShareUrl } from '@/utils/share';
 
 /**
@@ -117,7 +115,7 @@ const Footer = () => (
     <div className="bg-stone-800 p-6 text-center text-white">
       <div className="main-container">
         <p className="text-sm leading-loose">
-          Copyright &copy; 2024 {SITE_TITLE_SHORT}. All rights reserved.
+          Copyright &copy; 2024 {SITE_CONFIG.name}. All rights reserved.
           <br />
           Created by{' '}
           <Link

@@ -4,7 +4,7 @@
  * @param {number} perPage - The number of couplets to fetch.
  * @returns {Promise<Array<string> | null>} The fetched couplets or null in case of error.
  */
-export async function fetchCouplets(perPage = 1) {
+export async function fetchCouplets(perPage: number = 1): Promise<Array<string> | null> {
   try {
     const response = await fetch('/api/random', {
       method: 'POST',

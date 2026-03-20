@@ -6,7 +6,7 @@
  * @param {number} baseFontSize - The font size at the base width (e.g., 3rem).
  * @returns {string} - The calculated font size in rem.
  */
-export function calcFontSize(screenWidth, baseFontSize = 3) {
+export function calcFontSize(screenWidth: number, baseFontSize: number = 3): string {
   // Calculate the ratio based on the current screen width and base width
   const ratio = screenWidth / 600;
 
@@ -14,7 +14,7 @@ export function calcFontSize(screenWidth, baseFontSize = 3) {
   const newFontSize = baseFontSize * ratio;
 
   // Return the font size as a string with 'rem' units
-  return `${parseFloat(newFontSize).toFixed(3)}rem`; // Ensuring minimum font size of 1rem
+  return `${parseFloat(newFontSize.toString()).toFixed(3)}rem`; // Ensuring minimum font size of 1rem
 }
 
 /**
@@ -23,18 +23,15 @@ export function calcFontSize(screenWidth, baseFontSize = 3) {
  * @param {string} couplet - The couplet text to be formatted.
  * @returns {string[]} - An array of formatted lines.
  */
-export function formatCouplet(couplet) {
+export function formatCouplet(couplet: string): string[] {
   // Split the couplet into lines based on new lines
-  const lines = couplet.split('\n').map((line) => line.trim());
-
-  // Process each line to preserve commas and break lines appropriately
-  const formattedLines = lines.reduce((acc, line) => {
-    // Preserve commas by splitting on line breaks but not on commas
-    const parts = line.split(/(?<=,)\s*/); // Split after each comma and trim spaces
-    return [...acc, ...parts];
-  }, []);
+  const lines: string[] = couplet
+    .split(/(?<=।)\s*/)
+    .map((line: string) => line.trim().split(/(?<=,)\s*/))
+    .flat();
 
   // Ensure the number of lines does not exceed the maximum of 4
   const maxLines = 4;
-  return formattedLines.slice(0, maxLines);
+
+  return lines.slice(0, maxLines);
 }

@@ -1,45 +1,72 @@
-import { SITE_URL } from '@/constants/seo';
-
 /**
- * Removes the "http:" and "https:" protocol from a URL.
+ * Return a normalized base URL for the running application.
  *
- * @param {string} url - The URL from which to remove the protocol.
- * @returns {string} The URL without the "http:" or "https:" protocol.
+ * Preference order:
+ * 1. `NEXT_PUBLIC_SITE_URL` (custom env var)
+ * 2. `process.env.VERCEL_PROJECT_PRODUCTION_URL`
+ * 3. `process.env.VERCEL_BRANCH_URL`
+ * 4. `process.env.VERCEL_URL`
+ * 5. Fallback to `http://localhost:{PORT}` where PORT defaults to 3000
+ *
+ * Normalization ensures a scheme is present and removes a trailing slash.
+ *
+ * @returns {string} The normalized base URL.
  *
  * @example
- * // Returns "www.example.com"
- * removeProtocol("https://www.example.com");
- *
- * @example
- * // Returns "www.example.com"
- * removeProtocol("http://www.example.com");
+ * // When no env vars are set and PORT is 3000
+ * getBaseUrl() // -> 'http://localhost:3000'
  */
-export const removeProtocol = (url) => {
-  return url.replace(/^https?:\/\//, '');
+export const getBaseUrl = (): string => {
+  const url =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL
+    || process.env.VERCEL_BRANCH_URL
+    || process.env.VERCEL_URL
+    || process.env.NEXT_PUBLIC_SITE_URL
+    || `http://localhost:${process.env.PORT || 3000}`;
+
+  const cleaned = url.trim().replace(/\/+$/, '');
+
+  return /^https?:\/\//i.test(cleaned) ? cleaned : `https://${cleaned}`;
 };
 
 /**
- * Removes the trailing slash from a URL, if it exists.
+ * Normalizes a slug for canonical usage.
  *
- * @param {string} url - The URL from which to remove the trailing slash.
- * @returns {string} The URL without the trailing slash.
+ * - Removes leading and trailing slashes
+ * - Returns empty string for root
+ *
+ * @param {string} [slug=""] - The input path or slug.
+ * @returns {string} A clean relative path without leading slash.
+ *
+ * @example
+ * safeCanonical("about")      // "about"
+ * safeCanonical("/about")     // "about"
+ * safeCanonical("/about/")    // "about"
+ * safeCanonical("")           // ""
+ * safeCanonical("/")          // ""
  */
-export function removeTrailingSlash(url) {
-  return url.endsWith('/') ? url.slice(0, -1) : url;
-}
+export const safeCanonical = (slug: string = ''): string => {
+  return slug.trim().replace(/^\/+/, '').replace(/\/+$/, '');
+};
 
 /**
- * Returns the SITE_URL with optional removal of the protocol.
+ * Generates a fully qualified canonical URL.
  *
- * @param {boolean} [protocol=true] - Whether to include the protocol in the returned URL. If false, the protocol is removed.
- * @returns {string} The formatted SITE_URL, with or without the protocol, depending on the parameter.
+ * Combines the application's base URL with a normalized slug.
+ * Leading and trailing slashes in the slug are handled safely.
+ * If no slug is provided, the base URL is returned.
+ *
+ * @param {string} [slug=""] - Optional path segment to append to the base URL.
+ * @returns {string} The canonical absolute URL.
+ *
+ * @example
+ * // Assuming getBaseUrl() returns "https://example.com"
+ * getCanonicalUrl("about") 	// → "https://example.com/about"
+ * getCanonicalUrl("/about") 	// → "https://example.com/about"
+ * getCanonicalUrl("/about/") 	// → "https://example.com/about"
+ * getCanonicalUrl("") 			// → "https://example.com"
+ * getCanonicalUrl("/") 		// → "https://example.com"
  */
-export function getSiteUrl(protocol = true) {
-  let url = removeTrailingSlash(SITE_URL);
-
-  if (!protocol) {
-    url = removeProtocol(url);
-  }
-
-  return url;
-}
+export const getCanonicalUrl = (slug: string = ''): string => {
+  return [getBaseUrl(), safeCanonical(slug)].filter(Boolean).join('/');
+};

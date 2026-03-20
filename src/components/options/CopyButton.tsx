@@ -4,7 +4,7 @@ import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 import { showToast } from '@/utils/toast';
-import { getSiteUrl } from '@/utils/url';
+import { getBaseUrl } from '@/utils/url';
 
 /**
  * CopyButton component copies the current Doha text to the clipboard.
@@ -31,7 +31,7 @@ const CopyButton = ({
    * @returns {void}
    */
   const handleCopy = (): void => {
-    const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nFor more insights and wisdom, visit: ${getSiteUrl()}`;
+    const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nFor more insights and wisdom, visit: ${getBaseUrl()}`;
 
     navigator.clipboard
       .writeText(textToCopy)

@@ -1,4 +1,4 @@
-import { getSiteUrl } from '@/utils/url';
+import { getBaseUrl } from '@/utils/url';
 
 /**
  * WebsiteInfo component displays a message with information about the source of the image.
@@ -8,7 +8,7 @@ import { getSiteUrl } from '@/utils/url';
  * @returns {JSX.Element} The rendered website info message.
  */
 const WebsiteInfo = () => {
-  const siteUrl = getSiteUrl(false);
+  const siteUrl = getBaseUrl().replace(/^https?:\/\//, ''); // Remove protocol for cleaner display
 
   return (
     <div

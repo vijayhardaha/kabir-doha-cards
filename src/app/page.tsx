@@ -1,38 +1,17 @@
 import { Suspense, type JSX } from 'react';
 
+import type { Metadata } from 'next';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import MainContent from '@/components/MainContent';
-import { DEFAULT_SEO } from '@/constants/seo';
-import { getSiteUrl } from '@/utils/url';
-
-const siteBaseUrl = getSiteUrl();
+import { SITE_METADATA } from '@/constants/seo';
 
 /**
  * Metadata for the page, including SEO and social sharing details.
  */
-export const metadata = {
-  title: DEFAULT_SEO.title,
-  description: DEFAULT_SEO.description,
-  keywords: DEFAULT_SEO.keywords,
-  author: DEFAULT_SEO.author,
-  openGraph: {
-    title: DEFAULT_SEO.title,
-    description: DEFAULT_SEO.description,
-    url: siteBaseUrl || DEFAULT_SEO.url,
-    images: [{ url: `${siteBaseUrl}${DEFAULT_SEO.image}`, width: 800, height: 600, alt: 'Kabir Doha Cards Thumbnail' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: DEFAULT_SEO.title,
-    description: DEFAULT_SEO.description,
-    images: [`${siteBaseUrl}${DEFAULT_SEO.image}`],
-  },
-  robots: DEFAULT_SEO.robots,
-  googlebot: DEFAULT_SEO.googlebot,
-};
+export const metadata: Metadata = SITE_METADATA;
 
 /**
  * Fetches Kabir couplets from the API.

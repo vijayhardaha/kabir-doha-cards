@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
  * @param {string} message - The message to display in the toast.
  * @param {('success'|'error')} type - The type of toast ('success' or 'error').
  */
-export const showToast = (message, type = 'success') => {
+export const showToast = (message: string, type: 'success' | 'error' = 'success') => {
   const options = {
     style: {
       backgroundColor: '#1f2937', // Dark mode background (stone-800)

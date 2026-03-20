@@ -1,4 +1,4 @@
-import { getSiteUrl } from './url';
+import { getBaseUrl } from './url';
 
 /**
  * Generates a social media share URL (WhatsApp or Twitter) with the given message.
@@ -6,10 +6,10 @@ import { getSiteUrl } from './url';
  * @param {string} platform - The platform to generate the share URL for ('whatsapp' or 'twitter').
  * @returns {string} - The URL to share the message on the specified platform.
  */
-export const getShareUrl = (platform = 'wa') => {
+export const getShareUrl = (platform: string = 'wa'): string => {
   const message = 'Check out this amazing Kabir Doha Cards maker! Create and share beautiful cards easily.';
 
-  const fullMessage = `${message} ${getSiteUrl()}`;
+  const fullMessage = `${message} ${getBaseUrl()}`;
   const encodedMessage = encodeURIComponent(fullMessage);
 
   if (platform === 'whatsapp' || platform === 'wa') {
