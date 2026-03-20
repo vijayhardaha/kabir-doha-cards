@@ -69,7 +69,7 @@ const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.
       </div>
 
       <div
-        className="mt-4 flex flex-row items-center justify-center gap-3 md:mt-0 md:gap-2"
+        className="mt-4 flex flex-row items-center justify-center gap-3 md:mt-0 md:gap-3"
         role="group"
         aria-label="Doha actions"
       >

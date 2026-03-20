@@ -36,7 +36,7 @@ const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element =>
         <CoupletContent couplet={options.couplet} />
 
         {options.loading && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-white/50">
+          <div className="absolute inset-0 z-30 flex items-end justify-end bg-white/50 p-6">
             <span className="sr-only">Loading new couplet...</span>
             <PiSpinnerGapLight aria-hidden="true" className="animate-spin text-4xl text-gray-500" />
           </div>
