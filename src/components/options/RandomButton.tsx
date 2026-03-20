@@ -6,6 +6,7 @@ import { TfiReload } from 'react-icons/tfi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 import { cn } from '@/utils/classNameUtils';
+import fetchCouplets from '@/utils/fetchCouplets';
 import { showToast } from '@/utils/toast';
 
 /**
@@ -42,41 +43,27 @@ const RandomButton = ({
 
     setLoading(true);
 
-    try {
-      const response = await fetch('/api/random', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+    const { data, error } = await fetchCouplets('random');
 
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      if (data.success && data.couplet) {
-        setCouplet(data.couplet);
-        // Announce success to screen readers
-        const srAnnouncement = document.getElementById('sr-announcement');
-        if (srAnnouncement) {
-          srAnnouncement.textContent = 'New random Doha loaded successfully';
-        }
+    if (error) {
+      console.error(error);
+      showToast(error, 'error');
+    } else {
+      if (data && data.length > 0) {
+        setCouplet(data[0]);
       } else {
         console.warn('No results found for random Doha.');
         showToast('No Doha found, try again!', 'error');
       }
-    } catch (error) {
-      console.error('Error fetching random Doha:', error);
-      showToast('Error fetching Doha, try again!', 'error');
-    } finally {
-      setLoading(false); // Reset loading state after the request completes.
     }
+
+    setLoading(false);
   };
 
   return (
     <>
       {/* Initialize React Tooltip with id */}
       <ReactTooltip id="random-doha-tooltip" />
-
-      {/* Visually hidden announcement for screen readers */}
-      <div id="sr-announcement" className="sr-only" aria-live="polite"></div>
 
       <button
         onClick={fetchRandomDoha}
@@ -87,7 +74,7 @@ const RandomButton = ({
         data-tooltip-content="Get a random Doha"
         disabled={loading}
       >
-        <TfiReload aria-hidden="true" size={30} className={loading ? 'animate-spin' : ''} />
+        <TfiReload aria-hidden="true" size={30} />
         <span className="sr-only">{loading ? 'Loading random Doha...' : 'Get Random Doha'}</span>
       </button>
     </>

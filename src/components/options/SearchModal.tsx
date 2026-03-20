@@ -6,6 +6,8 @@ import { PiSpinnerGapLight } from 'react-icons/pi';
 import { RiSearchLine } from 'react-icons/ri';
 
 import { cn } from '@/utils/classNameUtils';
+import fetchCouplets from '@/utils/fetchCouplets';
+import { formatCouplet } from '@/utils/preview';
 
 const hind = Hind({ weight: ['400', '700'], subsets: ['latin', 'devanagari'] });
 
@@ -90,6 +92,18 @@ const SearchModal = ({
     const fetchSearchResults = debounce(async (term: string) => {
       if (term) {
         setLoading(true);
+
+        const { data, error } = await fetchCouplets('search', term);
+
+        if (error) {
+          console.error(error);
+          setSearchResults([]);
+        } else {
+          setSearchResults(data);
+        }
+
+        setLoading(false);
+
         try {
           const response = await fetch('/api/search', {
             method: 'POST',
@@ -204,7 +218,11 @@ const SearchModal = ({
                       )}
                       aria-label={`Select doha: ${text.substring(0, 30)}...`}
                     >
-                      {text}
+                      {formatCouplet(text).map((line: string, index: number) => (
+                        <span className="block w-full" key={index}>
+                          {line}
+                        </span>
+                      ))}
                     </button>
                   </li>
                 ))}
