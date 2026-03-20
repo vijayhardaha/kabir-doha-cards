@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { getCanonicalUrl } from '@/utils/url';
+import { getCanonicalUrl } from '@/utils/seo';
 
 /**
  * Site-wide configuration values for SEO and metadata.

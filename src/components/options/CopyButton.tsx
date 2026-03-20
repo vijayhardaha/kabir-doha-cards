@@ -4,7 +4,7 @@ import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 import { showToast } from '@/utils/toast';
-import { getBaseUrl } from '@/utils/url';
+import { getBaseUrl } from '@/utils/seo';
 
 /**
  * CopyButton component copies the current Doha text to the clipboard.

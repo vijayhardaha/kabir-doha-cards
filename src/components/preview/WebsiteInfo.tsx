@@ -1,4 +1,4 @@
-import { getBaseUrl } from '@/utils/url';
+import { getBaseUrl } from '@/utils/seo';
 
 /**
  * WebsiteInfo component displays a message with information about the source of the image.

@@ -1,4 +1,4 @@
-import { getBaseUrl } from './url';
+import { getBaseUrl } from './seo';
 
 /**
  * Generates a social media share URL (WhatsApp or Twitter) with the given message.
