@@ -5,7 +5,7 @@ import { Hind } from 'next/font/google';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { RiSearchLine } from 'react-icons/ri';
 
-import { cn } from '@/utils/classNameUtils';
+import { cn } from '@/utils/classnames';
 import fetchCouplets from '@/utils/fetchCouplets';
 import { formatCouplet } from '@/utils/preview';
 

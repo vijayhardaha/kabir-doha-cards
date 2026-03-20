@@ -5,7 +5,7 @@ import type { JSX } from 'react';
 import { TfiReload } from 'react-icons/tfi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { cn } from '@/utils/classNameUtils';
+import { cn } from '@/utils/classnames';
 import fetchCouplets from '@/utils/fetchCouplets';
 import { showToast } from '@/utils/toast';
 
