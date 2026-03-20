@@ -21,17 +21,19 @@ export function calcFontSize(screenWidth: number, baseFontSize: number = 3): str
  * Formats a Couplet into a maximum of 4 lines, breaking by commas and new lines.
  *
  * @param {string} couplet - The couplet text to be formatted.
+ * @param {number} format - The number of lines to format the couplet into (default is 2).
  * @returns {string[]} - An array of formatted lines.
  */
-export function formatCouplet(couplet: string): string[] {
+export function formatCouplet(couplet: string, format: number = 2): string[] {
   // Split the couplet into lines based on new lines
-  const lines: string[] = couplet
-    .split(/(?<=।)\s*/)
-    .map((line: string) => line.trim().split(/(?<=,)\s*/))
+  let lines: string[] = couplet
+    .split(/(?<=।)(?!।)\s*/)
+    .map((line: string) => line.trim())
     .flat();
 
-  // Ensure the number of lines does not exceed the maximum of 4
-  const maxLines = 4;
+  if (format !== 2) {
+    lines = lines.map((line) => line.split(/(?<=,)\s*/)).flat();
+  }
 
-  return lines.slice(0, maxLines);
+  return lines.filter(Boolean).slice(0, 4);
 }

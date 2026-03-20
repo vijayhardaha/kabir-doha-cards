@@ -35,7 +35,7 @@ const CoupletText = ({ couplet, screenReaderText }: { couplet: string; screenRea
     aria-label={screenReaderText || 'Couplet text'}
   >
     {screenReaderText && <span className="sr-only">{screenReaderText}</span>}
-    {formatCouplet(couplet).map((line: string, index: number) => (
+    {formatCouplet(couplet, 4).map((line: string, index: number) => (
       <span className="block w-full truncate" key={index} aria-hidden={!!screenReaderText}>
         {line}
       </span>
