@@ -1,5 +1,7 @@
 import type { JSX } from 'react';
 
+import { PiSpinnerGapLight } from 'react-icons/pi';
+
 import RandomButton from '@/components/options/RandomButton';
 import BackgroundElement from '@/components/preview/BackgroundElement';
 import CoupletContent from '@/components/preview/CoupletContent';
@@ -21,18 +23,24 @@ const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element =>
         <RandomButton options={options} updateOptions={updateOptions} />
       </div>
 
-      <div className="relative z-10 aspect-square w-full" aria-label="Kabir Doha Preview Card">
-        <span className="sr-only">Kabir Doha Preview Card</span>
-        <div
-          id="doha-preview"
-          className="absolute inset-0 h-full w-full overflow-hidden bg-white"
-          role="region"
-          aria-label="Doha card presentation"
-        >
-          <BackgroundElement />
-          <SideAuthor />
-          <CoupletContent couplet={options.couplet} />
-        </div>
+      <div
+        id="doha-preview"
+        className="relative z-10 aspect-square w-full overflow-hidden bg-white"
+        role="region"
+        aria-label="Doha card presentation"
+        aria-live="polite"
+        aria-busy={options.loading}
+      >
+        <BackgroundElement />
+        <SideAuthor />
+        <CoupletContent couplet={options.couplet} />
+
+        {options.loading && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-white/50">
+            <span className="sr-only">Loading new couplet...</span>
+            <PiSpinnerGapLight aria-hidden="true" className="animate-spin text-4xl text-gray-500" />
+          </div>
+        )}
       </div>
     </>
   );

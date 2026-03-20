@@ -79,34 +79,41 @@
   }
 }
 
+/*
+  CSS Custom Properties for Kabir Doha Cards
+  These variables are dynamically set via JavaScript in MainContent.tsx
+  based on screen width and user preferences.
+*/
 :root {
   --kdc-color: var(--color-primary-600);
+  --font-poppins: var(--font-poppins, "Poppins", sans-serif);
 
-  --kdc-blob-t: -7.583rem;
-  --kdc-blob-r: -7.583rem;
-  --kdc-blob-w: 26.979rem;
-  --kdc-blob-h: 21.875rem;
-  --kdc-sideauth-block-pl: 4.667rem;
-  --kdc-sideauth-text-fs: 1.021rem;
-  --kdc-sideauth-text-lh: 1.458rem;
-  --kdc-sideauth-text-ls: 0.613rem;
-  --kdc-sideauth-text-to: 1.458rem;
-  --kdc-sideauth-line-w: 7.292rem;
-  --kdc-sideauth-line-mr: 3.5rem;
-  --kdc-couplet-content-p: 0 1.167rem 1.313rem 8.167rem;
-  --kdc-couplet-text-fs: 3.5rem;
-  --kdc-couplet-text-lh: 5.688rem;
-  --kdc-quote-block-ml: -1.458rem;
-  --kdc-quote-block-mb: 1.75rem;
-  --kdc-quote-w: 8.75rem;
-  --kdc-quote-h: 8.75rem;
-  --kdc-author-sign-block-mt: 1.313rem;
-  --kdc-author-sign-text-fs: 1.75rem;
-  --kdc-author-sign-text-lh: 2.333rem;
-  --kdc-author-sign-underline-l: 5.833rem;
-  --kdc-author-sign-underline-w: 7.292rem;
-  --kdc-author-sign-underline-h: 0.657rem;
-  --kdc-website-info-mt: 1.458rem;
-  --kdc-website-info-fs: 0.875rem;
-  --kdc-website-info-lh: 1.167rem;
+  // Dynamic variables (set by JS in MainContent.tsx)
+  // --kdc-blob-t
+  // --kdc-blob-r
+  // --kdc-blob-w
+  // --kdc-blob-h
+  // --kdc-sideauth-block-pl
+  // --kdc-sideauth-text-fs
+  // --kdc-sideauth-text-lh
+  // --kdc-sideauth-text-ls
+  // --kdc-sideauth-text-to
+  // --kdc-sideauth-line-w
+  // --kdc-sideauth-line-mr
+  // --kdc-couplet-content-p
+  // --kdc-couplet-text-fs
+  // --kdc-couplet-text-lh
+  // --kdc-quote-block-ml
+  // --kdc-quote-block-mb
+  // --kdc-quote-w
+  // --kdc-quote-h
+  // --kdc-author-sign-block-mt
+  // --kdc-author-sign-text-fs
+  // --kdc-author-sign-text-lh
+  // --kdc-author-sign-underline-l
+  // --kdc-author-sign-underline-w
+  // --kdc-author-sign-underline-h
+  // --kdc-website-info-mt
+  // --kdc-website-info-fs
+  // --kdc-website-info-lh
 }

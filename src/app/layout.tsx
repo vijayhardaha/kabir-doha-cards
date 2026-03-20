@@ -1,33 +1,35 @@
 import type { ReactNode, JSX } from 'react';
 
-import { Space_Grotesk } from 'next/font/google';
+import { Space_Grotesk, Poppins } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import '@/styles/globals.scss';
 
-// Load fonts
 const space = Space_Grotesk({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
   preload: true,
+  variable: '--font-space-grotesk',
 });
 
-/**
- * Root Layout component for the Next.js App Router.
- *
- * This layout component sets the HTML document structure, applies global styles,
- * and includes global components such as SEO and Toaster. It also ensures that
- * the current page's component is rendered within this layout.
- *
- * @param {Object} props - Component props.
- * @param {ReactNode} props.children - The page content to be rendered.
- */
+const poppins = Poppins({
+  weight: ['400', '700'],
+  subsets: ['latin', 'devanagari'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-poppins',
+});
+
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <html lang="en">
-      <body className={`${space.className}`}>
-        <div>{children}</div>
+    <html lang="en" className={`${space.variable} ${poppins.variable}`}>
+      <body className={space.className}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
         <Toaster position="bottom-center" reverseOrder={true} />
       </body>
     </html>
