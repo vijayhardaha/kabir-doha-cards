@@ -1,11 +1,17 @@
+import type { ReactNode, JSX } from 'react';
+
 import { Space_Grotesk } from 'next/font/google';
-import PropTypes from 'prop-types';
 import { Toaster } from 'react-hot-toast';
 
 import '@/styles/globals.scss';
 
 // Load fonts
-const space = Space_Grotesk({ weight: ['300', '400', '500', '600', '700'], subsets: ['latin'] });
+const space = Space_Grotesk({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+});
 
 /**
  * Root Layout component for the Next.js App Router.
@@ -15,11 +21,9 @@ const space = Space_Grotesk({ weight: ['300', '400', '500', '600', '700'], subse
  * the current page's component is rendered within this layout.
  *
  * @param {Object} props - Component props.
- * @param {React.ReactNode} props.children - The page content to be rendered.
- * @example
- * return <RootLayout>{pageContent}</RootLayout>;
+ * @param {ReactNode} props.children - The page content to be rendered.
  */
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
     <html lang="en">
       <head>
@@ -50,5 +54,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-RootLayout.propTypes = { children: PropTypes.node.isRequired };

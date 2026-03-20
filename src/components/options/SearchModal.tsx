@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type JSX } from 'react';
 
 import debounce from 'lodash/debounce';
 import { Hind } from 'next/font/google';
-import PropTypes from 'prop-types';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { RiSearchLine } from 'react-icons/ri';
 
@@ -22,12 +21,22 @@ const hind = Hind({ weight: ['400', '700'], subsets: ['latin', 'devanagari'] });
  * @param {function(string): void} props.onSelect - Function to handle the selection of a Doha.
  * @returns {JSX.Element|null} The search modal component or null if closed.
  */
-const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
+const SearchModal = ({
+  isOpen,
+  onClose,
+  couplets,
+  onSelect,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  couplets: Array<string>;
+  onSelect: (arg0: string) => void;
+}): JSX.Element | null => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState(couplets);
   const [loading, setLoading] = useState(false);
-  const modalRef = useRef(null);
-  const inputRef = useRef(null); // Ref for the search input
+  const modalRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // Ref for the search input
 
   // Flag to track if event listeners should be attached
   const [shouldAttachListeners, setShouldAttachListeners] = useState(false);
@@ -60,7 +69,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
      * Handles keydown events to close the modal on Escape key press.
      * @param {KeyboardEvent} event - The keyboard event.
      */
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
       }
@@ -78,7 +87,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
      * Fetches search results based on the search term with a debounce delay.
      * @param {string} term - The search term.
      */
-    const fetchSearchResults = debounce(async (term) => {
+    const fetchSearchResults = debounce(async (term: string) => {
       if (term) {
         setLoading(true);
         try {
@@ -137,7 +146,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
           ref={modalRef}
           role="document"
           className="relative mx-auto mt-20 mb-0 w-full max-w-4xl overflow-hidden rounded-lg bg-white shadow-lg"
-          tabIndex="-1"
+          tabIndex={-1}
         >
           <span className="sr-only" id="search-modal-title">
             Search for Kabir Doha
@@ -210,13 +219,6 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }) => {
       </div>
     </>
   );
-};
-
-SearchModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  couplets: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onSelect: PropTypes.func.isRequired,
 };
 
 export default SearchModal;

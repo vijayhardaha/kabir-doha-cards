@@ -1,6 +1,4 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import type { JSX } from 'react';
 
 /**
  * Logo component renders the SVG logo for Kabir Doha Cards.
@@ -14,7 +12,15 @@ import PropTypes from 'prop-types';
  * @param {string} [props.height] - Height of the SVG.
  * @returns {JSX.Element} The rendered Logo SVG component.
  */
-const Logo = ({ ...props }) => {
+const Logo = ({
+  ...props
+}: {
+  className?: string;
+  aria?: string;
+  width?: string;
+  height?: string;
+  ariaHidden?: boolean;
+}): JSX.Element => {
   return (
     <svg
       {...props}
@@ -22,7 +28,7 @@ const Logo = ({ ...props }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label={props['aria-hidden'] ? undefined : 'Kabir Doha Cards logo'}
+      aria-label={props['ariaHidden'] ? undefined : 'Kabir Doha Cards logo'}
     >
       <path
         d="M323.06 464.766C235.498 490.477 109.91 472.899 53.3459 398.115C-2.82664 323.365 9.9931 191.767 86.5216 112.203C163.082 32.2829 302.959 4.36287 384.29 44.6468C465.622 84.9307 487.655 192.992 474.313 281.38C460.547 370.089 410.621 439.055 323.06 464.766Z"
@@ -42,25 +48,6 @@ const Logo = ({ ...props }) => {
       />
     </svg>
   );
-};
-
-Logo.propTypes = {
-  /**
-   * CSS classes to apply to the SVG
-   */
-  className: PropTypes.string,
-  /**
-   * Whether the SVG should be hidden from screen readers
-   */
-  'aria-hidden': PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  /**
-   * Width of the SVG
-   */
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Height of the SVG
-   */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default Logo;

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState, type JSX } from 'react';
 
-import PropTypes from 'prop-types';
 import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
@@ -16,7 +15,13 @@ import { getSiteUrl } from '@/utils/url';
  * @param {string} [props.screenReaderText="Copy Doha"] - Text for screen readers.
  * @returns {JSX.Element} The rendered CopyButton component.
  */
-const CopyButton = ({ couplet, screenReaderText = 'Copy Doha' }) => {
+const CopyButton = ({
+  couplet,
+  screenReaderText = 'Copy Doha',
+}: {
+  couplet: string;
+  screenReaderText?: string;
+}): JSX.Element => {
   const [isCopied, setIsCopied] = useState(false);
 
   /**
@@ -25,7 +30,7 @@ const CopyButton = ({ couplet, screenReaderText = 'Copy Doha' }) => {
    * @function
    * @returns {void}
    */
-  const handleCopy = () => {
+  const handleCopy = (): void => {
     const textToCopy = `${couplet}\n\n— संत कबीर साहेब\n\nFor more insights and wisdom, visit: ${getSiteUrl()}`;
 
     navigator.clipboard
@@ -44,7 +49,7 @@ const CopyButton = ({ couplet, screenReaderText = 'Copy Doha' }) => {
   return (
     <>
       {/* Initialize React Tooltip with id */}
-      <ReactTooltip id="copy-tooltip" effect="solid" />
+      <ReactTooltip id="copy-tooltip" />
 
       {/* Desktop Button */}
       <button
@@ -74,13 +79,6 @@ const CopyButton = ({ couplet, screenReaderText = 'Copy Doha' }) => {
       </button>
     </>
   );
-};
-
-CopyButton.propTypes = {
-  /** The current Doha text to be copied */
-  couplet: PropTypes.string.isRequired,
-  /** Custom text for screen readers */
-  screenReaderText: PropTypes.string,
 };
 
 export default CopyButton;

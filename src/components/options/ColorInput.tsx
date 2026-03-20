@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-
-import PropTypes from 'prop-types';
+import { useState, useRef, useEffect, type JSX } from 'react';
 
 import { PICKER_COLORS } from '@/constants/colors';
 
@@ -15,10 +13,18 @@ import { PICKER_COLORS } from '@/constants/colors';
  * @param {string} [props.screenReaderLabel="Choose a color"] - Accessible label for screen readers
  * @returns {JSX.Element} - Rendered color picker component
  */
-const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) => {
+const ColorInput = ({
+  color,
+  setColor,
+  screenReaderLabel = 'Choose a color',
+}: {
+  color: string;
+  setColor: (arg0: string) => void;
+  screenReaderLabel?: string;
+}): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState(color);
-  const colorPickerRef = useRef(null);
+  const colorPickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     /**
@@ -28,8 +34,8 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
      * @param {MouseEvent} event - The mouse event triggered by the user clicking
      * @returns {void}
      */
-    const handleClickOutside = (event) => {
-      if (colorPickerRef.current && !colorPickerRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (colorPickerRef.current && !colorPickerRef?.current?.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -45,7 +51,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
    * @param {string} color - The color code or name that was selected
    * @returns {void}
    */
-  const handleColorClick = (color) => {
+  const handleColorClick = (color: string): void => {
     setColor(color);
     setSelectedColor(color);
     setIsOpen(false); // Close the picker after selection for better UX
@@ -56,7 +62,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
    *
    * @returns {void}
    */
-  const toggleColorPicker = () => {
+  const toggleColorPicker = (): void => {
     setIsOpen(!isOpen);
   };
 
@@ -66,7 +72,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
    *
    * @type {Array<string>}
    */
-  const colors = Object.keys(PICKER_COLORS);
+  const colors: Array<string> = Object.keys(PICKER_COLORS);
 
   /**
    * Groups colors into rows, each containing up to 6 colors.
@@ -74,7 +80,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
    *
    * @type {Array<Array<string>>} - An array of rows, where each row is an array of color strings
    */
-  const groupedColors = colors.reduce((acc, color, index) => {
+  const groupedColors: Array<Array<string>> = colors.reduce((acc: string[][], color, index) => {
     const rowIndex = Math.floor(index / 6);
     if (!acc[rowIndex]) acc[rowIndex] = [];
     acc[rowIndex].push(color);
@@ -98,7 +104,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
         <button
           type="button"
           onClick={toggleColorPicker}
-          className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[color].bg} -translate-y-1/2 transform rounded-lg border-2 border-white`}
+          className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[color as keyof typeof PICKER_COLORS].bg} -translate-y-1/2 transform rounded-lg border-2 border-white`}
           aria-label={`Selected color: ${color}. Click to ${isOpen ? 'close' : 'open'} color picker`}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
@@ -118,7 +124,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
                   key={colorOption}
                   type="button"
                   onClick={() => handleColorClick(colorOption)}
-                  className={`h-8 w-8 rounded-md transition-all duration-300 ease-in-out ${colorOption === selectedColor ? `ring-2 ${PICKER_COLORS[colorOption].ring} ring-opacity-50 ring-offset-2` : ''}`}
+                  className={`h-8 w-8 rounded-md transition-all duration-300 ease-in-out ${colorOption === selectedColor ? `ring-2 ${PICKER_COLORS[colorOption as keyof typeof PICKER_COLORS].ring} ring-opacity-50 ring-offset-2` : ''}`}
                   style={{ backgroundColor: colorOption }}
                   aria-label={`${colorOption} color`}
                   aria-selected={colorOption === selectedColor}
@@ -131,12 +137,6 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }) =
       )}
     </div>
   );
-};
-
-ColorInput.propTypes = {
-  color: PropTypes.string.isRequired, // The currently selected color
-  setColor: PropTypes.func.isRequired, // Function to call when a color is selected
-  screenReaderLabel: PropTypes.string, // Accessible label for screen readers
 };
 
 export default ColorInput;

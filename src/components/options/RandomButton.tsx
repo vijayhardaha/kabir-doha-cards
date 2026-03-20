@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
+import type { JSX } from 'react';
 
-import PropTypes from 'prop-types';
 import { TfiReload } from 'react-icons/tfi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
@@ -20,7 +19,15 @@ import { showToast } from '@/utils/toast';
  * @param {function(boolean): void} props.setLoading - Function to set the loading state.
  * @returns {JSX.Element} The rendered button component.
  */
-const RandomButton = ({ setCouplet, loading, setLoading }) => {
+const RandomButton = ({
+  setCouplet,
+  loading,
+  setLoading,
+}: {
+  setCouplet: (arg0: string) => void;
+  loading: boolean;
+  setLoading: (arg0: boolean) => void;
+}): JSX.Element => {
   /**
    * Fetches a random Doha from the server and updates the state with the couplet.
    * Displays appropriate toast notifications for success or failure.
@@ -30,7 +37,7 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
    * @function fetchRandomDoha
    * @returns {Promise<void>} Resolves once the Doha is fetched and state is updated.
    */
-  const fetchRandomDoha = async () => {
+  const fetchRandomDoha = async (): Promise<void> => {
     if (loading) return; // Prevent multiple simultaneous requests.
 
     setLoading(true);
@@ -66,7 +73,7 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
   return (
     <>
       {/* Initialize React Tooltip with id */}
-      <ReactTooltip id="random-doha-tooltip" effect="solid" />
+      <ReactTooltip id="random-doha-tooltip" />
 
       {/* Visually hidden announcement for screen readers */}
       <div id="sr-announcement" className="sr-only" aria-live="polite"></div>
@@ -85,12 +92,6 @@ const RandomButton = ({ setCouplet, loading, setLoading }) => {
       </button>
     </>
   );
-};
-
-RandomButton.propTypes = {
-  setCouplet: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  setLoading: PropTypes.func.isRequired,
 };
 
 export default RandomButton;

@@ -1,5 +1,6 @@
+import type { JSX } from 'react';
+
 import { Montserrat } from 'next/font/google';
-import PropTypes from 'prop-types';
 
 const montserrat = Montserrat({ weight: ['400', '500'], subsets: ['latin'] });
 
@@ -16,7 +17,13 @@ const montserrat = Montserrat({ weight: ['400', '500'], subsets: ['latin'] });
  * @param {string} [props.screenReaderTitle] - Optional alternate text for screen readers
  * @returns {JSX.Element} The rendered side author title component
  */
-const SideAuthor = ({ title = 'Kabir Ke Dohe', screenReaderTitle }) => {
+const SideAuthor = ({
+  title = 'Kabir Ke Dohe',
+  screenReaderTitle,
+}: {
+  title?: string;
+  screenReaderTitle?: string;
+}): JSX.Element => {
   // Use provided screen reader text or default to the visible title
   const accessibleTitle = screenReaderTitle || title;
 
@@ -42,18 +49,6 @@ const SideAuthor = ({ title = 'Kabir Ke Dohe', screenReaderTitle }) => {
       <span className="sr-only">{accessibleTitle}</span>
     </div>
   );
-};
-
-SideAuthor.propTypes = {
-  /**
-   * The title text to display in the rotated area
-   */
-  title: PropTypes.string,
-
-  /**
-   * Alternative text to be announced by screen readers
-   */
-  screenReaderTitle: PropTypes.string,
 };
 
 export default SideAuthor;

@@ -1,7 +1,6 @@
-import React from 'react';
+import type { JSX } from 'react';
 
 import { Hind } from 'next/font/google';
-import PropTypes from 'prop-types';
 
 import { formatCouplet } from '@/utils/preview';
 
@@ -29,24 +28,19 @@ const hind = Hind({ weight: ['400', '700'], subsets: ['latin', 'devanagari'] });
  *   screenReaderText="Kabir says when you depart from this world..."
  * />
  */
-const CoupletText = ({ couplet, screenReaderText }) => (
+const CoupletText = ({ couplet, screenReaderText }: { couplet: string; screenReaderText?: string }): JSX.Element => (
   <div
     className={`relative block w-full font-bold ${hind.className}`}
     style={{ fontSize: 'var(--kdc-couplet-text-fs)', lineHeight: 'var(--kdc-couplet-text-lh)' }}
     aria-label={screenReaderText || 'Couplet text'}
   >
     {screenReaderText && <span className="sr-only">{screenReaderText}</span>}
-    {formatCouplet(couplet).map((line, index) => (
+    {formatCouplet(couplet).map((line: string, index: number) => (
       <span className="block w-full truncate" key={index} aria-hidden={!!screenReaderText}>
         {line}
       </span>
     ))}
   </div>
 );
-
-CoupletText.propTypes = {
-  couplet: PropTypes.string.isRequired, // Text of the couplet to be displayed.
-  screenReaderText: PropTypes.string, // Optional accessible text for screen readers.
-};
 
 export default CoupletText;

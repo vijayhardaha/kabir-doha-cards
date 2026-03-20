@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-import PropTypes from 'prop-types';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import OptionsBox from '@/components/options/OptionsBox';
 import PreviewBox from '@/components/preview/PreviewBox';
 import { calcFontSize } from '@/utils/preview';
+
+type Couplet = string;
 
 /**
  * MainContent component displays a preview of a random doha and an options panel.
@@ -17,23 +18,25 @@ import { calcFontSize } from '@/utils/preview';
  * @param {Array<string>} props.couplets - Array of couplets as strings to choose from.
  * @returns {JSX.Element} The rendered component.
  */
-const MainContent = ({ couplets }) => {
+const MainContent = ({ couplets }: { couplets: Couplet[] }) => {
   const [color, setColor] = useState('#12b848');
-  const [couplet, setCouplet] = useState('');
+  // Use lazy initialization to pick random couplet only on initial mount.
+  // The function runs only once, avoiding the impure function issue.
+  // Since couplets is a static prop from server-side data, this runs once and never again.
+  const [couplet, setCouplet] = useState(() => {
+    if (couplets.length > 0) {
+      const randomIndex = Math.floor(Math.random() * couplets.length);
+      return couplets[randomIndex];
+    }
+    return '';
+  });
   const [fontSize, setFontSize] = useState(3);
   const [lineHeight, setLineHeight] = useState(4.875);
   const [elementWidth, setElementWidth] = useState(700);
-  const [loading, setLoading] = useState(true);
-  const elementRef = useRef(null);
-
-  // Choose a random couplet on mount or whenever the couplets array changes.
-  useEffect(() => {
-    if (couplets.length > 0) {
-      const randomIndex = Math.floor(Math.random() * couplets.length);
-      setCouplet(couplets[randomIndex]);
-      setLoading(false);
-    }
-  }, [couplets]);
+  // Loading is initially false because lazy initialization makes couplet available immediately.
+  // Loading state is still needed for async operations like search.
+  const [loading, setLoading] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   // Resize handler to update the element width on window resize.
   useEffect(() => {
@@ -48,6 +51,7 @@ const MainContent = ({ couplets }) => {
 
     return () => {
       window.removeEventListener('resize', handleResize); // Cleanup on unmount.
+      elementRef.current = null; // Clear ref on unmount to prevent memory leaks.
     };
   }, []);
 
@@ -57,7 +61,7 @@ const MainContent = ({ couplets }) => {
    * @param {number} rem - The multiplier to calculate the font size.
    * @returns {string} - The calculated font size in pixels.
    */
-  const gs = (rem) => calcFontSize(elementWidth, rem);
+  const gs = (rem: number): string => calcFontSize(elementWidth, rem);
 
   return (
     <>
@@ -114,12 +118,8 @@ const MainContent = ({ couplets }) => {
             </div>
           ) : (
             <PreviewBox
-              color={color}
               couplet={couplet}
               setCouplet={setCouplet}
-              fontSize={fontSize}
-              lineHeight={lineHeight}
-              elementWidth={elementWidth}
               loading={loading}
               setLoading={setLoading}
               aria-label="Doha preview card"
@@ -144,13 +144,6 @@ const MainContent = ({ couplets }) => {
       </main>
     </>
   );
-};
-
-MainContent.propTypes = {
-  /**
-   * Array of couplet strings to be displayed in the preview box
-   */
-  couplets: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MainContent;

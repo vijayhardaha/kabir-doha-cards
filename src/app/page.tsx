@@ -1,6 +1,5 @@
-import { Suspense } from 'react';
+import { Suspense, type JSX } from 'react';
 
-import PropTypes from 'prop-types';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import Footer from '@/components/Footer';
@@ -42,7 +41,7 @@ export const metadata = {
  * @function fetchKabirCouplets
  * @returns {Promise<string[]>} An array of couplets in Hindi.
  */
-async function fetchKabirCouplets() {
+async function fetchKabirCouplets(): Promise<string[]> {
   try {
     const response = await fetch('https://kabir-ke-dohe-api.vercel.app/api/couplets', {
       method: 'POST',
@@ -57,7 +56,7 @@ async function fetchKabirCouplets() {
 
     const responseData = await response.json();
     if (responseData.success && responseData.data?.posts?.length > 0) {
-      return responseData.data.posts.map((couplet) => couplet.text_hi);
+      return responseData.data.posts.map((couplet: Record<string, unknown>) => couplet.text_hi);
     } else {
       console.warn('Unexpected API response structure:', responseData);
       return [];
@@ -73,9 +72,9 @@ async function fetchKabirCouplets() {
  *
  * @async
  * @function KabirCoupletContent
- * @returns {JSX.Element} The rendered content with fetched couplets.
+ * @returns {Promise<JSX.Element>} The rendered content with fetched couplets.
  */
-async function KabirCoupletContent() {
+async function KabirCoupletContent(): Promise<JSX.Element> {
   const couplets = await fetchKabirCouplets();
   return <MainContent couplets={couplets} />;
 }
@@ -85,7 +84,7 @@ async function KabirCoupletContent() {
  *
  * @returns {JSX.Element} The rendered Home component.
  */
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <div>
       <Header />
@@ -111,5 +110,3 @@ export default function Home() {
     </div>
   );
 }
-
-Home.propTypes = { couplets: PropTypes.arrayOf(PropTypes.string), isLoading: PropTypes.bool };

@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import { useState, type JSX } from 'react';
 
-import PropTypes from 'prop-types';
 import { Range } from 'react-range';
 
 /**
@@ -19,7 +17,24 @@ import { Range } from 'react-range';
  * @param {string} [props.ariaValueText] - Function to generate accessible text for current value (optional).
  * @returns {JSX.Element} The rendered range slider component.
  */
-const RangeSliderInput = ({ min, max, step, value, setValue, ariaLabel, ariaValueText, ...props }) => {
+const RangeSliderInput = ({
+  min,
+  max,
+  step,
+  value,
+  setValue,
+  ariaLabel,
+  ariaValueText,
+  ...props
+}: {
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  setValue: (arg0: number) => void;
+  ariaLabel?: string;
+  ariaValueText?: (val: number) => string;
+}): JSX.Element => {
   const [values, setValues] = useState([value]);
 
   /**
@@ -28,7 +43,7 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ariaLabel, ariaValu
    * @param {number} value - The numeric value to format.
    * @returns {string} The formatted value as a string.
    */
-  const formatValue = (value) => {
+  const formatValue = (value: number): string => {
     return Number(value).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 3 });
   };
 
@@ -37,8 +52,10 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ariaLabel, ariaValu
    * @param {number} val - The current slider value
    * @returns {string} - The formatted text for screen readers
    */
-  const getAriaValueText = (val) => {
-    if (ariaValueText) return ariaValueText(val);
+  const getAriaValueText = (val: number): string => {
+    if (ariaValueText) {
+      return ariaValueText(val);
+    }
     return `Value: ${formatValue(val)}`;
   };
 
@@ -55,12 +72,7 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ariaLabel, ariaValu
       }}
       renderTrack={({ props, children }) => (
         <div className="flex h-6 w-full">
-          <div
-            ref={props.ref}
-            {...props}
-            className="h-1 w-full self-center rounded-full bg-stone-200"
-            aria-hidden="true"
-          >
+          <div {...props} className="h-1 w-full self-center rounded-full bg-stone-200" aria-hidden="true">
             {children}
           </div>
         </div>
@@ -68,7 +80,6 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ariaLabel, ariaValu
       renderThumb={({ props, isDragged }) => (
         <div
           {...props}
-          key={props.key}
           className={`bg-primary-600 flex h-6 w-6 items-center justify-center rounded-full outline-hidden ${isDragged ? 'ring-primary-200 ring-4' : ''}`}
           aria-label={ariaLabel || 'Adjust value'}
           aria-valuemin={min}
@@ -92,16 +103,6 @@ const RangeSliderInput = ({ min, max, step, value, setValue, ariaLabel, ariaValu
       )}
     />
   );
-};
-
-RangeSliderInput.propTypes = {
-  min: PropTypes.number.isRequired, // Minimum value for the range
-  max: PropTypes.number.isRequired, // Maximum value for the range
-  step: PropTypes.number.isRequired, // Step value for the range
-  value: PropTypes.number.isRequired, // Initial value for the slider
-  setValue: PropTypes.func.isRequired, // Callback to update the slider value
-  ariaLabel: PropTypes.string, // Accessible label for the slider
-  ariaValueText: PropTypes.func, // Function to generate accessible text for current value
 };
 
 export default RangeSliderInput;

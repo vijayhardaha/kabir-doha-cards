@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState, type JSX } from 'react';
 
 import domtoimage from 'dom-to-image';
-import PropTypes from 'prop-types';
 import { AiOutlineCloudDownload, AiOutlineCheck } from 'react-icons/ai';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
@@ -25,7 +24,12 @@ const DownloadButton = ({
   fileNamePrefix = 'kabir-doha-card',
   scaleFactor = 6,
   quality = 0.75,
-}) => {
+}: {
+  elementId?: string;
+  fileNamePrefix?: string;
+  scaleFactor?: number;
+  quality?: number;
+}): JSX.Element => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
@@ -36,7 +40,7 @@ const DownloadButton = ({
    * @function
    * @returns {void}
    */
-  const handleDownload = () => {
+  const handleDownload = (): void => {
     const node = document.getElementById(elementId);
 
     if (node) {
@@ -55,7 +59,7 @@ const DownloadButton = ({
 
       domtoimage
         .toJpeg(node, options)
-        .then((dataUrl) => {
+        .then((dataUrl: string) => {
           const extension = extractExtensionFromBase64(dataUrl);
           const uniqueId = generateUniqueId();
           const link = document.createElement('a');
@@ -67,8 +71,8 @@ const DownloadButton = ({
           showToast('Image downloaded successfully!');
           setTimeout(() => setDownloaded(false), 1000);
         })
-        .catch((error) => {
-          console.error('Failed to download: ', error);
+        .catch((error: Error) => {
+          console.error('Failed to download: ', error as Error);
           showToast('Download failed, try again!', 'error');
           setDownloading(false);
         });
@@ -88,7 +92,7 @@ const DownloadButton = ({
   return (
     <>
       {/* Initialize React Tooltip with id */}
-      <ReactTooltip id="download-doha-tooltip" effect="solid" />
+      <ReactTooltip id="download-doha-tooltip" />
 
       {/* Desktop Button */}
       <button
@@ -129,17 +133,6 @@ const DownloadButton = ({
       </button>
     </>
   );
-};
-
-DownloadButton.propTypes = {
-  /** ID of the element to be downloaded */
-  elementId: PropTypes.string,
-  /** Prefix for the downloaded file name */
-  fileNamePrefix: PropTypes.string,
-  /** Scale factor for the downloaded image */
-  scaleFactor: PropTypes.number,
-  /** Quality of the downloaded image (0-1) */
-  quality: PropTypes.number,
 };
 
 export default DownloadButton;

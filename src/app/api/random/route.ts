@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
  * @function POST
  * @returns {Promise<NextResponse>} The API response with the random Doha.
  */
-export async function POST() {
+export async function POST(): Promise<NextResponse> {
   try {
     const response = await fetch('https://kabir-ke-dohe-api.vercel.app/api/couplets', {
       method: 'POST',
@@ -22,7 +22,7 @@ export async function POST() {
     const data = await response.json();
 
     if (data.success && data.data && data.data.posts) {
-      const results = data.data.posts.map((c) => c.text_hi);
+      const results = data.data.posts.map((c: Record<string, unknown>) => c.text_hi);
       return NextResponse.json({ success: true, couplet: results[0] });
     }
 

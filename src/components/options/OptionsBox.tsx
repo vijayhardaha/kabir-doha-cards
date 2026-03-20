@@ -1,6 +1,5 @@
-import React from 'react';
+import type { JSX } from 'react';
 
-import PropTypes from 'prop-types';
 import { AiOutlineFontSize, AiOutlineLineHeight } from 'react-icons/ai';
 
 import ColorInput from './ColorInput';
@@ -41,7 +40,19 @@ const OptionsBox = ({
   setLineHeight,
   loading,
   setLoading,
-}) => {
+}: {
+  couplets: string[];
+  color: string;
+  setColor: (arg0: string) => void;
+  couplet: string;
+  setCouplet: (arg0: string) => void;
+  fontSize: number;
+  setFontSize: (arg0: number) => void;
+  lineHeight: number;
+  setLineHeight: (arg0: number) => void;
+  loading: boolean;
+  setLoading: (arg0: boolean) => void;
+}): JSX.Element => {
   return (
     <div
       className="mt-8 flex flex-col gap-y-5 rounded-lg bg-white md:sticky md:bottom-4 md:z-999 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl"
@@ -49,8 +60,8 @@ const OptionsBox = ({
       aria-label="Doha customization options"
     >
       <div className="flex flex-col gap-y-5 md:flex-row md:items-center md:gap-2">
-        <SearchInput setCouplet={setCouplet} couplets={couplets} className="w-full md:w-auto" />
-        <ColorInput color={color} setColor={setColor} couplet={couplet} className="w-full md:w-auto" />
+        <SearchInput setCouplet={setCouplet} couplets={couplets} />
+        <ColorInput color={color} setColor={setColor} />
       </div>
 
       <div className="flex flex-col gap-y-5 md:flex-1 md:flex-row md:items-center md:gap-3">
@@ -67,7 +78,7 @@ const OptionsBox = ({
               value={fontSize}
               setValue={setFontSize}
               ariaLabel="Adjust font size"
-              ariaValueText={(val) => `Font size: ${val}`}
+              ariaValueText={(val: number) => `Font size: ${val}`}
             />
           </div>
         </div>
@@ -84,7 +95,7 @@ const OptionsBox = ({
               value={lineHeight}
               setValue={setLineHeight}
               ariaLabel="Adjust line height"
-              ariaValueText={(val) => `Line height: ${val}`}
+              ariaValueText={(val: number) => `Line height: ${val}`}
             />
           </div>
         </div>
@@ -95,7 +106,7 @@ const OptionsBox = ({
         role="group"
         aria-label="Doha actions"
       >
-        <DownloadButton couplet={couplet} />
+        <DownloadButton />
         <CopyButton couplet={couplet} />
 
         <span className="hidden md:inline-flex">
@@ -104,20 +115,6 @@ const OptionsBox = ({
       </div>
     </div>
   );
-};
-
-OptionsBox.propTypes = {
-  couplets: PropTypes.arrayOf(PropTypes.string).isRequired,
-  color: PropTypes.string.isRequired,
-  setColor: PropTypes.func.isRequired,
-  couplet: PropTypes.string.isRequired,
-  setCouplet: PropTypes.func.isRequired,
-  fontSize: PropTypes.number.isRequired,
-  setFontSize: PropTypes.func.isRequired,
-  lineHeight: PropTypes.number.isRequired,
-  setLineHeight: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  setLoading: PropTypes.func.isRequired,
 };
 
 export default OptionsBox;

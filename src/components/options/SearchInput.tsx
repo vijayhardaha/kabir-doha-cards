@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState, type JSX } from 'react';
 
-import PropTypes from 'prop-types';
 import { RiSearchLine } from 'react-icons/ri';
 
 import SearchModal from '@/components/options/SearchModal';
@@ -15,7 +14,13 @@ import SearchModal from '@/components/options/SearchModal';
  * @param {string[]} props.couplets - List of available Doha options.
  * @returns {JSX.Element} The rendered search input component.
  */
-const SearchInput = ({ setCouplet, couplets }) => {
+const SearchInput = ({
+  setCouplet,
+  couplets,
+}: {
+  setCouplet: (arg0: string) => void;
+  couplets: string[];
+}): JSX.Element => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   /**
@@ -31,7 +36,7 @@ const SearchInput = ({ setCouplet, couplets }) => {
    * @function
    * @param {string} selectedDoha - The selected Doha text
    */
-  const handleSelectDoha = (selectedDoha) => {
+  const handleSelectDoha = (selectedDoha: string) => {
     setCouplet(selectedDoha);
     setIsSearchOpen(false);
   };
@@ -78,11 +83,6 @@ const SearchInput = ({ setCouplet, couplets }) => {
       />
     </>
   );
-};
-
-SearchInput.propTypes = {
-  setCouplet: PropTypes.func.isRequired,
-  couplets: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default SearchInput;

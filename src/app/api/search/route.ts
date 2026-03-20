@@ -1,14 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 /**
  * Handles the API request to fetch search results from an external API.
  *
  * @async
  * @function POST
- * @param {Object} request - The request object.
+ * @param {NextRequest} request - The request object.
  * @returns {Promise<NextResponse>} The API response with the search results.
  */
-export async function POST(request) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const { search } = await request.json();
 
@@ -29,7 +29,7 @@ export async function POST(request) {
     const data = await response.json();
 
     if (data.success && data.data && data.data.posts) {
-      const results = data.data.posts.map((c) => c.text_hi);
+      const results = data.data.posts.map((c: Record<string, unknown>) => c.text_hi);
       return NextResponse.json({ success: true, results });
     }
 

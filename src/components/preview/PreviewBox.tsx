@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import type { JSX } from 'react';
 
 import RandomButton from '@/components/options/RandomButton';
 import BackgroundElement from '@/components/preview/BackgroundElement';
@@ -19,7 +19,19 @@ import SideAuthor from '@/components/preview/SideAuthor';
  * @param {string} [props.screenReaderText] - Additional text for screen readers (optional).
  * @returns {JSX.Element} The rendered preview box.
  */
-const PreviewBox = ({ couplet, setCouplet, loading, setLoading, screenReaderText }) => {
+const PreviewBox = ({
+  couplet,
+  setCouplet,
+  loading,
+  setLoading,
+  screenReaderText,
+}: {
+  couplet: string;
+  setCouplet: (arg0: string) => void;
+  loading: boolean;
+  setLoading: (arg0: boolean) => void;
+  screenReaderText?: string;
+}): JSX.Element => {
   const srText = screenReaderText || 'Kabir Doha Preview Card';
 
   return (
@@ -44,15 +56,5 @@ const PreviewBox = ({ couplet, setCouplet, loading, setLoading, screenReaderText
     </>
   );
 };
-
-PreviewBox.propTypes = {
-  couplet: PropTypes.string.isRequired,
-  setCouplet: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  setLoading: PropTypes.func.isRequired,
-  screenReaderText: PropTypes.string,
-};
-
-PreviewBox.defaultProps = { screenReaderText: 'Kabir Doha Preview Card' };
 
 export default PreviewBox;

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import type { JSX } from 'react';
 
 /**
  * AuthorSignature component displays the author's signature with dynamic font sizing.
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  * @param {string} [props.customAuthor] - Optional custom author name. Defaults to "Sant Kabir Das".
  * @returns {JSX.Element} The rendered author signature.
  */
-const AuthorSignature = ({ customAuthor = 'Sant Kabir Das' }) => {
+const AuthorSignature = ({ customAuthor = 'Sant Kabir Das' }: { customAuthor?: string }): JSX.Element => {
   const screenReaderText = `Quote by ${customAuthor}`;
 
   return (
@@ -42,14 +42,6 @@ const AuthorSignature = ({ customAuthor = 'Sant Kabir Das' }) => {
       </span>
     </div>
   );
-};
-
-// PropTypes validation
-AuthorSignature.propTypes = {
-  /**
-   * Custom author name to display
-   */
-  customAuthor: PropTypes.string,
 };
 
 export default AuthorSignature;
