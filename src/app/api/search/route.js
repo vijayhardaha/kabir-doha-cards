@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 
-import { BYPASS_RATE_LIMIT_HASH } from "@/constants/skipHash";
-
 /**
  * Handles the API request to fetch search results from an external API.
  *
@@ -24,13 +22,10 @@ export async function POST(request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        s: search,
-        exactMatch: true,
-        searchWithin: "couplet",
-        orderBy: "couplet_hindi",
-        order: "ASC",
-        perPage: 10,
-        skipHash: BYPASS_RATE_LIMIT_HASH,
+        search: search,
+        sort_by: "text_hi",
+        sort_order: "asc",
+        per_page: 10,
       }),
     });
 
@@ -40,8 +35,8 @@ export async function POST(request) {
 
     const data = await response.json();
 
-    if (data.success && data.data && data.data.couplets) {
-      const results = data.data.couplets.map((c) => c.couplet_hindi);
+    if (data.success && data.data && data.data.posts) {
+      const results = data.data.posts.map((c) => c.text_hi);
       return NextResponse.json({ success: true, results });
     }
 

@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MainContent from "@/components/MainContent";
 import { DEFAULT_SEO } from "@/constants/seo";
-import { BYPASS_RATE_LIMIT_HASH } from "@/constants/skipHash";
 import { getSiteUrl } from "@/utils/url";
 
 const siteBaseUrl = getSiteUrl();
@@ -56,7 +55,7 @@ async function fetchKabirCouplets() {
       method: "POST",
       cache: "no-cache",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderBy: "random", perPage: 10, skipHash: BYPASS_RATE_LIMIT_HASH }),
+      body: JSON.stringify({ per_page: 10 }),
     });
 
     if (!response.ok) {
@@ -64,8 +63,8 @@ async function fetchKabirCouplets() {
     }
 
     const responseData = await response.json();
-    if (responseData.success && responseData.data?.couplets) {
-      return responseData.data.couplets.map((couplet) => couplet.couplet_hindi);
+    if (responseData.success && responseData.data?.posts?.length > 0) {
+      return responseData.data.posts.map((couplet) => couplet.text_hi);
     } else {
       console.warn("Unexpected API response structure:", responseData);
       return [];

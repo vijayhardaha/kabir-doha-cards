@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 
-import { BYPASS_RATE_LIMIT_HASH } from "@/constants/skipHash";
-
 /**
  * Handles the API request to fetch a random Doha from an external API.
  *
@@ -17,9 +15,8 @@ export async function POST() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        orderBy: "random",
-        perPage: 1,
-        skipHash: BYPASS_RATE_LIMIT_HASH,
+        per_page: 1,
+        page: Math.round(Math.random() * (200 - 1)) + 1,
       }),
     });
 
@@ -29,8 +26,8 @@ export async function POST() {
 
     const data = await response.json();
 
-    if (data.success && data.data && data.data.couplets) {
-      const results = data.data.couplets.map((c) => c.couplet_hindi);
+    if (data.success && data.data && data.data.posts) {
+      const results = data.data.posts.map((c) => c.text_hi);
       return NextResponse.json({ success: true, couplet: results[0] });
     }
 
