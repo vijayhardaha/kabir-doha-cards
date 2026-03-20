@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, type JSX } from 'react';
 
 import { PICKER_COLORS } from '@/constants/colors';
 import type { ColorInputProps } from '@/types';
+import { cn } from '@/utils/classnames';
 
 /**
  * ColorInput component that displays a color picker with a dropdown color palette.
@@ -45,8 +46,8 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
   }, []);
 
   return (
-    <div className="relative" ref={colorPickerRef}>
-      <div className="relative">
+    <div className="color-input" ref={colorPickerRef}>
+      <div className="color-input__wrapper">
         <span id="colorInputLabel" className="sr-only">
           {screenReaderLabel}
         </span>
@@ -55,33 +56,32 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
           value={options.color}
           readOnly
           onClick={toggleColorPicker}
-          className="focus:border-primary-600 h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-hidden transition-all duration-300 ease-in-out focus:ring-4 focus:ring-green-100 md:w-44"
+          className="color-input__field"
           aria-label={screenReaderLabel}
         />
         <button
           type="button"
           onClick={toggleColorPicker}
-          className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[options.color as keyof typeof PICKER_COLORS]?.bg ?? ''} -translate-y-1/2 transform rounded-lg border-2 border-white`}
+          className={cn('color-input__trigger', PICKER_COLORS[options.color as keyof typeof PICKER_COLORS]?.bg ?? '')}
           aria-label={`Selected color: ${options.color}. Click to ${isOpen ? 'close' : 'open'} color picker`}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
         ></button>
       </div>
       {isOpen && (
-        <div
-          className="absolute bottom-full left-0 z-50 mb-2 rounded-lg border border-stone-100 bg-white px-4 py-3 pb-1 shadow-lg"
-          role="listbox"
-          id="color-picker-options"
-          aria-label="Color options"
-        >
+        <div className="color-input__dropdown" role="listbox" id="color-picker-options" aria-label="Color options">
           {groupedColors.map((row, rowIndex) => (
-            <div key={rowIndex} className="mb-2 flex flex-row gap-2">
+            <div key={rowIndex} className="color-input__dropdown-row">
               {row.map((colorOption) => (
                 <button
                   key={colorOption}
                   type="button"
                   onClick={() => handleColorClick(colorOption)}
-                  className={`h-8 w-8 rounded-md transition-all duration-300 ease-in-out ${colorOption === options.color ? `ring-2 ${PICKER_COLORS[colorOption as keyof typeof PICKER_COLORS]?.ring ?? ''} ring-opacity-50 ring-offset-2` : ''}`}
+                  className={cn('color-input__color', {
+                    'color-input__color--selected': colorOption === options.color,
+                    [PICKER_COLORS[colorOption as keyof typeof PICKER_COLORS]?.ring ?? '']:
+                      colorOption === options.color,
+                  })}
                   style={{ backgroundColor: colorOption }}
                   aria-label={`${colorOption} color`}
                   aria-selected={colorOption === options.color}

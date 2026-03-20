@@ -5,14 +5,14 @@
  * @returns {JSX.Element} The rendered background element with the SVG.
  */
 const BackgroundElement = () => (
-  <div className="absolute top-[var(--kdc-blob-t)] right-[var(--kdc-blob-r)] z-10 text-[var(--kdc-color)]">
+  <div className="bg-element">
     <svg
       width="369"
       height="299"
       viewBox="0 0 369 299"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ width: 'var(--kdc-blob-w)', height: 'var(--kdc-blob-h)' }}
+      className="bg-element__svg"
     >
       <path
         d="M366.071 200.037C366.14 199.936 366.08 199.856 365.765 199.855C365.473 199.852 365.18 199.844 364.877 199.833C364.38 199.781 363.872 199.768 363.385 199.776C362.011 199.741 360.628 199.8 359.412 200.353C357.128 201.391 356.971 204.032 356.945 206.248C356.971 206.3 357.011 206.332 357.068 206.344C360.547 207.675 365.68 207.787 368.148 204.44C368.935 203.367 368.976 202.048 368.025 201.079C367.508 200.553 366.825 200.231 366.071 200.037Z"

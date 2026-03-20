@@ -1,118 +1,23 @@
-@import "tailwindcss";
+@use "variables";
+@use "mixins";
+@use "utilities";
+@use "root";
+@use "base";
 
-@theme {
-  --color-primary-50: #effef3;
-  --color-primary-100: #dbfde6;
-  --color-primary-200: #b9f9cc;
-  --color-primary-300: #82f3a6;
-  --color-primary-400: #44e477;
-  --color-primary-500: #1ccb54;
-  --color-primary-600: #12b848;
-  --color-primary-700: #118437;
-  --color-primary-800: #13682f;
-  --color-primary-900: #125529;
-  --color-primary-950: #033014;
-}
+// Layout components
+@use "components/layout/header";
+@use "components/layout/footer";
+@use "components/layout/main-content";
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+// Options components
+@use "components/options/options-box";
+@use "components/options/search-input";
+@use "components/options/search-modal";
+@use "components/options/color-input";
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
-}
+// Preview components
+@use "components/preview/preview-box";
+@use "components/preview/couplet-content";
 
-@layer components {
-  .main-container {
-    @apply mx-auto max-w-5xl px-4 sm:px-6 lg:px-8;
-  }
-
-  button {
-    @apply relative cursor-pointer;
-    @apply transition-colors duration-300 ease-in-out;
-    @apply outline-none focus:outline-hidden;
-    @apply inline-flex items-center justify-center;
-  }
-
-  button:disabled {
-    @apply cursor-not-allowed opacity-50;
-  }
-
-  .icon-btn {
-    @apply hidden h-12 w-12 md:inline-flex;
-    @apply rounded-full border-2 p-2 text-lg;
-    @apply border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white;
-    @apply hover:ring-primary-200 hover:ring-4;
-  }
-
-  .text-btn {
-    @apply md:hidden;
-    @apply h-10 rounded-lg border-2 px-4;
-    @apply font-semibold;
-    @apply bg-primary-600 border-primary-600 hover:text-primary-600 text-white hover:bg-white;
-    @apply focus:ring-primary-600 focus:ring-2 focus:ring-offset-2;
-    @apply active:scale-95;
-  }
-
-  .text-btn.outlined {
-    @apply border-primary-600 text-primary-600 hover:bg-primary-600 bg-white hover:text-white;
-    @apply focus:ring-primary-600 focus:ring-2 focus:ring-offset-2;
-  }
-
-  .random-btn {
-    @apply h-15 w-15 rounded-full p-2;
-    @apply text-xl;
-    @apply bg-primary-600 text-white;
-    @apply hover:ring-primary-200 hover:ring-4;
-    touch-action: manipulation;
-  }
-}
-
-/*
-  CSS Custom Properties for Kabir Doha Cards
-  These variables are dynamically set via JavaScript in MainContent.tsx
-  based on screen width and user preferences.
-*/
-:root {
-  --kdc-color: var(--color-primary-600);
-  --font-poppins: var(--font-poppins, "Poppins", sans-serif);
-
-  // Dynamic variables (set by JS in MainContent.tsx)
-  // --kdc-blob-t
-  // --kdc-blob-r
-  // --kdc-blob-w
-  // --kdc-blob-h
-  // --kdc-sideauth-block-pl
-  // --kdc-sideauth-text-fs
-  // --kdc-sideauth-text-lh
-  // --kdc-sideauth-text-ls
-  // --kdc-sideauth-text-to
-  // --kdc-sideauth-line-w
-  // --kdc-sideauth-line-mr
-  // --kdc-couplet-content-p
-  // --kdc-couplet-text-fs
-  // --kdc-couplet-text-lh
-  // --kdc-quote-block-ml
-  // --kdc-quote-block-mb
-  // --kdc-quote-w
-  // --kdc-quote-h
-  // --kdc-author-sign-block-mt
-  // --kdc-author-sign-text-fs
-  // --kdc-author-sign-text-lh
-  // --kdc-author-sign-underline-l
-  // --kdc-author-sign-underline-w
-  // --kdc-author-sign-underline-h
-  // --kdc-website-info-mt
-  // --kdc-website-info-fs
-  // --kdc-website-info-lh
-}
+// Shared components
+@use "components/shared";

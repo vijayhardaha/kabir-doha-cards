@@ -21,23 +21,19 @@ import SearchInput from './SearchInput';
  */
 const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.Element => {
   return (
-    <div
-      className="mt-8 flex flex-col gap-y-5 rounded-lg bg-white md:sticky md:bottom-4 md:z-999 md:flex-row md:items-center md:gap-4 md:border md:border-stone-100 md:px-6 md:py-3 md:shadow-xl"
-      role="toolbar"
-      aria-label="Doha customization options"
-    >
-      <div className="flex flex-col gap-y-5 md:flex-row md:items-center md:gap-2">
+    <div className="options-box" role="toolbar" aria-label="Doha customization options">
+      <div className="options-box__row">
         <SearchInput updateOptions={updateOptions} couplets={couplets} />
         <ColorInput options={options} updateOptions={updateOptions} />
       </div>
 
-      <div className="flex flex-col gap-y-5 md:flex-1 md:flex-row md:items-center md:gap-3">
-        <div className="flex flex-1 items-center gap-3">
-          <AiOutlineFontSize className="h-8 w-8 text-stone-700" aria-hidden="true" />
+      <div className="options-box__row options-box__row--expand">
+        <div className="options-box__control">
+          <AiOutlineFontSize className="options-box__control-label" aria-hidden="true" />
           <span className="sr-only" id="font-size-label">
             Adjust font size
           </span>
-          <div className="mr-4 ml-2 w-full">
+          <div className="options-box__control-slider">
             <RangeSliderInput
               min={2}
               max={4}
@@ -49,12 +45,12 @@ const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.
             />
           </div>
         </div>
-        <div className="flex flex-1 items-center gap-3">
-          <AiOutlineLineHeight className="h-8 w-8 text-stone-700" aria-hidden="true" />
+        <div className="options-box__control">
+          <AiOutlineLineHeight className="options-box__control-label" aria-hidden="true" />
           <span className="sr-only" id="line-height-label">
             Adjust line height
           </span>
-          <div className="mr-4 ml-2 w-full">
+          <div className="options-box__control-slider">
             <RangeSliderInput
               min={3}
               max={6}
@@ -68,15 +64,11 @@ const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.
         </div>
       </div>
 
-      <div
-        className="mt-4 flex flex-row items-center justify-center gap-3 md:mt-0 md:gap-3"
-        role="group"
-        aria-label="Doha actions"
-      >
+      <div className="options-box__actions" role="group" aria-label="Doha actions">
         <DownloadButton />
         <CopyButton couplet={options.couplet} />
 
-        <span className="hidden md:inline-flex">
+        <span className="options-box__random-wrapper">
           <RandomButton options={options} updateOptions={updateOptions} />
         </span>
       </div>

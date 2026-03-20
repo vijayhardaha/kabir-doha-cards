@@ -81,7 +81,6 @@ export const SITE_METADATA: Metadata = {
   creator: SITE_CONFIG.creator.name,
   robots: { index: true, follow: true },
   category: SITE_CONFIG.category,
-  themeColor: '#12b848',
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },

@@ -57,9 +57,9 @@ const CopyButton = ({ couplet, screenReaderText = 'Copy Doha' }: CopyButtonProps
         aria-label={isCopied ? 'Copied to clipboard' : 'Copy Doha to clipboard'}
       >
         {isCopied ? (
-          <AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
+          <AiOutlineCheck aria-hidden="true" size={20} className="text-btn__icon" />
         ) : (
-          <AiOutlineCopy aria-hidden="true" size={20} className="mr-2" />
+          <AiOutlineCopy aria-hidden="true" size={20} className="text-btn__icon" />
         )}
         {isCopied ? 'Copied!' : 'Copy'}
       </button>

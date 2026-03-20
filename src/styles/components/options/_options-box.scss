@@ -1,0 +1,90 @@
+@use "../../variables" as vars;
+@use "../../mixins" as *;
+
+// OptionsBox - Main toolbar container
+.options-box {
+  margin-top: vars.$spacing-8;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-5;
+  padding: vars.$spacing-4;
+  border-radius: vars.$radius-lg;
+  background-color: vars.$color-white;
+
+  @include md {
+    position: sticky;
+    bottom: vars.$spacing-4;
+    z-index: vars.$z-sticky;
+    flex-direction: row;
+    align-items: center;
+    gap: vars.$spacing-4;
+    margin-top: 0;
+    padding-inline: vars.$spacing-6;
+    padding-block: vars.$spacing-3;
+    border: 1px solid vars.$color-stone-100;
+    box-shadow: vars.$shadow-xl;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-5;
+
+    @include md {
+      flex-direction: row;
+      align-items: center;
+      gap: vars.$spacing-2;
+    }
+  }
+
+  &__row--expand {
+    flex: 1;
+
+    @include md {
+      flex-direction: row;
+      align-items: center;
+      gap: vars.$spacing-3;
+    }
+  }
+
+  &__control {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: vars.$spacing-3;
+
+    &-label {
+      width: 2rem;
+      height: 2rem;
+      color: vars.$color-stone-700;
+    }
+
+    &-slider {
+      flex: 1;
+      margin-right: vars.$spacing-4;
+      margin-left: vars.$spacing-2;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: vars.$spacing-3;
+    margin-top: vars.$spacing-4;
+
+    @include md {
+      margin-top: 0;
+      gap: vars.$spacing-3;
+    }
+  }
+
+  &__random-wrapper {
+    display: none;
+
+    @include md {
+      display: inline-flex;
+    }
+  }
+}

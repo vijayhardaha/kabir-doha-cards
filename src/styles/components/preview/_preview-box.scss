@@ -1,0 +1,39 @@
+@use "../../variables" as vars;
+@use "../../mixins" as *;
+
+// PreviewBox - Doha card preview container
+.preview-box {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: vars.$color-white;
+
+  &__mobile-btn {
+    position: absolute;
+    right: vars.$spacing-3;
+    bottom: vars.$spacing-3;
+    z-index: 20;
+
+    @include md {
+      display: none;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: vars.$spacing-6;
+    background-color: rgba(vars.$color-white, 0.5);
+  }
+
+  &__spinner {
+    color: vars.$color-gray-500;
+    font-size: 2.5rem;
+  }
+}

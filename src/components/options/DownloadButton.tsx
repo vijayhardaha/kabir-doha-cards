@@ -106,11 +106,11 @@ const DownloadButton = ({
         aria-busy={downloading}
       >
         {downloading ? (
-          <PiSpinnerGapLight aria-hidden="true" size={20} className="mr-2 animate-spin" />
+          <PiSpinnerGapLight aria-hidden="true" size={20} className="text-btn__icon animate-spin" />
         ) : downloaded ? (
-          <AiOutlineCheck aria-hidden="true" size={20} className="mr-2" />
+          <AiOutlineCheck aria-hidden="true" size={20} className="text-btn__icon" />
         ) : (
-          <AiOutlineCloudDownload aria-hidden="true" size={20} className="mr-2" />
+          <AiOutlineCloudDownload aria-hidden="true" size={20} className="text-btn__icon" />
         )}
         {downloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
       </button>

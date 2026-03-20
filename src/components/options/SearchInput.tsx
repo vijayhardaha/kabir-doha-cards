@@ -27,32 +27,34 @@ const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element
 
   return (
     <>
-      <div className="relative hidden md:inline-flex">
+      <div className="search-input__toggle">
         <button
           onClick={handleSearch}
           aria-label="Open doha search"
           aria-haspopup="dialog"
-          className="focus:border-primary-600 flex h-12 w-12 items-center justify-center rounded-lg border-2 border-stone-100 bg-stone-100 px-2 py-2 text-base text-stone-700 outline-hidden focus:ring-4 focus:ring-green-100"
+          className="search-input__toggle"
         >
-          <RiSearchLine aria-hidden="true" className="h-5 w-5" />
+          <RiSearchLine aria-hidden="true" className="search-input__toggle-icon" />
           <span className="sr-only">Search for doha</span>
         </button>
       </div>
 
-      <div className="relative md:hidden">
-        <span className="absolute top-2/4 left-3 -translate-y-2/4">
-          <RiSearchLine aria-hidden="true" className="h-5 w-5 text-stone-400" />
-        </span>
-        <input
-          type="text"
-          value=""
-          placeholder="Looking for a specific doha? Search here…"
-          onClick={handleSearch}
-          readOnly
-          aria-label="Search doha"
-          aria-haspopup="dialog"
-          className="focus:border-primary-600 h-12 w-full cursor-pointer truncate rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 pl-9 text-base text-stone-700 outline-hidden transition-all duration-300 ease-in-out focus:ring-4 focus:ring-green-100"
-        />
+      <div className="search-input__mobile">
+        <div className="search-input__mobile-wrapper">
+          <span className="search-input__mobile-icon">
+            <RiSearchLine aria-hidden="true" />
+          </span>
+          <input
+            type="text"
+            value=""
+            placeholder="Looking for a specific doha? Search here…"
+            onClick={handleSearch}
+            readOnly
+            aria-label="Search doha"
+            aria-haspopup="dialog"
+            className="search-input__mobile-field"
+          />
+        </div>
       </div>
 
       <SearchModal

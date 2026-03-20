@@ -1,0 +1,101 @@
+@use "../../variables" as vars;
+@use "../../mixins" as *;
+
+// ColorInput - Color picker dropdown
+.color-input {
+  position: relative;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__field {
+    width: 100%;
+    height: 3rem;
+    padding: vars.$spacing-2 vars.$spacing-4;
+    border: vars.$border-medium solid vars.$color-stone-100;
+    border-radius: vars.$radius-lg;
+    background-color: vars.$color-stone-100;
+    color: vars.$color-stone-800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition:
+      border-color vars.$transition-base,
+      box-shadow vars.$transition-base;
+    transition: all vars.$transition-base ease-in-out;
+
+    @include md {
+      width: 11rem;
+    }
+
+    &:focus-visible {
+      border-color: vars.$color-primary-600;
+      box-shadow: 0 0 0 4px rgba(vars.$color-primary-200, 0.4);
+      outline: none;
+    }
+  }
+
+  &__trigger {
+    position: absolute;
+    top: 50%;
+    right: vars.$spacing-2;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    border: vars.$border-medium solid vars.$color-white;
+    border-radius: vars.$radius-lg;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid vars.$color-primary-600;
+      outline-offset: 2px;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    z-index: vars.$z-dropdown;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-2;
+    padding: vars.$spacing-3 vars.$spacing-4;
+    margin-bottom: vars.$spacing-2;
+    border: 1px solid vars.$color-stone-100;
+    border-radius: vars.$radius-lg;
+    background-color: vars.$color-white;
+    box-shadow: vars.$shadow-lg;
+
+    &-row {
+      display: flex;
+      flex-direction: row;
+      gap: vars.$spacing-2;
+      margin-bottom: vars.$spacing-2;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__color {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: vars.$radius-md;
+    cursor: pointer;
+    transition: all vars.$transition-base ease-in-out;
+
+    &:focus-visible {
+      outline: 2px solid vars.$color-primary-600;
+      outline-offset: 2px;
+    }
+
+    &--selected {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+      opacity: 0.5;
+    }
+  }
+}

@@ -19,13 +19,13 @@ import type { PreviewBoxProps } from '@/types';
 const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element => {
   return (
     <>
-      <div className="absolute right-3 bottom-3 z-20 md:hidden">
+      <div className="preview-box__mobile-btn">
         <RandomButton options={options} updateOptions={updateOptions} />
       </div>
 
       <div
         id="doha-preview"
-        className="relative z-10 aspect-square w-full overflow-hidden bg-white"
+        className="preview-box"
         role="region"
         aria-label="Doha card presentation"
         aria-live="polite"
@@ -36,9 +36,9 @@ const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element =>
         <CoupletContent couplet={options.couplet} />
 
         {options.loading && (
-          <div className="absolute inset-0 z-30 flex items-end justify-end bg-white/50 p-6">
+          <div className="preview-box__loading">
             <span className="sr-only">Loading new couplet...</span>
-            <PiSpinnerGapLight aria-hidden="true" className="animate-spin text-4xl text-gray-500" />
+            <PiSpinnerGapLight aria-hidden="true" className="preview-box__spinner animate-spin" />
           </div>
         )}
       </div>

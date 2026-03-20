@@ -1,6 +1,7 @@
 import type { ReactNode, JSX } from 'react';
 
-import { Space_Grotesk, Poppins } from 'next/font/google';
+import { Space_Grotesk, Poppins, Montserrat } from 'next/font/google';
+import 'normalize.css';
 import { Toaster } from 'react-hot-toast';
 
 import Footer from '@/components/Footer';
@@ -23,9 +24,17 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
+const montserrat = Montserrat({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-montserrat',
+});
+
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <html lang="en" className={`${space.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${space.variable} ${poppins.variable} ${montserrat.variable}`}>
       <body className={space.className}>
         <Header />
         <main>{children}</main>

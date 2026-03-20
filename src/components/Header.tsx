@@ -12,45 +12,44 @@ import { getShareUrl } from '@/utils/share';
  * @returns {JSX.Element} The rendered header component.
  */
 const Header = () => (
-  <header className="sticky top-0 z-1000 bg-white py-2 shadow-xs" aria-label="Site header">
-    <div className="main-container">
-      <div className="flex items-center justify-between">
-        <h1 className="flex items-center gap-2 font-bold text-stone-900">
-          <Logo aria-hidden="true" className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />
+  <header className="header" aria-label="Site header">
+    <div className="header__container">
+      <div className="header__row">
+        <h1 className="header__brand">
+          <Logo aria-hidden="true" className="header__logo" />
 
-          <Link href="/" className="text-lg md:text-xl lg:text-2xl" aria-label="Kabir Doha Cards - Home page">
+          <Link href="/" className="header__title" aria-label="Kabir Doha Cards - Home page">
             Kabir Doha Cards
           </Link>
         </h1>
 
-        <div className="flex items-center space-x-2">
+        <nav className="header__nav" aria-label="Header navigation">
           <Link
             href="https://github.com/vijayhardaha/kabir-doha-cards"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center text-sm font-medium text-stone-800 hover:underline sm:flex"
+            className="header__link"
             aria-label="View the source code on GitHub (opens in a new tab)"
           >
-            <AiOutlineGithub aria-hidden="true" className="mr-1 text-sm" />
+            <AiOutlineGithub aria-hidden="true" className="header__icon" />
             Source Code
             <span className="sr-only">(opens in a new tab)</span>
           </Link>
 
-          {/* Vertical Divider */}
-          <span className="hidden h-3 border-l border-stone-300 sm:flex" aria-hidden="true"></span>
+          <span className="header__divider" aria-hidden="true"></span>
 
           <Link
             href={getShareUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-sm font-medium text-green-600 hover:underline"
+            className="header__link header__link--primary"
             aria-label="Share on WhatsApp (opens in a new tab)"
           >
-            <AiOutlineWhatsApp aria-hidden="true" className="mr-1 text-sm" />
+            <AiOutlineWhatsApp aria-hidden="true" className="header__icon" />
             Share It!
             <span className="sr-only">(opens in a new tab)</span>
           </Link>
-        </div>
+        </nav>
       </div>
     </div>
   </header>

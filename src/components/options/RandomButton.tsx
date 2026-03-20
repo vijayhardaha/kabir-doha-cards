@@ -156,8 +156,7 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
       <button
         ref={buttonRef}
         onClick={handleClick}
-        style={{ touchAction: 'manipulation', transform: 'scale(1) rotate(0deg) translateZ(0px)' }}
-        className={cn('random-btn', { loading: options.loading })}
+        className={cn('random-btn', { 'random-btn--loading': options.loading })}
         aria-label="Get Random Doha"
         data-tooltip-id="random-doha-tooltip"
         data-tooltip-content="Get a random Doha"

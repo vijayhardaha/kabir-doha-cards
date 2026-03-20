@@ -1,0 +1,208 @@
+@use "variables" as vars;
+@use "mixins" as *;
+
+// Main container utility
+.main-container {
+  margin-inline: auto;
+  max-width: 64rem;
+  padding-inline: vars.$spacing-4;
+
+  @include sm {
+    padding-inline: vars.$spacing-6;
+  }
+
+  @include lg {
+    padding-inline: vars.$spacing-8;
+  }
+}
+
+// Base button styles
+button {
+  position: relative;
+  cursor: pointer;
+  transition:
+    color vars.$transition-base ease-in-out,
+    background-color vars.$transition-base ease-in-out;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid vars.$color-primary-600;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Icon button (desktop)
+.icon-btn {
+  display: none;
+  @include flex-center;
+  width: 3rem;
+  height: 3rem;
+  padding: vars.$spacing-2;
+  border-radius: vars.$radius-full;
+  border: vars.$border-medium solid vars.$color-primary-600;
+  color: vars.$color-primary-600;
+  font-size: 1.125rem;
+  transition:
+    background-color vars.$transition-base,
+    color vars.$transition-base;
+
+  @include md {
+    display: inline-flex;
+  }
+
+  &:hover {
+    background-color: vars.$color-primary-600;
+    color: vars.$color-white;
+    box-shadow: 0 0 0 4px rgba(vars.$color-primary-200, 0.4);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px rgba(vars.$color-primary-200, 0.4);
+  }
+
+  &__icon {
+    margin-right: vars.$spacing-2;
+  }
+}
+
+// Text button (mobile)
+.text-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  padding-inline: vars.$spacing-4;
+  border-radius: vars.$radius-lg;
+  border: vars.$border-medium solid vars.$color-primary-600;
+  font-weight: 600;
+  font-size: 0.875rem;
+  background-color: vars.$color-primary-600;
+  color: vars.$color-white;
+  transition:
+    background-color vars.$transition-base,
+    color vars.$transition-base;
+
+  @include md {
+    display: none;
+  }
+
+  &:hover {
+    background-color: vars.$color-white;
+    color: vars.$color-primary-600;
+  }
+
+  &:focus-visible {
+    outline: 2px solid vars.$color-primary-600;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &--outlined {
+    background-color: vars.$color-white;
+    color: vars.$color-primary-600;
+
+    &:hover {
+      background-color: vars.$color-primary-600;
+      color: vars.$color-white;
+    }
+  }
+
+  &__icon {
+    margin-right: vars.$spacing-2;
+  }
+}
+
+// Random button
+.random-btn {
+  @include flex-center;
+  width: 3.75rem;
+  height: 3.75rem;
+  padding: vars.$spacing-2;
+  border-radius: vars.$radius-full;
+  background-color: vars.$color-primary-600;
+  color: vars.$color-white;
+  font-size: 1.25rem;
+  touch-action: manipulation;
+
+  &:hover {
+    box-shadow: 0 0 0 4px rgba(vars.$color-primary-200, 0.4);
+  }
+
+  &--loading {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+// Range slider track
+.range-slider {
+  &__track {
+    display: flex;
+    height: 1.5rem;
+    width: 100%;
+  }
+
+  &__track-inner {
+    align-self: center;
+    width: 100%;
+    height: 0.25rem;
+    border-radius: vars.$radius-full;
+    background-color: vars.$color-stone-200;
+  }
+
+  &__thumb {
+    @include flex-center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: vars.$radius-full;
+    background-color: vars.$color-primary-600;
+    outline: none;
+    cursor: grab;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 4px rgba(vars.$color-primary-200, 0.4);
+    }
+
+    &--dragging {
+      cursor: grabbing;
+      box-shadow: 0 0 0 4px rgba(vars.$color-primary-200, 0.4);
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    top: -2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: vars.$spacing-1 vars.$spacing-3;
+    border-radius: vars.$radius-md;
+    background-color: vars.$color-slate-900;
+    color: vars.$color-white;
+    font-size: 0.75rem;
+    white-space: nowrap;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px 6px 0 6px;
+      border-style: solid;
+      border-color: vars.$color-slate-900 transparent transparent transparent;
+    }
+  }
+}

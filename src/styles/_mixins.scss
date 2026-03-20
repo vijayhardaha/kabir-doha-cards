@@ -1,0 +1,61 @@
+@forward "variables";
+
+@use "variables" as vars;
+
+// Responsive breakpoint mixins
+@mixin sm {
+  @media (min-width: vars.$breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: vars.$breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: vars.$breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: vars.$breakpoint-xl) {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// BEM element mixin
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+// BEM modifier mixin
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}

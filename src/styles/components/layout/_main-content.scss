@@ -1,0 +1,21 @@
+@use "../../variables" as vars;
+@use "../../mixins" as *;
+
+// MainContent - Main content wrapper
+.main-content {
+  position: relative;
+
+  &__preview-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin-inline: auto;
+    border: 2px dashed vars.$color-stone-100;
+  }
+
+  &__preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}

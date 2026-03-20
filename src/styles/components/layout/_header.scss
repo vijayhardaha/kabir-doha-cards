@@ -1,0 +1,106 @@
+@use "../../variables" as vars;
+@use "../../mixins" as *;
+
+// Header - Site header
+.header {
+  position: sticky;
+  top: 0;
+  z-index: vars.$z-sticky;
+  padding-block: vars.$spacing-2;
+  background-color: vars.$color-white;
+  box-shadow: vars.$shadow-sm;
+
+  &__container {
+    margin-inline: auto;
+    padding-inline: vars.$spacing-4;
+
+    @include sm {
+      padding-inline: vars.$spacing-6;
+    }
+
+    @include lg {
+      padding-inline: vars.$spacing-8;
+    }
+  }
+
+  &__row {
+    @include flex-between;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+    font-weight: 700;
+    color: vars.$color-stone-900;
+  }
+
+  &__logo {
+    width: 2rem;
+    height: 2rem;
+
+    @include md {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    @include lg {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+
+    @include md {
+      font-size: 1.25rem;
+    }
+
+    @include lg {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+  }
+
+  &__link {
+    display: none;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: vars.$color-stone-800;
+    text-decoration: none;
+
+    @include sm {
+      display: flex;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--primary {
+      color: vars.$color-primary-600;
+    }
+  }
+
+  &__icon {
+    margin-right: vars.$spacing-1;
+    font-size: 0.875rem;
+  }
+
+  &__divider {
+    display: none;
+    height: 0.75rem;
+    border-left: 1px solid vars.$color-stone-300;
+
+    @include sm {
+      display: flex;
+    }
+  }
+}

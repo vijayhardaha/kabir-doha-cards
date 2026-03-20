@@ -79,14 +79,11 @@ const MainContent = ({ initialCouplets }: MainContentProps): JSX.Element => {
   }, [options.color, options.fontSize, options.lineHeight, gs]);
 
   return (
-    <main className="relative" aria-label="Kabir Doha Card Generator">
-      <div
-        className="relative mx-auto aspect-square h-full w-full max-w-[700px] border-2 border-dashed border-stone-100"
-        ref={elementRef}
-        aria-live="polite"
-        aria-busy={options.loading}
-      >
-        <PreviewBox options={options} updateOptions={updateOptions} />
+    <main className="main-content" aria-label="Kabir Doha Card Generator">
+      <div className="main-content__preview-wrapper" ref={elementRef} aria-live="polite" aria-busy={options.loading}>
+        <div className="main-content__preview">
+          <PreviewBox options={options} updateOptions={updateOptions} />
+        </div>
       </div>
 
       <OptionsBox options={options} updateOptions={updateOptions} couplets={initialCouplets} />

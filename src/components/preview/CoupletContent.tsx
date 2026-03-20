@@ -14,7 +14,7 @@ import type { CoupletContentProps } from '@/types';
  * @returns The rendered couplet content
  */
 const CoupletContent = ({ couplet }: CoupletContentProps): JSX.Element => (
-  <div className="relative z-20 flex h-full flex-col items-start justify-end p-[var(--kdc-couplet-content-p)]">
+  <div className="couplet-content">
     <QuoteIcon />
     <CoupletText couplet={couplet} />
     <AuthorSignature />

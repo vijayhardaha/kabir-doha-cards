@@ -1,0 +1,20 @@
+// Root CSS variables
+:root {
+  --color-primary-50: #effef3;
+  --color-primary-100: #dbfde6;
+  --color-primary-200: #b9f9cc;
+  --color-primary-300: #82f3a6;
+  --color-primary-400: #44e477;
+  --color-primary-500: #1ccb54;
+  --color-primary-600: #12b848;
+  --color-primary-700: #118437;
+  --color-primary-800: #13682f;
+  --color-primary-900: #125529;
+  --color-primary-950: #033014;
+
+  --kdc-color: #12b848;
+
+  --font-sans: var(--font-space-grotesk, "Space Grotesk", sans-serif);
+  --font-poppins: var(--font-poppins, "Poppins", sans-serif);
+  --font-montserrat: var(--font-montserrat, "Montserrat", sans-serif);
+}

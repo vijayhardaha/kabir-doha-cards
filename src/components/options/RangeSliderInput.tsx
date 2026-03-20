@@ -6,7 +6,6 @@ import type { RangeSliderInputProps } from '@/types';
 
 /**
  * RangeSliderInput component allows users to select a range of values with custom styling.
- * Includes accessible tooltips and proper ARIA attributes.
  *
  * @component
  * @param props - The component props
@@ -23,22 +22,10 @@ const RangeSliderInput = ({
 }: RangeSliderInputProps): JSX.Element => {
   const [values, setValues] = useState([value]);
 
-  /**
-   * Formats a numeric value to a string with up to three decimal places.
-   *
-   * @param value - The numeric value to format
-   * @returns The formatted value as a string
-   */
   const formatValue = (value: number): string => {
     return Number(value).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 3 });
   };
 
-  /**
-   * Generates accessible text for the current value.
-   *
-   * @param val - The current slider value
-   * @returns The formatted text for screen readers
-   */
   const getAriaValueText = (val: number): string => {
     if (ariaValueText) {
       return ariaValueText(val);
@@ -57,8 +44,8 @@ const RangeSliderInput = ({
         setValue(newValues[0]);
       }}
       renderTrack={({ props: trackProps, children }) => (
-        <div className="flex h-6 w-full">
-          <div {...trackProps} className="h-1 w-full self-center rounded-full bg-stone-200" aria-hidden="true">
+        <div className="range-slider__track">
+          <div {...trackProps} className="range-slider__track-inner" aria-hidden="true">
             {children}
           </div>
         </div>
@@ -69,7 +56,7 @@ const RangeSliderInput = ({
           <div
             key={thumbKey}
             {...restThumbProps}
-            className={`bg-primary-600 flex h-6 w-6 items-center justify-center rounded-full outline-hidden ${isDragged ? 'ring-primary-200 ring-4' : ''}`}
+            className={`range-slider__thumb ${isDragged ? 'range-slider__thumb--dragging' : ''}`}
             aria-label={ariaLabel || 'Adjust value'}
             aria-valuemin={min}
             aria-valuemax={max}
@@ -78,13 +65,13 @@ const RangeSliderInput = ({
             role="slider"
           >
             <div
-              className={`absolute -top-9 flex items-center justify-center rounded-md bg-slate-900 px-3 py-1 text-xs text-white outline-hidden ${!isDragged ? 'hidden' : ''}`}
+              className={`range-slider__tooltip ${!isDragged ? 'range-slider__tooltip--hidden' : ''}`}
               role="tooltip"
               aria-live="polite"
               aria-hidden={!isDragged}
             >
               {formatValue(values[0])}
-              <div className="absolute -bottom-[6px] left-1/2 h-0 w-0 -translate-x-1/2 transform border-t-8 border-r-8 border-l-8 border-t-slate-900 border-r-transparent border-l-transparent"></div>
+              <div className="range-slider__tooltip-arrow"></div>
             </div>
           </div>
         );
