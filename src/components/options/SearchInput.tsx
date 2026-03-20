@@ -13,23 +13,15 @@ import type { SearchInputProps } from '@/types';
  * @param props - The component props
  * @returns The rendered search input component
  */
-const SearchInput = ({ setCouplet, couplets }: SearchInputProps): JSX.Element => {
+const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  /**
-   * Opens the search modal.
-   */
   const handleSearch = (): void => {
     setIsSearchOpen(true);
   };
 
-  /**
-   * Handles the selection of a Doha from search results.
-   *
-   * @param selectedDoha - The selected Doha text
-   */
   const handleSelectDoha = (selectedDoha: string): void => {
-    setCouplet(selectedDoha);
+    updateOptions({ couplet: selectedDoha });
     setIsSearchOpen(false);
   };
 

@@ -14,17 +14,15 @@ import type { PreviewBoxProps } from '@/types';
  * @param props - The component props
  * @returns The rendered preview box
  */
-const PreviewBox = ({ couplet, setCouplet, loading, setLoading, screenReaderText }: PreviewBoxProps): JSX.Element => {
-  const srText = screenReaderText || 'Kabir Doha Preview Card';
-
+const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element => {
   return (
     <>
       <div className="absolute right-3 bottom-3 z-20 md:hidden">
-        <RandomButton setCouplet={setCouplet} loading={loading} setLoading={setLoading} />
+        <RandomButton options={options} updateOptions={updateOptions} />
       </div>
 
-      <div className="relative z-10 aspect-square w-full" aria-label={srText}>
-        <span className="sr-only">{srText}</span>
+      <div className="relative z-10 aspect-square w-full" aria-label="Kabir Doha Preview Card">
+        <span className="sr-only">Kabir Doha Preview Card</span>
         <div
           id="doha-preview"
           className="absolute inset-0 h-full w-full overflow-hidden bg-white"
@@ -33,7 +31,7 @@ const PreviewBox = ({ couplet, setCouplet, loading, setLoading, screenReaderText
         >
           <BackgroundElement />
           <SideAuthor />
-          <CoupletContent couplet={couplet} />
+          <CoupletContent couplet={options.couplet} />
         </div>
       </div>
     </>

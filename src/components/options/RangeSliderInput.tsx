@@ -20,7 +20,6 @@ const RangeSliderInput = ({
   setValue,
   ariaLabel,
   ariaValueText,
-  ...props
 }: RangeSliderInputProps): JSX.Element => {
   const [values, setValues] = useState([value]);
 
@@ -49,7 +48,6 @@ const RangeSliderInput = ({
 
   return (
     <Range
-      {...props}
       step={step}
       min={min}
       max={max}

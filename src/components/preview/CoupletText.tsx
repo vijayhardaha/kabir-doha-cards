@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, type JSX } from 'react';
+import { useMemo, useState, useEffect, type JSX } from 'react';
 
 import { Poppins } from 'next/font/google';
 
@@ -29,7 +29,25 @@ const font = Poppins({ weight: ['400', '700'], subsets: ['latin', 'devanagari'],
  * />
  */
 const CoupletText = ({ couplet, screenReaderText }: CoupletTextProps): JSX.Element => {
+  const [mounted, setMounted] = useState(false);
   const formattedLines = useMemo(() => formatCouplet(couplet, 4), [couplet]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Required to fix hydration mismatch with Next.js font
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div
+        className="relative block w-full font-bold"
+        style={{ fontSize: 'var(--kdc-couplet-text-fs)', lineHeight: 'var(--kdc-couplet-text-lh)' }}
+        aria-label={screenReaderText || 'Couplet text'}
+      >
+        {screenReaderText && <span className="sr-only">{screenReaderText}</span>}
+      </div>
+    );
+  }
 
   return (
     <div

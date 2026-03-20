@@ -1,8 +1,16 @@
-export type Setter<T> = (value: T) => void;
+export type Setter<T> = (value: T | ((prev: T) => T)) => void;
+
+export interface CardOptions {
+  color: string;
+  couplet: string;
+  fontSize: number;
+  lineHeight: number;
+  loading: boolean;
+}
 
 export interface ColorInputProps {
-  color: string;
-  setColor: Setter<string>;
+  options: CardOptions;
+  updateOptions: Setter<Partial<CardOptions>>;
   screenReaderLabel?: string;
 }
 
@@ -19,9 +27,8 @@ export interface DownloadButtonProps {
 }
 
 export interface RandomButtonProps {
-  setCouplet: Setter<string>;
-  loading: boolean;
-  setLoading: Setter<boolean>;
+  options: CardOptions;
+  updateOptions: Setter<Partial<CardOptions>>;
 }
 
 export interface RangeSliderInputProps {
@@ -29,13 +36,13 @@ export interface RangeSliderInputProps {
   max: number;
   step: number;
   value: number;
-  setValue: Setter<number>;
+  setValue: (val: number) => void;
   ariaLabel?: string;
   ariaValueText?: (val: number) => string;
 }
 
 export interface SearchInputProps {
-  setCouplet: Setter<string>;
+  updateOptions: Setter<Partial<CardOptions>>;
   couplets: string[];
 }
 
@@ -47,25 +54,14 @@ export interface SearchModalProps {
 }
 
 export interface OptionsBoxProps {
+  options: CardOptions;
+  updateOptions: Setter<Partial<CardOptions>>;
   couplets: string[];
-  color: string;
-  setColor: Setter<string>;
-  couplet: string;
-  setCouplet: Setter<string>;
-  fontSize: number;
-  setFontSize: Setter<number>;
-  lineHeight: number;
-  setLineHeight: Setter<number>;
-  loading: boolean;
-  setLoading: Setter<boolean>;
 }
 
 export interface PreviewBoxProps {
-  couplet: string;
-  setCouplet: Setter<string>;
-  loading: boolean;
-  setLoading: Setter<boolean>;
-  screenReaderText?: string;
+  options: CardOptions;
+  updateOptions: Setter<Partial<CardOptions>>;
 }
 
 export interface CoupletTextProps {

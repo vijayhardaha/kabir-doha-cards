@@ -59,11 +59,6 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps):
   }, [isOpen, onClose]);
 
   useEffect(() => {
-    /**
-     * Fetches search results based on the search term with a debounce delay.
-     *
-     * @param term - The search term
-     */
     const fetchSearchResults = debounce(async (term: string) => {
       if (term) {
         setLoading(true);

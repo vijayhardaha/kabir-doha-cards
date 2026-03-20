@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useEffect, useRef, type JSX } from 'react';
+import { useState, useEffect, useRef, useMemo, type JSX } from 'react';
 
 import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import OptionsBox from '@/components/options/OptionsBox';
 import PreviewBox from '@/components/preview/PreviewBox';
-import type { Couplet } from '@/types';
+import type { CardOptions, Couplet, Setter } from '@/types';
 import { calcFontSize } from '@/utils/preview';
+
+const DEFAULT_OPTIONS: CardOptions = { color: '#12b848', couplet: '', fontSize: 3, lineHeight: 4.875, loading: false };
 
 /**
  * MainContent component displays a preview of a random doha and an options panel.
@@ -18,19 +20,19 @@ import { calcFontSize } from '@/utils/preview';
  * @returns The rendered component
  */
 const MainContent = ({ couplets }: { couplets: Couplet[] }): JSX.Element => {
-  const [color, setColor] = useState('#12b848');
-  const [couplet, setCouplet] = useState<Couplet>(() => {
+  const [options, setOptions] = useState<CardOptions>(() => {
     if (couplets.length > 0) {
       const randomIndex = Math.floor(Math.random() * couplets.length);
-      return couplets[randomIndex];
+      return { ...DEFAULT_OPTIONS, couplet: couplets[randomIndex] };
     }
-    return '';
+    return DEFAULT_OPTIONS;
   });
-  const [fontSize, setFontSize] = useState(3);
-  const [lineHeight, setLineHeight] = useState(4.875);
   const [elementWidth, setElementWidth] = useState(700);
-  const [loading, setLoading] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
+
+  const updateOptions: Setter<Partial<CardOptions>> = (update) => {
+    setOptions((prev) => (typeof update === 'function' ? { ...prev, ...update(prev) } : { ...prev, ...update }));
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,19 +50,13 @@ const MainContent = ({ couplets }: { couplets: Couplet[] }): JSX.Element => {
     };
   }, []);
 
-  /**
-   * Calculates font size based on element width and multiplier.
-   *
-   * @param rem - The multiplier to calculate the font size
-   * @returns The calculated font size in rem
-   */
-  const gs = (rem: number): string => calcFontSize(elementWidth, rem);
+  const gs = useMemo(() => (rem: number) => calcFontSize(elementWidth, rem), [elementWidth]);
 
   return (
     <>
       <style jsx global>{`
         :root {
-          --kdc-color: ${color};
+          --kdc-color: ${options.color};
 
           --kdc-blob-t: ${gs(-6.5)};
           --kdc-blob-r: ${gs(-6.5)};
@@ -77,8 +73,8 @@ const MainContent = ({ couplets }: { couplets: Couplet[] }): JSX.Element => {
 
           --kdc-couplet-content-p: 0 ${gs(1)} ${gs(1.125)} ${gs(7)};
 
-          --kdc-couplet-text-fs: ${gs(fontSize)};
-          --kdc-couplet-text-lh: ${gs(lineHeight)};
+          --kdc-couplet-text-fs: ${gs(options.fontSize)};
+          --kdc-couplet-text-lh: ${gs(options.lineHeight)};
 
           --kdc-quote-block-ml: ${gs(-1.25)};
           --kdc-quote-block-mb: ${gs(1.5)};
@@ -102,38 +98,19 @@ const MainContent = ({ couplets }: { couplets: Couplet[] }): JSX.Element => {
           className="relative mx-auto aspect-square h-full w-full max-w-[700px] border-2 border-dashed border-stone-100"
           ref={elementRef}
           aria-live="polite"
-          aria-busy={loading}
+          aria-busy={options.loading}
         >
-          {loading ? (
+          {options.loading ? (
             <div className="bg-opacity-75 absolute inset-0 flex items-center justify-center bg-white">
               <span className="sr-only">Loading couplet content, please wait</span>
               <PiSpinnerGapLight aria-hidden="true" className="animate-spin text-4xl text-gray-500" />
             </div>
           ) : (
-            <PreviewBox
-              couplet={couplet}
-              setCouplet={setCouplet}
-              loading={loading}
-              setLoading={setLoading}
-              aria-label="Doha preview card"
-            />
+            <PreviewBox options={options} updateOptions={updateOptions} />
           )}
         </div>
 
-        <OptionsBox
-          color={color}
-          couplet={couplet}
-          couplets={couplets}
-          fontSize={fontSize}
-          lineHeight={lineHeight}
-          setColor={setColor}
-          setCouplet={setCouplet}
-          setFontSize={setFontSize}
-          setLineHeight={setLineHeight}
-          loading={loading}
-          setLoading={setLoading}
-          aria-label="Doha customization options"
-        />
+        <OptionsBox options={options} updateOptions={updateOptions} couplets={couplets} />
       </main>
     </>
   );

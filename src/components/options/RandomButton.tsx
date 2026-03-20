@@ -1,5 +1,3 @@
-'use client';
-
 import type { JSX } from 'react';
 
 import { TfiReload } from 'react-icons/tfi';
@@ -18,30 +16,27 @@ import { showToast } from '@/utils/toast';
  * @param props - The component props
  * @returns The rendered button component
  */
-const RandomButton = ({ setCouplet, loading, setLoading }: RandomButtonProps): JSX.Element => {
-  /**
-   * Fetches a random Doha from the server and updates the state.
-   */
+const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Element => {
   const fetchRandomDoha = async (): Promise<void> => {
-    if (loading) return;
+    if (options.loading) return;
 
-    setLoading(true);
+    updateOptions({ loading: true });
 
     const { data, error } = await fetchCouplets('random');
 
     if (error) {
       console.error(error);
       showToast(error, 'error');
+      updateOptions({ loading: false });
     } else {
       if (data && data.length > 0) {
-        setCouplet(data[0]);
+        updateOptions({ couplet: data[0], loading: false });
       } else {
         console.warn('No results found for random Doha.');
         showToast('No Doha found, try again!', 'error');
+        updateOptions({ loading: false });
       }
     }
-
-    setLoading(false);
   };
 
   return (
@@ -50,15 +45,15 @@ const RandomButton = ({ setCouplet, loading, setLoading }: RandomButtonProps): J
 
       <button
         onClick={fetchRandomDoha}
-        className={cn('random-btn', { 'cursor-not-allowed opacity-75': loading })}
+        className={cn('random-btn', { 'cursor-not-allowed opacity-75': options.loading })}
         aria-label="Get Random Doha"
-        aria-busy={loading}
+        aria-busy={options.loading}
         data-tooltip-id="random-doha-tooltip"
         data-tooltip-content="Get a random Doha"
-        disabled={loading}
+        disabled={options.loading}
       >
         <TfiReload aria-hidden="true" size={30} />
-        <span className="sr-only">{loading ? 'Loading random Doha...' : 'Get Random Doha'}</span>
+        <span className="sr-only">{options.loading ? 'Loading random Doha...' : 'Get Random Doha'}</span>
       </button>
     </>
   );

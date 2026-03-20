@@ -11,9 +11,8 @@ import type { ColorInputProps } from '@/types';
  * @param props - Component props
  * @returns The rendered color picker component
  */
-const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }: ColorInputProps): JSX.Element => {
+const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a color' }: ColorInputProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(color);
   const colorPickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,31 +26,17 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }: C
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  /**
-   * Handles the event when a color is clicked or selected.
-   *
-   * @param selectedColor - The color code that was selected
-   */
   const handleColorClick = (selectedColor: string): void => {
-    setColor(selectedColor);
-    setSelectedColor(selectedColor);
+    updateOptions({ color: selectedColor });
     setIsOpen(false);
   };
 
-  /**
-   * Toggles the color picker dropdown state.
-   */
   const toggleColorPicker = (): void => {
     setIsOpen(!isOpen);
   };
 
   const colors: string[] = Object.keys(PICKER_COLORS);
 
-  /**
-   * Groups colors into rows, each containing up to 6 colors.
-   *
-   * @type {string[][]}
-   */
   const groupedColors: string[][] = colors.reduce((acc: string[][], colorKey, index) => {
     const rowIndex = Math.floor(index / 6);
     if (!acc[rowIndex]) acc[rowIndex] = [];
@@ -67,7 +52,7 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }: C
         </span>
         <input
           type="text"
-          value={selectedColor}
+          value={options.color}
           readOnly
           onClick={toggleColorPicker}
           className="focus:border-primary-600 h-12 w-full cursor-pointer rounded-lg border-2 border-stone-100 bg-stone-100 px-4 py-2 text-base text-stone-800 outline-hidden transition-all duration-300 ease-in-out focus:ring-4 focus:ring-green-100 md:w-44"
@@ -76,8 +61,8 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }: C
         <button
           type="button"
           onClick={toggleColorPicker}
-          className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[color as keyof typeof PICKER_COLORS].bg} -translate-y-1/2 transform rounded-lg border-2 border-white`}
-          aria-label={`Selected color: ${color}. Click to ${isOpen ? 'close' : 'open'} color picker`}
+          className={`absolute top-1/2 right-2 h-8 w-8 ${PICKER_COLORS[options.color as keyof typeof PICKER_COLORS]?.bg ?? ''} -translate-y-1/2 transform rounded-lg border-2 border-white`}
+          aria-label={`Selected color: ${options.color}. Click to ${isOpen ? 'close' : 'open'} color picker`}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
         ></button>
@@ -96,10 +81,10 @@ const ColorInput = ({ color, setColor, screenReaderLabel = 'Choose a color' }: C
                   key={colorOption}
                   type="button"
                   onClick={() => handleColorClick(colorOption)}
-                  className={`h-8 w-8 rounded-md transition-all duration-300 ease-in-out ${colorOption === selectedColor ? `ring-2 ${PICKER_COLORS[colorOption as keyof typeof PICKER_COLORS].ring} ring-opacity-50 ring-offset-2` : ''}`}
+                  className={`h-8 w-8 rounded-md transition-all duration-300 ease-in-out ${colorOption === options.color ? `ring-2 ${PICKER_COLORS[colorOption as keyof typeof PICKER_COLORS]?.ring ?? ''} ring-opacity-50 ring-offset-2` : ''}`}
                   style={{ backgroundColor: colorOption }}
                   aria-label={`${colorOption} color`}
-                  aria-selected={colorOption === selectedColor}
+                  aria-selected={colorOption === options.color}
                   role="option"
                 />
               ))}
