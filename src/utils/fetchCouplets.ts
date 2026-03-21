@@ -11,17 +11,20 @@ export async function fetchCouplets(type: FetchType, search?: string): Promise<F
   const randomNumber = Math.round(Math.random() * (200 - 1)) + 1;
   const body =
     type === 'search'
-      ? { search: search, sort_by: 'text_hi', sort_order: 'asc', per_page: 10 }
-      : { per_page: 1, page: randomNumber };
+      ? { search: String(search), per_page: String(10) }
+      : { per_page: String(1), page: String(randomNumber) };
 
   let errorMessage: string | null = null;
   let results: string[] = [];
 
   try {
-    const response = await fetch('https://kabir-ke-dohe-api.vercel.app/api/couplets', {
-      method: 'POST',
+    const params = new URLSearchParams(
+      Object.entries(body).filter(([, v]) => v !== undefined) as [string, string][]
+    ).toString();
+
+    const response = await fetch(`https://kabir-ke-dohe-api.vercel.app/api/couplets/search?${params}`, {
+      method: 'GET',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
     });
 
     if (!response.ok) {
@@ -31,7 +34,7 @@ export async function fetchCouplets(type: FetchType, search?: string): Promise<F
     const data = await response.json();
 
     if (data.success && data.data && data.data.posts) {
-      results = data.data.posts.map((c: Record<string, unknown>) => c.text_hi);
+      results = data.data.posts;
     } else {
       throw new Error('No results found for random Doha.');
     }
