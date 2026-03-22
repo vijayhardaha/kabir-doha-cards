@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import Link from 'next/link';
 import { AiOutlineWhatsApp, AiOutlineGithub } from 'react-icons/ai';
 
@@ -11,14 +13,14 @@ import { getShareUrl } from '@/utils/share';
  * @component
  * @returns {JSX.Element} The rendered header component.
  */
-const Header = () => (
+const Header = (): JSX.Element => (
   <header className="header" aria-label="Site header">
     <div className="container">
       <div className="header__row">
         <h1 className="header__brand">
-          <Logo aria-hidden="true" className="header__logo" />
+          <Logo className="header__logo" />
 
-          <Link href="/" className="header__title" aria-label="Kabir Doha Cards - Home page">
+          <Link href="/" className="header__title">
             Kabir Doha Cards
           </Link>
         </h1>
