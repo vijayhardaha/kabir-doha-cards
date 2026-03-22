@@ -44,7 +44,9 @@ export default function RootLayout({ children }: { children: ReactNode }): JSX.E
     <html lang="en" className={`${space.variable} ${poppins.variable} ${montserrat.variable}`}>
       <body>
         <Header />
-        <main>{children}</main>
+        <main className="main-content" aria-label="Main content area for generating and previewing Kabir doha cards">
+          {children}
+        </main>
         <Footer />
         <Toaster position="top-center" reverseOrder={true} />
       </body>

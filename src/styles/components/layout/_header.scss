@@ -4,11 +4,9 @@
 // Header - Site header
 .header {
   position: sticky;
-  z-index: vars.$z-sticky;
   z-index: vars.$z-header;
   top: 0;
-  padding: vars.$spacing-2 vars.$spacing-4;
-  padding-block: vars.$spacing-2 * 0.5;
+  padding-block: vars.$spacing-2;
   border-bottom: 1px solid vars.$color-stone-200;
   background-color: vars.$color-white;
   box-shadow: vars.$shadow-sm;
@@ -76,6 +74,7 @@
     }
 
     &--primary {
+      display: flex;
       color: vars.$color-primary-600;
     }
   }

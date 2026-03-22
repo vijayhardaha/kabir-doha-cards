@@ -12,11 +12,7 @@ import { getShareUrl } from '@/utils/share';
  * @returns {JSX.Element} The rendered footer.
  */
 const Footer = (): JSX.Element => (
-  <footer className="footer" aria-labelledby="footer-heading">
-    <span id="footer-heading" className="sr-only">
-      Site footer with information about Kabir Doha Cards
-    </span>
-
+  <footer className="footer" aria-label="Site footer with information about Kabir Doha Cards and contact details">
     <div className="footer__top">
       <div className="container">
         <p className="footer__intro">
