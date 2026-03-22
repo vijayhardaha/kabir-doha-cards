@@ -16,7 +16,7 @@ export const metadata: Metadata = SITE_METADATA;
  * @returns {Promise<JSX.Element>} The server-rendered main content.
  */
 async function KabirDohaCards(): Promise<JSX.Element> {
-  const { data } = await fetchCouplets('random');
+  const { data } = await fetchCouplets('search', ''); // Fetch all couplets for initial load, can be optimized to fetch a random one if needed.
   const selectedCouplet = data?.[0] || '';
   return <MainContent initialCouplets={data} initialCouplet={selectedCouplet} />;
 }
