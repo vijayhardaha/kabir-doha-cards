@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, type JSX } from 'react';
 
 import debounce from 'lodash/debounce';
-import { Hind } from 'next/font/google';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { RiSearchLine } from 'react-icons/ri';
 
@@ -9,8 +8,6 @@ import type { SearchModalProps } from '@/types';
 import { cn } from '@/utils/classnames';
 import fetchCouplets from '@/utils/fetchCouplets';
 import { formatCouplet } from '@/utils/preview';
-
-const hind = Hind({ weight: ['400', '700'], subsets: ['latin', 'devanagari'] });
 
 /**
  * Renders the modal used to search and select available couplets.
@@ -139,7 +136,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps):
                   <li key={index}>
                     <button
                       onClick={() => onSelect(text)}
-                      className={cn('search-modal__item', hind.className, {
+                      className={cn('search-modal__item', {
                         'search-modal__item--last': index === searchResults.length - 1,
                       })}
                       aria-label={`Select doha: ${text.substring(0, 30)}...`}

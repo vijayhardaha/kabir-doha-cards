@@ -62,8 +62,10 @@
     border: none;
     border-radius: vars.$radius-lg;
     background-color: vars.$color-white;
-    font-size: 0.875rem;
+    font-size: 1rem;
     outline: none;
+    line-height: 1.5;
+    font-weight: 500;
 
     &::placeholder {
       color: vars.$color-stone-400;
@@ -83,12 +85,13 @@
     margin-left: vars.$spacing-2;
     padding: vars.$spacing-1 vars.$spacing-3;
     border: 1px solid vars.$color-stone-200;
-    border-radius: vars.$radius-lg;
+    border-radius: vars.$radius-md;
     background-color: vars.$color-white;
     box-shadow: vars.$shadow-sm;
     color: vars.$color-stone-500;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 600;
+    text-transform: uppercase;
     cursor: pointer;
     transition:
       color vars.$transition-base,
@@ -129,6 +132,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    font-family: vars.$font-poppins;
   }
 
   &__item {
@@ -139,9 +143,9 @@
     border-bottom: 1px solid vars.$color-stone-100;
     background: none;
     text-align: left;
-    font-size: 0.875rem;
+    font-size: 1rem;
+    line-height: 1.5;
     font-weight: 500;
-    letter-spacing: 0.025em;
     white-space: pre-wrap;
     cursor: pointer;
     transition: background-color vars.$transition-base;
