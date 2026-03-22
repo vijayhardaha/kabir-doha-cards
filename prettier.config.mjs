@@ -32,9 +32,6 @@ const config = {
   experimentalOperatorPosition: 'start', // Place operators at line start in multiline expressions
   objectWrap: 'collapse', // Preserve developer's object wrapping where present
 
-  // ---- Plugins ----
-  plugins: ['prettier-plugin-tailwindcss'],
-
   // ---- Overrides (Grouped by Language) ----
   overrides: [
     {
