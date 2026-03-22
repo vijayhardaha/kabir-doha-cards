@@ -3,27 +3,27 @@
 
 // OptionsBox - Main toolbar container
 .options-box {
-  margin-top: vars.$spacing-4;
-  margin-bottom: vars.$spacing-4;
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-5;
+  margin-top: vars.$spacing-4;
+  margin-bottom: vars.$spacing-4;
   padding: vars.$spacing-2 0;
   border-radius: vars.$radius-lg;
   background-color: vars.$color-white;
+  gap: vars.$spacing-5;
 
   @include md {
     position: sticky;
-    bottom: vars.$spacing-4;
     z-index: vars.$z-sticky;
+    bottom: vars.$spacing-4;
     flex-direction: row;
     align-items: center;
-    gap: vars.$spacing-4;
-    padding-inline: vars.$spacing-6;
+    margin: vars.$spacing-8;
     padding-block: vars.$spacing-3;
+    padding-inline: vars.$spacing-6;
     border: 1px solid vars.$color-stone-200;
     box-shadow: vars.$shadow-lg;
-    margin: vars.$spacing-8;
+    gap: vars.$spacing-4;
   }
 
   &__row {

@@ -12,9 +12,9 @@
 
   &__mobile-btn {
     position: absolute;
+    z-index: 20;
     right: vars.$spacing-3;
     bottom: vars.$spacing-3;
-    z-index: 20;
 
     @include md {
       display: none;
@@ -22,13 +22,13 @@
   }
 
   &__loading {
-    position: absolute;
-    inset: 0;
-    z-index: 30;
     display: flex;
+    position: absolute;
+    z-index: 30;
     align-items: flex-end;
     justify-content: flex-end;
     padding: vars.$spacing-6;
     background-color: rgba(vars.$color-white, 0.5);
+    inset: 0;
   }
 }

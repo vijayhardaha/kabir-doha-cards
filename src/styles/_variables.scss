@@ -28,8 +28,8 @@ $border-thin: 1px;
 $border-medium: 2px;
 
 // Colors
-$color-white: #ffffff;
-$color-black: #000000;
+$color-white: #fff;
+$color-black: #000;
 $color-stone-100: #f5f5f4;
 $color-stone-200: #e7e5e4;
 $color-stone-300: #d6d3d1;
@@ -40,7 +40,6 @@ $color-stone-800: #292524;
 $color-stone-900: #1c1917;
 $color-slate-900: #0f172a;
 $color-gray-500: #6b7280;
-
 $color-primary-50: #effef3;
 $color-primary-100: #dbfde6;
 $color-primary-200: #b9f9cc;
@@ -62,15 +61,14 @@ $z-modal-backdrop: 40;
 $z-modal: 50;
 
 // Shadows
-$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-$shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%);
+$shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%);
 
 // Transitions
 $transition-fast: 150ms;
 $transition-base: 300ms;
-
 $font-sans: var(--font-sans);
 $font-poppins: var(--font-poppins);
 $font-montserrat: var(--font-montserrat);

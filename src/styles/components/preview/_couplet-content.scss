@@ -1,8 +1,8 @@
 // CoupletContent - Main content wrapper
 .couplet-content {
+  display: flex;
   position: relative;
   z-index: 20;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
@@ -12,8 +12,8 @@
 
 // QuoteIcon - Decorative quote icon
 .quote-icon {
-  position: relative;
   display: block;
+  position: relative;
   margin-bottom: var(--kdc-quote-block-mb);
   margin-left: var(--kdc-quote-block-ml);
   color: var(--kdc-color);
@@ -26,13 +26,13 @@
 
 // CoupletText - Main couplet text
 .couplet-text {
-  position: relative;
   display: block;
+  position: relative;
   width: 100%;
   font-family: var(--font-poppins);
   font-size: var(--kdc-couplet-text-fs);
-  line-height: var(--kdc-couplet-text-lh);
   font-weight: 700;
+  line-height: var(--kdc-couplet-text-lh);
 
   &__line {
     display: block;
@@ -45,22 +45,22 @@
 
 // AuthorSignature - Author name with underline
 .author-sign {
-  position: relative;
   display: block;
+  position: relative;
   margin-top: var(--kdc-author-sign-block-mt);
 
   &__name {
     display: block;
     font-size: var(--kdc-author-sign-text-fs);
-    line-height: var(--kdc-author-sign-text-lh);
     font-weight: 600;
+    line-height: var(--kdc-author-sign-text-lh);
     white-space: nowrap;
   }
 
   &__underline {
+    display: block;
     position: relative;
     left: var(--kdc-author-sign-underline-l);
-    display: block;
     color: var(--kdc-color);
   }
 
@@ -73,31 +73,31 @@
 // SideAuthor - Rotated title on side
 .side-author {
   position: absolute;
-  bottom: 0;
   z-index: 10;
+  bottom: 0;
   padding-left: var(--kdc-sideauth-block-pl);
 
   &__text {
-    position: relative;
     display: flex;
+    position: relative;
     align-items: center;
-    font-family: var(--font-montserrat);
-    font-size: var(--kdc-sideauth-text-fs);
-    line-height: var(--kdc-sideauth-text-lh);
-    letter-spacing: var(--kdc-sideauth-text-ls);
-    text-transform: uppercase;
     transform: rotate(-90deg);
     transform-origin: 0 var(--kdc-sideauth-text-to);
     color: var(--kdc-color);
+    font-family: var(--font-montserrat);
+    font-size: var(--kdc-sideauth-text-fs);
+    letter-spacing: var(--kdc-sideauth-text-ls);
+    line-height: var(--kdc-sideauth-text-lh);
+    text-transform: uppercase;
   }
 
   &__line {
-    position: relative;
     display: block;
-    margin-right: var(--kdc-sideauth-line-mr);
+    position: relative;
     width: var(--kdc-sideauth-line-w);
     height: 2px;
-    background-color: currentColor;
+    margin-right: var(--kdc-sideauth-line-mr);
+    background-color: currentcolor;
   }
 
   &__title {
@@ -109,9 +109,9 @@
 // BackgroundElement - Decorative blob
 .bg-element {
   position: absolute;
+  z-index: 10;
   top: var(--kdc-blob-t);
   right: var(--kdc-blob-r);
-  z-index: 10;
   color: var(--kdc-color);
 
   &__svg {
@@ -122,12 +122,12 @@
 
 // WebsiteInfo - Footer info text
 .website-info {
-  position: relative;
   display: block;
+  position: relative;
   margin-top: var(--kdc-website-info-mt);
+  color: #a8a29e;
   font-size: var(--kdc-website-info-fs);
   line-height: var(--kdc-website-info-lh);
-  color: #a8a29e;
   white-space: nowrap;
 
   &__link {

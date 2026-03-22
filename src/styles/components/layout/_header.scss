@@ -4,14 +4,14 @@
 // Header - Site header
 .header {
   position: sticky;
-  top: 0;
   z-index: vars.$z-sticky;
+  z-index: vars.$z-header;
+  top: 0;
+  padding: vars.$spacing-2 vars.$spacing-4;
   padding-block: vars.$spacing-2 * 0.5;
+  border-bottom: 1px solid vars.$color-stone-200;
   background-color: vars.$color-white;
   box-shadow: vars.$shadow-sm;
-  padding: vars.$spacing-2 vars.$spacing-4;
-  border-bottom: 1px solid vars.$color-stone-200;
-  z-index: vars.$z-header;
 
   &__row {
     @include flex-between;
@@ -20,10 +20,10 @@
   &__brand {
     display: flex;
     align-items: center;
-    gap: vars.$spacing-2;
-    font-weight: 700;
-    color: vars.$color-stone-900;
     margin: 0;
+    color: vars.$color-stone-900;
+    font-weight: 700;
+    gap: vars.$spacing-2;
   }
 
   &__logo {
@@ -62,9 +62,9 @@
   &__link {
     display: none;
     align-items: center;
+    color: vars.$color-stone-800;
     font-size: 0.875rem;
     font-weight: 500;
-    color: vars.$color-stone-800;
     text-decoration: none;
 
     @include sm {

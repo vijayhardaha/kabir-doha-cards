@@ -2,14 +2,14 @@
 @use "mixins" as *;
 
 body {
-  font-family: vars.$font-sans;
-  color: vars.$color-stone-900;
   background-color: vars.$color-white;
+  color: vars.$color-stone-900;
+  font-family: vars.$font-sans;
   font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 a {
@@ -18,19 +18,19 @@ a {
 }
 
 *,
-:after,
-:before,
+::after,
+::before,
 ::backdrop {
   box-sizing: border-box;
-  border: 0 solid;
   margin: 0;
   padding: 0;
+  border: 0 solid;
 }
 
 // Main container utility
 .container {
-  margin-inline: auto;
   max-width: 64rem;
+  margin-inline: auto;
   padding-inline: vars.$spacing-4;
 
   @include sm {
@@ -45,11 +45,11 @@ a {
 // Base button styles
 button {
   position: relative;
-  cursor: pointer;
   transition:
     color vars.$transition-base ease-in-out,
     background-color vars.$transition-base ease-in-out;
   outline: none;
+  cursor: pointer;
 
   &:focus {
     outline: none;
@@ -61,26 +61,27 @@ button {
   }
 
   &:disabled {
-    cursor: not-allowed;
     opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
 // Icon button (desktop)
 .icon-btn {
   @include flex-center;
+
   display: none;
   width: 3rem;
   height: 3rem;
   padding: vars.$spacing-2;
-  border-radius: vars.$radius-full;
-  border: vars.$border-medium solid vars.$color-primary-600;
-  color: vars.$color-primary-600;
-  background: vars.$color-white;
-  font-size: 1.125rem;
   transition:
     background-color vars.$transition-base,
     color vars.$transition-base;
+  border: vars.$border-medium solid vars.$color-primary-600;
+  border-radius: vars.$radius-full;
+  background: vars.$color-white;
+  color: vars.$color-primary-600;
+  font-size: 1.125rem;
 
   @include md {
     display: inline-flex;
@@ -88,8 +89,8 @@ button {
 
   &:hover {
     background-color: vars.$color-primary-600;
-    color: vars.$color-white;
     box-shadow: 0 0 0 4px rgba(vars.$color-primary-300, 0.65);
+    color: vars.$color-white;
   }
 
   &:focus-visible {
@@ -108,15 +109,15 @@ button {
   justify-content: center;
   height: 2.5rem;
   padding-inline: vars.$spacing-4;
-  border-radius: vars.$radius-lg;
-  border: vars.$border-medium solid vars.$color-primary-600;
-  font-weight: 600;
-  font-size: 0.875rem;
-  background-color: vars.$color-primary-600;
-  color: vars.$color-white;
   transition:
     background-color vars.$transition-base,
     color vars.$transition-base;
+  border: vars.$border-medium solid vars.$color-primary-600;
+  border-radius: vars.$radius-lg;
+  background-color: vars.$color-primary-600;
+  color: vars.$color-white;
+  font-size: 0.875rem;
+  font-weight: 600;
 
   @include md {
     display: none;
@@ -154,6 +155,7 @@ button {
 // Random button
 .random-btn {
   @include flex-center;
+
   width: 3.75rem;
   height: 3.75rem;
   padding: vars.$spacing-2;
@@ -177,8 +179,8 @@ button {
 .range-slider {
   &__track {
     display: flex;
-    height: 1.5rem;
     width: 100%;
+    height: 1.5rem;
   }
 
   &__track-inner {
@@ -191,11 +193,12 @@ button {
 
   &__thumb {
     @include flex-center;
+
     width: 1.5rem;
     height: 1.5rem;
     border-radius: vars.$radius-full;
-    background-color: vars.$color-primary-600;
     outline: none;
+    background-color: vars.$color-primary-600;
     cursor: grab;
 
     &:focus-visible {
@@ -203,15 +206,15 @@ button {
     }
 
     &--dragging {
-      cursor: grabbing;
       box-shadow: 0 0 0 4px rgba(vars.$color-primary-300, 0.65);
+      cursor: grabbing;
     }
   }
 
   &__tooltip {
+    display: flex;
     position: absolute;
     top: -2.25rem;
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: vars.$spacing-1 vars.$spacing-3;
@@ -227,7 +230,7 @@ button {
       bottom: -6px;
       left: 50%;
       transform: translateX(-50%);
-      border-width: 6px 6px 0 6px;
+      border-width: 6px 6px 0;
       border-style: solid;
       border-color: vars.$color-slate-900 transparent transparent transparent;
     }
