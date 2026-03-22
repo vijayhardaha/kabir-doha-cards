@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import Link from 'next/link';
 import { MdArrowOutward } from 'react-icons/md';
 
@@ -11,7 +13,7 @@ import { getShareUrl } from '@/utils/share';
  * @component
  * @returns {JSX.Element} The rendered footer section.
  */
-const Footer = () => (
+const Footer = (): JSX.Element => (
   <footer className="footer" aria-labelledby="footer-heading">
     <span id="footer-heading" className="sr-only">
       Site footer with information about Kabir Doha Cards
