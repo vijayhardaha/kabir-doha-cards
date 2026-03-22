@@ -10,15 +10,13 @@ import { calcFontSize } from '@/utils/preview';
 
 interface MainContentProps {
   initialCouplets: Couplet[];
+  initialCouplet?: string;
 }
 
-const MainContent = ({ initialCouplets }: MainContentProps): JSX.Element => {
-  const [options, setOptions] = useState<CardOptions>(() => {
-    if (initialCouplets.length > 0) {
-      const randomIndex = Math.floor(Math.random() * initialCouplets.length);
-      return { ...DEFAULT_CARD_OPTIONS, couplet: initialCouplets[randomIndex] };
-    }
-    return DEFAULT_CARD_OPTIONS;
+const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX.Element => {
+  const [options, setOptions] = useState<CardOptions>({
+    ...DEFAULT_CARD_OPTIONS,
+    couplet: initialCouplet || initialCouplets[0] || '',
   });
   const [elementWidth, setElementWidth] = useState(600);
   const elementRef = useRef<HTMLDivElement>(null);

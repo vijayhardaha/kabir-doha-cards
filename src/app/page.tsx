@@ -11,7 +11,8 @@ export const metadata: Metadata = SITE_METADATA;
 
 async function KabirDohaCards(): Promise<JSX.Element> {
   const { data } = await fetchCouplets('random');
-  return <MainContent initialCouplets={data} />;
+  const selectedCouplet = data?.[0] || '';
+  return <MainContent initialCouplets={data} initialCouplet={selectedCouplet} />;
 }
 
 function LoadingFallback(): JSX.Element {
