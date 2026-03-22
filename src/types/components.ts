@@ -64,7 +64,6 @@ export interface PreviewBoxProps {
 
 export interface CoupletTextProps {
   couplet: string;
-  screenReaderText?: string;
 }
 
 export interface CoupletContentProps {

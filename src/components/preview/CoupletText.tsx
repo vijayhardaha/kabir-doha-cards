@@ -12,14 +12,13 @@ import { formatCouplet } from '@/utils/preview';
  * @param props - The component props
  * @returns The rendered couplet text component
  */
-const CoupletText = ({ couplet, screenReaderText }: CoupletTextProps): JSX.Element => {
+const CoupletText = ({ couplet }: CoupletTextProps): JSX.Element => {
   const formattedLines = useMemo(() => formatCouplet(couplet, 4), [couplet]);
 
   return (
-    <div className="couplet-text" aria-label={screenReaderText || 'Couplet text'}>
-      {screenReaderText && <span className="sr-only">{screenReaderText}</span>}
+    <div className="couplet-text">
       {formattedLines.map((line: string, index: number) => (
-        <span className="couplet-text__line" key={index} aria-hidden={!!screenReaderText}>
+        <span className="couplet-text__line" key={index}>
           {line}
         </span>
       ))}
