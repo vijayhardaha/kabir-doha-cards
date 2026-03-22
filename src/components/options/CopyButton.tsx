@@ -5,19 +5,14 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { generateBlob } from '@/utils/image';
 import { showToast } from '@/utils/toast';
 
-import { ActionButtonIcon, type ActionType } from './ActionButton';
-
-interface CopyButtonProps {
-  type?: ActionType;
-}
+import { ActionButtonIcon } from './ActionButton';
 
 /**
  * Copies the rendered doha card image to the clipboard.
  *
- * @param {CopyButtonProps} props - The component props.
  * @returns {JSX.Element} The rendered copy actions.
  */
-const CopyButton = ({ type = 'copy' }: CopyButtonProps): JSX.Element => {
+const CopyButton = (): JSX.Element => {
   const [copying, setCopying] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -65,7 +60,7 @@ const CopyButton = ({ type = 'copy' }: CopyButtonProps): JSX.Element => {
         disabled={copying}
         aria-busy={copying}
       >
-        <ActionButtonIcon type={type} loading={copying} done={isCopied} />
+        <ActionButtonIcon type="copy" loading={copying} done={isCopied} />
       </button>
 
       <button
@@ -75,7 +70,7 @@ const CopyButton = ({ type = 'copy' }: CopyButtonProps): JSX.Element => {
         disabled={copying}
         aria-busy={copying}
       >
-        <ActionButtonIcon type={type} loading={copying} done={isCopied} textBtn />
+        <ActionButtonIcon type="copy" loading={copying} done={isCopied} textBtn />
         {copying ? 'Copying...' : isCopied ? 'Copied!' : 'Copy'}
       </button>
     </>

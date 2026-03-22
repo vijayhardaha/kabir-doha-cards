@@ -5,19 +5,14 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { generateBlob, triggerDownload } from '@/utils/image';
 import { showToast } from '@/utils/toast';
 
-import { ActionButtonIcon, type ActionType } from './ActionButton';
-
-interface DownloadButtonProps {
-  type?: ActionType;
-}
+import { ActionButtonIcon } from './ActionButton';
 
 /**
  * Downloads the rendered doha card image to the local device.
  *
- * @param {DownloadButtonProps} props - The component props.
  * @returns {JSX.Element} The rendered download actions.
  */
-const DownloadButton = ({ type = 'download' }: DownloadButtonProps): JSX.Element => {
+const DownloadButton = (): JSX.Element => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
@@ -63,7 +58,7 @@ const DownloadButton = ({ type = 'download' }: DownloadButtonProps): JSX.Element
         disabled={downloading}
         aria-busy={downloading}
       >
-        <ActionButtonIcon type={type} loading={downloading} done={downloaded} />
+        <ActionButtonIcon type="download" loading={downloading} done={downloaded} />
       </button>
 
       <button
@@ -73,7 +68,7 @@ const DownloadButton = ({ type = 'download' }: DownloadButtonProps): JSX.Element
         disabled={downloading}
         aria-busy={downloading}
       >
-        <ActionButtonIcon type={type} loading={downloading} done={downloaded} textBtn />
+        <ActionButtonIcon type="download" loading={downloading} done={downloaded} textBtn />
         {downloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
       </button>
     </>
