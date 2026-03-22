@@ -6,7 +6,6 @@ export type {
   CardOptions,
   ColorInputProps,
   RandomButtonProps,
-  RangeSliderInputProps,
   SearchInputProps,
   SearchModalProps,
   OptionsBoxProps,

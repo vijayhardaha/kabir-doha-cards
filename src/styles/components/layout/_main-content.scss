@@ -2,20 +2,19 @@
 @use "../../mixins" as *;
 
 .site-description {
-  max-width: 600px;
+  max-width: 37.5em;
   margin: 0 auto;
   padding: vars.$spacing-4 0;
   font-weight: 500;
 }
 
-// MainContent - Main content wrapper
 .main-content {
   position: relative;
 
   &__preview-wrapper {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 37.5em;
     margin-inline: auto;
     border: 2px dashed vars.$color-stone-200;
   }
@@ -24,5 +23,18 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  &__preview-frame {
+    display: flex;
+    position: absolute;
+    inset: 0;
+  }
+
+  &__preview-canvas {
+    position: absolute;
+    width: 37.5em;
+    height: 37.5em;
   }
 }

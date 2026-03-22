@@ -1,7 +1,6 @@
 @use "../../variables" as vars;
 @use "../../mixins" as *;
 
-// OptionsBox - Main toolbar container
 .options-box {
   display: flex;
   flex-direction: column;
@@ -10,7 +9,7 @@
   padding: vars.$spacing-2 0;
   border-radius: vars.$radius-lg;
   background-color: vars.$color-white;
-  gap: vars.$spacing-5;
+  gap: vars.$spacing-4;
 
   @include md {
     position: sticky;
@@ -38,35 +37,6 @@
     }
   }
 
-  &__row--expand {
-    flex: 1;
-
-    @include md {
-      flex-direction: row;
-      align-items: center;
-      gap: vars.$spacing-3;
-    }
-  }
-
-  &__control {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    gap: vars.$spacing-3;
-
-    &-label {
-      width: 2rem;
-      height: 2rem;
-      color: vars.$color-stone-700;
-    }
-
-    &-slider {
-      flex: 1;
-      margin-right: vars.$spacing-4;
-      margin-left: vars.$spacing-2;
-    }
-  }
-
   &__actions {
     display: flex;
     flex-direction: row;
@@ -75,7 +45,7 @@
     gap: vars.$spacing-3;
     margin-top: vars.$spacing-4;
 
-    .text-btn{
+    .text-btn {
       width: 100%;
     }
 
@@ -84,7 +54,6 @@
       margin-top: 0;
       gap: vars.$spacing-3;
     }
-
   }
 
   &__random-wrapper {

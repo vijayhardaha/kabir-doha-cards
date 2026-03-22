@@ -1,6 +1,5 @@
 import type { JSX } from 'react';
 
-import RandomButton from '@/components/options/RandomButton';
 import BackgroundElement from '@/components/preview/BackgroundElement';
 import CoupletContent from '@/components/preview/CoupletContent';
 import SideAuthor from '@/components/preview/SideAuthor';
@@ -12,15 +11,10 @@ import type { PreviewBoxProps } from '@/types';
  * @param {PreviewBoxProps} props - The component props.
  * @returns {JSX.Element} The rendered preview box.
  */
-const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element => {
+const PreviewBox = ({ options }: PreviewBoxProps): JSX.Element => {
   return (
     <>
-      <div className="preview-box__mobile-btn">
-        <RandomButton options={options} updateOptions={updateOptions} />
-      </div>
-
       <div
-        id="doha-preview"
         className="preview-box"
         role="region"
         aria-label="Doha card presentation"

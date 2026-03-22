@@ -9,8 +9,6 @@ export type Setter<T> = (value: T | ((prev: T) => T)) => void;
 export interface CardOptions {
   color: string;
   couplet: string;
-  fontSize: number;
-  lineHeight: number;
   loading: boolean;
 }
 
@@ -29,19 +27,6 @@ export interface ColorInputProps {
 export interface RandomButtonProps {
   options: CardOptions;
   updateOptions: Setter<Partial<CardOptions>>;
-}
-
-/**
- * Defines props for a reusable single-value range slider.
- */
-export interface RangeSliderInputProps {
-  min: number;
-  max: number;
-  step: number;
-  value: number;
-  setValue: (val: number) => void;
-  ariaLabel?: string;
-  ariaValueText?: (val: number) => string;
 }
 
 /**

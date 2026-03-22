@@ -1,12 +1,11 @@
 @use "../../variables" as vars;
 @use "../../mixins" as *;
 
-// PreviewBox - Doha card preview container
 .preview-box {
   position: relative;
   z-index: 10;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
   overflow: hidden;
   background-color: vars.$color-white;
 

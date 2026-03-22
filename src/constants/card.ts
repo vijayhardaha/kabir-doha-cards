@@ -5,10 +5,4 @@ import type { CardOptions } from '@/types';
  *
  * @see CardOptions
  */
-export const DEFAULT_CARD_OPTIONS: CardOptions = {
-  color: '#12b848',
-  couplet: '',
-  fontSize: 3,
-  lineHeight: 4.875,
-  loading: false,
-};
+export const DEFAULT_CARD_OPTIONS: CardOptions = { color: '#12b848', couplet: '', loading: false };
