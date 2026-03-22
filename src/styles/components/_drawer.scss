@@ -1,0 +1,81 @@
+@use "../variables" as vars;
+
+// Shared keyframe animations for drawer components
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-left-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.drawer {
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: vars.$z-modal-backdrop;
+    background-color: rgba(vars.$color-black, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  &__content {
+    position: fixed;
+    z-index: vars.$z-modal;
+    background-color: vars.$color-white;
+
+    &--bottom {
+      right: 0;
+      bottom: 0;
+      left: 0;
+      animation: slide-up 0.3s ease-out;
+    }
+
+    &--right {
+      top: 0;
+      right: 0;
+      animation: slide-left-in 0.3s ease-out;
+    }
+  }
+
+  &--closing {
+    &.drawer__content--bottom {
+      animation: slide-down 0.3s ease-in forwards;
+    }
+
+    &.drawer__content--right {
+      animation: slide-right-out 0.3s ease-in forwards;
+    }
+  }
+}

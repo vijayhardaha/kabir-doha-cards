@@ -9,10 +9,13 @@
 @use "components/layout/footer";
 @use "components/layout/main-content";
 
+// Drawer base
+@use "components/drawer";
+
 // Options components
 @use "components/options/options-box";
 @use "components/options/search-input";
-@use "components/options/search-modal";
+@use "components/options/search-drawer";
 @use "components/options/color-input";
 @use "components/options/image-drawer";
 

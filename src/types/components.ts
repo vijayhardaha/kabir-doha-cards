@@ -38,16 +38,6 @@ export interface SearchInputProps {
 }
 
 /**
- * Describes props for the searchable doha selection modal.
- */
-export interface SearchModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  couplets: string[];
-  onSelect: (selectedDoha: string) => void;
-}
-
-/**
  * Defines props for the main card customization toolbar.
  */
 export interface OptionsBoxProps {

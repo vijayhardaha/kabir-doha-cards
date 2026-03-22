@@ -8,7 +8,6 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import '@/styles/globals.scss';
 
-// Configure the primary display font used across the layout.
 const space = Space_Grotesk({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
@@ -17,7 +16,6 @@ const space = Space_Grotesk({
   variable: '--font-space-grotesk',
 });
 
-// Configure the body font used for Latin and Devanagari content.
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin', 'devanagari'],
@@ -25,7 +23,6 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-// Configure the supporting accent font used in selected UI elements.
 const montserrat = Montserrat({
   weight: ['400', '500'],
   subsets: ['latin'],
@@ -34,10 +31,12 @@ const montserrat = Montserrat({
 });
 
 /**
- * Renders the shared document shell, fonts, and global site chrome.
+ * Root HTML layout used across the application routes.
  *
- * @param {{ children: ReactNode }} props - The layout props.
- * @returns {JSX.Element} The root document layout.
+ * Provides global fonts, header, footer, and the main content wrapper.
+ *
+ * @param {{ children: ReactNode }} props - The nested page content.
+ * @returns {JSX.Element} The root layout element.
  */
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (

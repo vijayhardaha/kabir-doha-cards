@@ -1,8 +1,8 @@
-import { useState, type JSX } from 'react';
+import { useCallback, useState, type JSX } from 'react';
 
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { useImageDrawer } from '@/hooks/useImageDrawer';
+import { useImageDownload } from '@/hooks/useImageDownload';
 import { showToast } from '@/utils/toast';
 
 import { ActionButtonIcon } from './ActionButton';
@@ -14,8 +14,9 @@ import { ImageDrawer } from './ImageDrawer';
  * @returns {JSX.Element} The rendered download actions.
  */
 const DownloadButton = (): JSX.Element => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
-  const { isDownloading, handleDownload } = useImageDrawer();
+  const download = useImageDownload();
 
   const onDownloadSuccess = (): void => {
     setDownloaded(true);
@@ -24,10 +25,15 @@ const DownloadButton = (): JSX.Element => {
   };
 
   const handleClick = async (): Promise<void> => {
-    await handleDownload(onDownloadSuccess);
+    await download.handleDownload(() => setIsDrawerOpen(true), onDownloadSuccess);
   };
 
-  const screenReaderText = isDownloading
+  const closeDrawer = useCallback((): void => {
+    download.releaseBlobUrl();
+    setIsDrawerOpen(false);
+  }, [download]);
+
+  const screenReaderText = download.isDownloading
     ? 'Downloading your Doha card as an image'
     : downloaded
       ? 'Doha card successfully downloaded'
@@ -42,25 +48,33 @@ const DownloadButton = (): JSX.Element => {
         className="icon-btn"
         aria-label={screenReaderText}
         data-tooltip-id="download-doha-tooltip"
-        data-tooltip-content={isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download image'}
-        disabled={isDownloading}
-        aria-busy={isDownloading}
+        data-tooltip-content={download.isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download image'}
+        disabled={download.isDownloading}
+        aria-busy={download.isDownloading}
       >
-        <ActionButtonIcon type="download" loading={isDownloading} done={downloaded} />
+        <ActionButtonIcon type="download" loading={download.isDownloading} done={downloaded} />
       </button>
 
       <button
         onClick={handleClick}
         className="text-btn"
         aria-label={screenReaderText}
-        disabled={isDownloading}
-        aria-busy={isDownloading}
+        disabled={download.isDownloading}
+        aria-busy={download.isDownloading}
       >
-        <ActionButtonIcon type="download" loading={isDownloading} done={downloaded} textBtn />
-        {isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
+        <ActionButtonIcon type="download" loading={download.isDownloading} done={downloaded} textBtn />
+        {download.isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
       </button>
 
-      <ImageDrawer />
+      <ImageDrawer
+        open={isDrawerOpen}
+        onClose={closeDrawer}
+        blobUrl={download.blobUrl}
+        canShare={download.canShare}
+        isSharing={download.isSharing}
+        onOpen={download.handleOpen}
+        onShare={download.handleShare}
+      />
     </>
   );
 };

@@ -7,7 +7,6 @@ export type {
   ColorInputProps,
   RandomButtonProps,
   SearchInputProps,
-  SearchModalProps,
   OptionsBoxProps,
   PreviewBoxProps,
   CoupletTextProps,

@@ -5,11 +5,12 @@ import { useState, useLayoutEffect, useRef, type JSX } from 'react';
 import OptionsBox from '@/components/options/OptionsBox';
 import PreviewBox from '@/components/preview/PreviewBox';
 import { DEFAULT_CARD_OPTIONS } from '@/constants/card';
-import { ImageDrawerProvider } from '@/hooks/useImageDrawer';
 import type { CardOptions, Couplet, Setter } from '@/types';
 
 import RandomButton from './options/RandomButton';
 
+// The base design width used for scaling the preview canvas.
+// Keep in sync with CSS rules that expect a 600px design width.
 const BASE_WIDTH = 600;
 
 interface MainContentProps {
@@ -17,6 +18,15 @@ interface MainContentProps {
   initialCouplet?: string;
 }
 
+/**
+ * Main content area that hosts the preview and options controls.
+ *
+ * Handles responsive scaling of the preview canvas and manages local
+ * card options state propagated to child components.
+ *
+ * @param {MainContentProps} props - Initial couplets and optional initial selection.
+ * @returns {JSX.Element} The rendered main content area.
+ */
 const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX.Element => {
   const [options, setOptions] = useState<CardOptions>({
     ...DEFAULT_CARD_OPTIONS,
@@ -26,6 +36,8 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Apply partial updates to the card options state. Accepts either a
+  // partial object or an updater function to mirror React's setState API.
   const updateOptions: Setter<Partial<CardOptions>> = (update) => {
     setOptions((prev) => (typeof update === 'function' ? { ...prev, ...update(prev) } : { ...prev, ...update }));
   };
@@ -77,9 +89,7 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
         </div>
       </div>
 
-      <ImageDrawerProvider>
-        <OptionsBox options={options} updateOptions={updateOptions} couplets={initialCouplets} />
-      </ImageDrawerProvider>
+      <OptionsBox options={options} updateOptions={updateOptions} couplets={initialCouplets} />
     </main>
   );
 };

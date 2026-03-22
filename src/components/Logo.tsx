@@ -2,6 +2,15 @@ import type { JSX, SVGProps } from 'react';
 
 type LogoProps = SVGProps<SVGSVGElement>;
 
+/**
+ * SVG logo for Kabir Doha Cards.
+ *
+ * The logo is exported as a small, accessible SVG component that accepts
+ * standard SVG props such as `className` and `width`/`height`.
+ *
+ * @param {LogoProps} props - Standard SVG element properties.
+ * @returns {JSX.Element} The logo SVG element.
+ */
 const Logo = ({ className, ...props }: LogoProps): JSX.Element => (
   <svg
     {...props}

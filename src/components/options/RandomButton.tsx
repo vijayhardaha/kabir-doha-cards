@@ -8,8 +8,18 @@ import type { RandomButtonProps } from '@/types';
 import fetchCouplets from '@/utils/fetch-couplets';
 import { showToast } from '@/utils/toast';
 
+/**
+ * Button that fetches and applies a random doha to the current options.
+ *
+ * Disables itself while a fetch is in flight and shows toast feedback
+ * on error or when no results are found.
+ *
+ * @param {RandomButtonProps} props - The current options and updater.
+ * @returns {JSX.Element} The rendered randomize button.
+ */
 const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Element => {
   const handleClick = async (): Promise<void> => {
+    // Prevent concurrent fetches while the component is already loading.
     if (options.loading) return;
 
     updateOptions({ loading: true });

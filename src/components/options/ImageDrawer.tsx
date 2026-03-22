@@ -1,65 +1,63 @@
-import { useEffect, useRef, type JSX } from 'react';
+'use client';
+
+import type { JSX } from 'react';
 
 import Image from 'next/image';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { TbExternalLink, TbShare } from 'react-icons/tb';
 
-import { useImageDrawer } from '@/hooks/useImageDrawer';
+import { Drawer } from '@/components/drawer/Drawer';
 
-const ImageDrawer = (): JSX.Element | null => {
-  const { blobUrl, isDrawerOpen, isDownloading, canShare, handleOpen, handleShare, handleClose } = useImageDrawer();
-  const drawerRef = useRef<HTMLDivElement>(null);
+interface ImageDrawerProps {
+  open: boolean;
+  onClose: () => void;
+  blobUrl: string | null;
+  canShare: boolean;
+  isSharing: boolean;
+  onOpen: () => void;
+  onShare: () => Promise<void>;
+}
 
-  useEffect(() => {
-    if (!isDrawerOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (drawerRef.current && !drawerRef.current.contains(event.target as Node)) {
-        handleClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isDrawerOpen, handleClose]);
-
-  if (!isDrawerOpen || !blobUrl) return null;
-
-  return (
-    <>
-      <div className="image-drawer__overlay" aria-hidden="true" />
-      <div className="image-drawer" ref={drawerRef} role="dialog" aria-modal="true" aria-label="Download options">
-        <div className="image-drawer__content">
-          <div className="image-drawer__image-wrapper">
-            <Image src={blobUrl} alt="Preview" className="image-drawer__image" width={400} height={400} />
-          </div>
-
-          <div className="image-drawer__actions">
-            <button
-              onClick={handleOpen}
-              className="image-drawer__btn image-drawer__btn--primary"
-              disabled={isDownloading}
-            >
-              {isDownloading ? (
-                <PiSpinnerGapLight aria-hidden="true" size={18} className="image-drawer__btn-icon animate-spin" />
-              ) : (
-                <TbExternalLink aria-hidden="true" size={18} className="image-drawer__btn-icon" />
-              )}
-              Open
-            </button>
-
-            {/* Only show the share action when the device supports file sharing. */}
-            {canShare && (
-              <button onClick={handleShare} className="image-drawer__btn image-drawer__btn--secondary">
-                <TbShare aria-hidden="true" size={18} className="image-drawer__btn-icon" />
-                Share
-              </button>
-            )}
-          </div>
-        </div>
+/**
+ * Mobile drawer displaying the generated image with open and share actions.
+ *
+ * @param {ImageDrawerProps} props - The drawer props.
+ * @returns {JSX.Element} The rendered image drawer.
+ */
+const ImageDrawer = ({
+  open,
+  onClose,
+  blobUrl,
+  canShare,
+  isSharing,
+  onOpen,
+  onShare,
+}: ImageDrawerProps): JSX.Element => (
+  <Drawer open={open} onClose={onClose} direction="bottom" ariaLabel="Download options" className="image-drawer">
+    <div className="image-drawer__content">
+      <div className="image-drawer__image-wrapper">
+        <Image src={blobUrl || ''} alt="Preview" className="image-drawer__image" width={400} height={400} />
       </div>
-    </>
-  );
-};
+
+      <div className="image-drawer__actions">
+        <button onClick={onOpen} className="image-drawer__btn image-drawer__btn--primary">
+          <TbExternalLink aria-hidden="true" size={18} className="image-drawer__btn-icon" />
+          Open
+        </button>
+
+        {canShare && (
+          <button onClick={onShare} className="image-drawer__btn image-drawer__btn--secondary" disabled={isSharing}>
+            {isSharing ? (
+              <PiSpinnerGapLight aria-hidden="true" size={18} className="image-drawer__btn-icon animate-spin" />
+            ) : (
+              <TbShare aria-hidden="true" size={18} className="image-drawer__btn-icon" />
+            )}
+            Share
+          </button>
+        )}
+      </div>
+    </div>
+  </Drawer>
+);
 
 export { ImageDrawer };
