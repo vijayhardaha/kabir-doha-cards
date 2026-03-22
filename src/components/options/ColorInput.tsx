@@ -4,14 +4,6 @@ import { PICKER_COLORS } from '@/constants/colors';
 import type { ColorInputProps } from '@/types';
 import { cn } from '@/utils/classnames';
 
-/**
- * ColorInput component that displays a color picker with a dropdown color palette.
- * Provides keyboard and screen reader support.
- *
- * @component
- * @param props - Component props
- * @returns The rendered color picker component
- */
 const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a color' }: ColorInputProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const colorPickerRef = useRef<HTMLDivElement>(null);
@@ -29,21 +21,21 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
 
   const handleColorClick = (selectedColor: string): void => {
     updateOptions({ color: selectedColor });
-    setIsOpen(false);
   };
 
   const toggleColorPicker = (): void => {
     setIsOpen(!isOpen);
   };
 
-  const colors: string[] = Object.keys(PICKER_COLORS);
-
-  const groupedColors: string[][] = colors.reduce((acc: string[][], colorKey, index) => {
-    const rowIndex = Math.floor(index / 6);
-    if (!acc[rowIndex]) acc[rowIndex] = [];
-    acc[rowIndex].push(colorKey);
-    return acc;
-  }, []);
+  const groupedColors: (typeof PICKER_COLORS)[number][][] = PICKER_COLORS.reduce(
+    (acc, color, index) => {
+      const rowIndex = Math.floor(index / 6);
+      if (!acc[rowIndex]) acc[rowIndex] = [];
+      acc[rowIndex].push(color);
+      return acc;
+    },
+    [] as (typeof PICKER_COLORS)[number][][]
+  );
 
   return (
     <div className="color-input" ref={colorPickerRef}>
@@ -62,10 +54,11 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
         <button
           type="button"
           onClick={toggleColorPicker}
-          className={cn('color-input__trigger', PICKER_COLORS[options.color as keyof typeof PICKER_COLORS]?.bg ?? '')}
+          className="color-input__trigger"
           aria-label={`Selected color: ${options.color}. Click to ${isOpen ? 'close' : 'open'} color picker`}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
+          style={{ background: options.color }}
         ></button>
       </div>
       {isOpen && (
@@ -79,10 +72,8 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
                   onClick={() => handleColorClick(colorOption)}
                   className={cn('color-input__color', {
                     'color-input__color--selected': colorOption === options.color,
-                    [PICKER_COLORS[colorOption as keyof typeof PICKER_COLORS]?.ring ?? '']:
-                      colorOption === options.color,
                   })}
-                  style={{ backgroundColor: colorOption }}
+                  style={{ backgroundColor: colorOption, '--ring-color': colorOption } as React.CSSProperties}
                   aria-label={`${colorOption} color`}
                   aria-selected={colorOption === options.color}
                   role="option"

@@ -43,7 +43,7 @@
     width: 2rem;
     height: 2rem;
     border: vars.$border-medium solid vars.$color-white;
-    border-radius: vars.$radius-lg;
+    border-radius: vars.$radius-md;
     cursor: pointer;
 
     &:focus-visible {
@@ -87,15 +87,10 @@
     cursor: pointer;
     transition: all vars.$transition-base ease-in-out;
 
-    &:focus-visible {
-      outline: 2px solid vars.$color-primary-600;
-      outline-offset: 2px;
-    }
-
     &--selected {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-      opacity: 0.5;
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px var(--ring-color, currentcolor);
     }
   }
 }

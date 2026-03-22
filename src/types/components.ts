@@ -14,16 +14,6 @@ export interface ColorInputProps {
   screenReaderLabel?: string;
 }
 
-export interface CopyButtonProps {
-  elementId?: string;
-  scaleFactor?: number;
-}
-
-export interface DownloadButtonProps {
-  elementId?: string;
-  scaleFactor?: number;
-}
-
 export interface RandomButtonProps {
   options: CardOptions;
   updateOptions: Setter<Partial<CardOptions>>;
