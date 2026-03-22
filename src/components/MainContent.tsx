@@ -4,10 +4,9 @@ import { useState, useEffect, useRef, useMemo, type JSX } from 'react';
 
 import OptionsBox from '@/components/options/OptionsBox';
 import PreviewBox from '@/components/preview/PreviewBox';
+import { DEFAULT_CARD_OPTIONS } from '@/constants/card';
 import type { CardOptions, Couplet, Setter } from '@/types';
 import { calcFontSize } from '@/utils/preview';
-
-const DEFAULT_OPTIONS: CardOptions = { color: '#12b848', couplet: '', fontSize: 3, lineHeight: 4.875, loading: false };
 
 interface MainContentProps {
   initialCouplets: Couplet[];
@@ -17,9 +16,9 @@ const MainContent = ({ initialCouplets }: MainContentProps): JSX.Element => {
   const [options, setOptions] = useState<CardOptions>(() => {
     if (initialCouplets.length > 0) {
       const randomIndex = Math.floor(Math.random() * initialCouplets.length);
-      return { ...DEFAULT_OPTIONS, couplet: initialCouplets[randomIndex] };
+      return { ...DEFAULT_CARD_OPTIONS, couplet: initialCouplets[randomIndex] };
     }
-    return DEFAULT_OPTIONS;
+    return DEFAULT_CARD_OPTIONS;
   });
   const [elementWidth, setElementWidth] = useState(600);
   const elementRef = useRef<HTMLDivElement>(null);
