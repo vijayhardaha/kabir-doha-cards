@@ -57,6 +57,7 @@ $color-primary-950: #033014;
 $z-dropdown: 50;
 $z-sticky: 100;
 $z-fixed: 200;
+$z-header: 300;
 $z-modal-backdrop: 40;
 $z-modal: 50;
 
@@ -69,3 +70,7 @@ $shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 // Transitions
 $transition-fast: 150ms;
 $transition-base: 300ms;
+
+$font-sans: var(--font-sans);
+$font-poppins: var(--font-poppins);
+$font-montserrat: var(--font-montserrat);
