@@ -15,15 +15,13 @@ export interface ColorInputProps {
 }
 
 export interface CopyButtonProps {
-  couplet: string;
-  screenReaderText?: string;
+  elementId?: string;
+  scaleFactor?: number;
 }
 
 export interface DownloadButtonProps {
   elementId?: string;
-  fileNamePrefix?: string;
   scaleFactor?: number;
-  quality?: number;
 }
 
 export interface RandomButtonProps {

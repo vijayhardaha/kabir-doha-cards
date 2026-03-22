@@ -66,7 +66,7 @@ const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.
 
       <div className="options-box__actions" role="group" aria-label="Doha actions">
         <DownloadButton />
-        <CopyButton couplet={options.couplet} />
+        <CopyButton />
 
         <span className="options-box__random-wrapper">
           <RandomButton options={options} updateOptions={updateOptions} />

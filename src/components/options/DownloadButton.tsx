@@ -1,71 +1,41 @@
 import { useState, type JSX } from 'react';
 
-import domtoimage from 'dom-to-image';
 import { AiOutlineCloudDownload, AiOutlineCheck } from 'react-icons/ai';
 import { PiSpinnerGapLight } from 'react-icons/pi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
+import { ELEMENT_ID, SCALE_FACTOR } from '@/constants/dom-to-image';
 import type { DownloadButtonProps } from '@/types';
-import { extractExtensionFromBase64, generateUniqueId } from '@/utils/download';
+import { generateBlob, triggerDownload } from '@/utils/dom-to-image';
 import { showToast } from '@/utils/toast';
 
-/**
- * DownloadButton component triggers the download of the Doha card as an image.
- *
- * @component
- * @param props - Component props
- * @returns The rendered download button component
- */
 const DownloadButton = ({
-  elementId = 'doha-preview',
-  fileNamePrefix = 'kabir-doha-card',
-  scaleFactor = 6,
-  quality = 0.75,
+  elementId = ELEMENT_ID.DOHA_PREVIEW,
+  scaleFactor = SCALE_FACTOR.PREVIEW,
 }: DownloadButtonProps): JSX.Element => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
-  /**
-   * Handles the download of the Doha card as an image.
-   */
-  const handleDownload = (): void => {
-    const node = document.getElementById(elementId);
-
-    if (node) {
+  const handleDownload = async (): Promise<void> => {
+    try {
       setDownloading(true);
-      const rect = node.getBoundingClientRect();
-      const width = rect.width * scaleFactor;
-      const height = rect.height * scaleFactor;
+      const blob = await generateBlob(elementId, scaleFactor);
 
-      const options = {
-        width,
-        height,
-        quality,
-        style: { transform: `scale(${scaleFactor})`, transformOrigin: 'top left' },
-      };
+      if (!blob) {
+        showToast('Failed: Element not found!', 'error');
+        return;
+      }
 
-      domtoimage
-        .toJpeg(node, options)
-        .then((dataUrl: string) => {
-          const extension = extractExtensionFromBase64(dataUrl);
-          const uniqueId = generateUniqueId();
-          const link = document.createElement('a');
-          link.download = `${fileNamePrefix}-${uniqueId}.${extension}`;
-          link.href = dataUrl;
-          link.click();
-          setDownloaded(true);
-          setDownloading(false);
-          showToast('Image downloaded successfully!');
-          setTimeout(() => setDownloaded(false), 1000);
-        })
-        .catch((error: Error) => {
-          console.error('Failed to download: ', error);
-          showToast('Download failed, try again!', 'error');
-          setDownloading(false);
-        });
-    } else {
-      console.error(`Element with id '${elementId}' not found.`);
-      showToast('Failed: Element not found!', 'error');
+      triggerDownload(blob);
+
+      setDownloaded(true);
+      showToast('Image downloaded successfully!');
+      setTimeout(() => setDownloaded(false), 1000);
+    } catch (error) {
+      console.error('Failed to download: ', error);
+      showToast('Download failed, try again!', 'error');
+    } finally {
+      setDownloading(false);
     }
   };
 
