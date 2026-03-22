@@ -8,8 +8,11 @@ import { cn } from '@/utils/classnames';
 /**
  * Lists the available visual variants for action button icons.
  */
-type ActionType = 'download' | 'copy';
+export type ActionType = 'download' | 'copy';
 
+/**
+ * Defines the props used to render the action button icon.
+ */
 interface ActionButtonIconProps {
   type: ActionType;
   loading: boolean;
@@ -23,7 +26,7 @@ interface ActionButtonIconProps {
  * @param {ActionButtonIconProps} props - The component props.
  * @returns {JSX.Element} The rendered action icon.
  */
-const ActionButtonIcon = ({ type, loading, done, textBtn = false }: ActionButtonIconProps): JSX.Element => {
+export function ActionButtonIcon({ type, loading, done, textBtn = false }: ActionButtonIconProps): JSX.Element {
   const size = textBtn ? 20 : 24;
   const iconClass = textBtn ? 'text-btn__icon' : '';
 
@@ -37,7 +40,4 @@ const ActionButtonIcon = ({ type, loading, done, textBtn = false }: ActionButton
 
   const Icon = type === 'download' ? AiOutlineCloudDownload : AiOutlineCopy;
   return <Icon aria-hidden="true" size={size} className={iconClass} />;
-};
-
-export { ActionButtonIcon };
-export type { ActionType };
+}
