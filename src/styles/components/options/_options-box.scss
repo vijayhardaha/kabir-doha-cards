@@ -31,6 +31,7 @@
     gap: vars.$spacing-4;
 
     @include md {
+      flex: 1;
       flex-direction: row;
       align-items: center;
       gap: vars.$spacing-2;
@@ -43,13 +44,13 @@
     align-items: center;
     justify-content: space-between;
     gap: vars.$spacing-3;
-    margin-top: vars.$spacing-4;
 
     .text-btn {
       width: 100%;
     }
 
     @include md {
+      flex-shrink: 0;
       justify-content: center;
       margin-top: 0;
       gap: vars.$spacing-3;

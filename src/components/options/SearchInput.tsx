@@ -26,22 +26,13 @@ const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element
   return (
     <>
       <div className="search-input__toggle">
-        <button
-          onClick={handleSearch}
-          aria-label="Open doha search"
-          aria-haspopup="dialog"
-          className="search-input__toggle"
-        >
-          <RiSearchLine aria-hidden="true" className="search-input__toggle-icon" />
-        </button>
-      </div>
-
-      <div className="search-input__mobile">
-        <div className="search-input__mobile-wrapper">
-          <span className="search-input__mobile-icon">
+        <div className="search-input__toggle-wrapper">
+          <span className="search-input__toggle-icon">
             <RiSearchLine aria-hidden="true" />
           </span>
           <input
+            name="search-input"
+            id="search-input"
             type="text"
             value=""
             placeholder="Looking for a specific doha? Search here…"
@@ -49,7 +40,7 @@ const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element
             readOnly
             aria-label="Search doha"
             aria-haspopup="dialog"
-            className="search-input__mobile-field"
+            className="search-input__toggle-field"
           />
         </div>
       </div>

@@ -107,7 +107,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
+  height: 3rem;
   padding-inline: vars.$spacing-4;
   transition:
     background-color vars.$transition-base,
@@ -116,7 +116,7 @@ button {
   border-radius: vars.$radius-lg;
   background-color: vars.$color-primary-600;
   color: vars.$color-white;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
 
   @include md {
