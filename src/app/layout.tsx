@@ -9,7 +9,7 @@ import Header from '@/components/Header';
 import '@/styles/globals.scss';
 
 const space = Space_Grotesk({
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
   preload: true,
@@ -20,7 +20,6 @@ const poppins = Poppins({
   weight: ['400', '700'],
   subsets: ['latin', 'devanagari'],
   display: 'swap',
-  preload: true,
   variable: '--font-poppins',
 });
 
@@ -28,14 +27,13 @@ const montserrat = Montserrat({
   weight: ['400', '500'],
   subsets: ['latin'],
   display: 'swap',
-  preload: true,
   variable: '--font-montserrat',
 });
 
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
     <html lang="en" className={`${space.variable} ${poppins.variable} ${montserrat.variable}`}>
-      <body className={space.className}>
+      <body>
         <Header />
         <main>{children}</main>
         <Footer />
