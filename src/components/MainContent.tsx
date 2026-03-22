@@ -21,7 +21,7 @@ const MainContent = ({ initialCouplets }: MainContentProps): JSX.Element => {
     }
     return DEFAULT_OPTIONS;
   });
-  const [elementWidth, setElementWidth] = useState(700);
+  const [elementWidth, setElementWidth] = useState(600);
   const elementRef = useRef<HTMLDivElement>(null);
 
   const updateOptions: Setter<Partial<CardOptions>> = (update) => {

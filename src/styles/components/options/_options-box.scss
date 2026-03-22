@@ -3,11 +3,12 @@
 
 // OptionsBox - Main toolbar container
 .options-box {
-  margin-top: vars.$spacing-8;
+  margin-top: vars.$spacing-4;
+  margin-bottom: vars.$spacing-4;
   display: flex;
   flex-direction: column;
   gap: vars.$spacing-5;
-  padding: vars.$spacing-4;
+  padding: vars.$spacing-2 0;
   border-radius: vars.$radius-lg;
   background-color: vars.$color-white;
 
@@ -18,11 +19,11 @@
     flex-direction: row;
     align-items: center;
     gap: vars.$spacing-4;
-    margin-top: 0;
     padding-inline: vars.$spacing-6;
     padding-block: vars.$spacing-3;
-    border: 1px solid vars.$color-stone-100;
-    box-shadow: vars.$shadow-xl;
+    border: 1px solid vars.$color-stone-200;
+    box-shadow: vars.$shadow-lg;
+    margin: vars.$spacing-8;
   }
 
   &__row {

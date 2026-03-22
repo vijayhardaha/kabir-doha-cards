@@ -1,6 +1,13 @@
 @use "../../variables" as vars;
 @use "../../mixins" as *;
 
+.site-description {
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 500;
+  padding: vars.$spacing-4 0;
+}
+
 // MainContent - Main content wrapper
 .main-content {
   position: relative;
@@ -8,9 +15,9 @@
   &__preview-wrapper {
     position: relative;
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     margin-inline: auto;
-    border: 2px dashed vars.$color-stone-100;
+    border: 2px dashed vars.$color-stone-200;
   }
 
   &__preview {
