@@ -17,7 +17,7 @@ import SearchInput from './SearchInput';
  * @param {OptionsBoxProps} props - The options and handlers to pass to controls.
  * @returns {JSX.Element} The rendered options panel.
  */
-const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.Element => {
+export default function OptionsBox({ options, updateOptions, couplets }: OptionsBoxProps): JSX.Element {
   return (
     <div className="options-box" role="toolbar" aria-label="Doha customization options">
       <div className="options-box__row">
@@ -35,6 +35,4 @@ const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.
       </div>
     </div>
   );
-};
-
-export default OptionsBox;
+}

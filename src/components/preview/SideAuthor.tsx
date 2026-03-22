@@ -10,13 +10,13 @@ const montserrat = Montserrat({ weight: ['400', '500'], subsets: ['latin'], vari
  * @param {{ title?: string; screenReaderTitle?: string }} props - The component props.
  * @returns {JSX.Element} The rendered side label.
  */
-const SideAuthor = ({
+export default function SideAuthor({
   title = 'Kabir Ke Dohe',
   screenReaderTitle,
 }: {
   title?: string;
   screenReaderTitle?: string;
-}): JSX.Element => {
+}): JSX.Element {
   const accessibleTitle = screenReaderTitle || title;
 
   return (
@@ -28,6 +28,4 @@ const SideAuthor = ({
       <span className="sr-only">{accessibleTitle}</span>
     </div>
   );
-};
-
-export default SideAuthor;
+}

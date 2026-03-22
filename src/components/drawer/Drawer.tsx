@@ -16,9 +16,9 @@ import { createPortal } from 'react-dom';
 
 import { cn } from '@/utils/classnames';
 
-type DrawerDirection = 'bottom' | 'right';
+export type DrawerDirection = 'bottom' | 'right';
 
-interface DrawerContextValue {
+export interface DrawerContextValue {
   close: () => void;
 }
 
@@ -30,15 +30,15 @@ const DrawerContext = createContext<DrawerContextValue | null>(null);
  * @returns {DrawerContextValue} The drawer context with the close function.
  * @throws {Error} When called outside a Drawer tree.
  */
-const useDrawerClose = (): DrawerContextValue => {
+export function useDrawerClose(): DrawerContextValue {
   const context = useContext(DrawerContext);
   if (!context) {
     throw new Error('useDrawerClose must be used within <Drawer>');
   }
   return context;
-};
+}
 
-interface DrawerProps {
+export interface DrawerProps {
   open: boolean;
   onClose: () => void;
   direction: DrawerDirection;
@@ -56,7 +56,7 @@ interface DrawerProps {
  * @param {DrawerProps} props - The drawer props.
  * @returns {JSX.Element | null} The portaled drawer or null when closed/SSR.
  */
-const Drawer = ({
+export function Drawer({
   open,
   onClose,
   direction,
@@ -64,7 +64,7 @@ const Drawer = ({
   children,
   ariaLabel,
   ariaLabelledBy,
-}: DrawerProps): JSX.Element | null => {
+}: DrawerProps): JSX.Element | null {
   const containerRef = useRef<HTMLDivElement>(null);
   const closingRef = useRef(false);
 
@@ -144,7 +144,4 @@ const Drawer = ({
     </DrawerContext.Provider>,
     document.body
   );
-};
-
-export { Drawer, useDrawerClose };
-export type { DrawerDirection };
+}

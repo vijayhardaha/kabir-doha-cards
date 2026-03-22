@@ -11,7 +11,7 @@ import type { PreviewBoxProps } from '@/types';
  * @param {PreviewBoxProps} props - The component props.
  * @returns {JSX.Element} The rendered preview box.
  */
-const PreviewBox = ({ options }: PreviewBoxProps): JSX.Element => {
+export default function PreviewBox({ options }: PreviewBoxProps): JSX.Element {
   return (
     <>
       <div
@@ -33,6 +33,4 @@ const PreviewBox = ({ options }: PreviewBoxProps): JSX.Element => {
       </div>
     </>
   );
-};
-
-export default PreviewBox;
+}

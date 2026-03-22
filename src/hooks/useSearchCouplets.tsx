@@ -9,7 +9,7 @@ import fetchCouplets from '@/utils/fetch-couplets';
 /**
  * Describes the state and actions for debounced couplet search.
  */
-interface SearchCoupletsState {
+export interface SearchCoupletsState {
   searchTerm: string;
   searchResults: string[];
   loading: boolean;
@@ -24,7 +24,7 @@ interface SearchCoupletsState {
  * @param {string[]} couplets - The initial couplet list used as the default result set.
  * @returns {SearchCoupletsState} The search state and actions.
  */
-const useSearchCouplets = (couplets: string[]): SearchCoupletsState => {
+export function useSearchCouplets(couplets: string[]): SearchCoupletsState {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState(couplets);
   const [loading, setLoading] = useState(false);
@@ -61,7 +61,4 @@ const useSearchCouplets = (couplets: string[]): SearchCoupletsState => {
   }, []);
 
   return { searchTerm, searchResults, loading, setSearchTerm, resetSearch };
-};
-
-export { useSearchCouplets };
-export type { SearchCoupletsState };
+}

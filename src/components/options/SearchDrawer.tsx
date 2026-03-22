@@ -10,7 +10,7 @@ import { useSearchCouplets } from '@/hooks/useSearchCouplets';
 import { cn } from '@/utils/classnames';
 import { formatCouplet } from '@/utils/preview';
 
-interface SearchDrawerProps {
+export interface SearchDrawerProps {
   open: boolean;
   onClose: () => void;
   couplets: string[];
@@ -21,13 +21,13 @@ interface SearchDrawerProps {
  * Inner content rendered within the Drawer context so it can access
  * the animated close handler via useDrawerClose.
  */
-const SearchDrawerInner = ({
+function SearchDrawerInner({
   couplets,
   onSelect,
 }: {
   couplets: string[];
   onSelect: (doha: string) => void;
-}): JSX.Element => {
+}): JSX.Element {
   const { searchTerm, searchResults, loading, setSearchTerm, resetSearch } = useSearchCouplets(couplets);
   const { close } = useDrawerClose();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -112,19 +112,23 @@ const SearchDrawerInner = ({
       </div>
     </>
   );
-};
+}
 
 const MOBILE_QUERY = '(max-width: 639px)';
 
-const subscribeToMediaQuery = (callback: () => void): (() => void) => {
+function subscribeToMediaQuery(callback: () => void): () => void {
   const mql = window.matchMedia(MOBILE_QUERY);
   mql.addEventListener('change', callback);
   return () => mql.removeEventListener('change', callback);
-};
+}
 
-const getDirectionSnapshot = (): DrawerDirection => (window.matchMedia(MOBILE_QUERY).matches ? 'bottom' : 'right');
+function getDirectionSnapshot(): DrawerDirection {
+  return window.matchMedia(MOBILE_QUERY).matches ? 'bottom' : 'right';
+}
 
-const getServerSnapshot = (): DrawerDirection => 'right';
+function getServerSnapshot(): DrawerDirection {
+  return 'right';
+}
 
 /**
  * Search drawer that slides in from the right on desktop and from the bottom on mobile.
@@ -132,7 +136,7 @@ const getServerSnapshot = (): DrawerDirection => 'right';
  * @param {SearchDrawerProps} props - The drawer props.
  * @returns {JSX.Element} The rendered search drawer.
  */
-const SearchDrawer = ({ open, onClose, couplets, onSelect }: SearchDrawerProps): JSX.Element => {
+export default function SearchDrawer({ open, onClose, couplets, onSelect }: SearchDrawerProps): JSX.Element {
   const direction = useSyncExternalStore(subscribeToMediaQuery, getDirectionSnapshot, getServerSnapshot);
 
   return (
@@ -146,6 +150,4 @@ const SearchDrawer = ({ open, onClose, couplets, onSelect }: SearchDrawerProps):
       <SearchDrawerInner couplets={couplets} onSelect={onSelect} />
     </Drawer>
   );
-};
-
-export default SearchDrawer;
+}

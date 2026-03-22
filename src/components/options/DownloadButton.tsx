@@ -13,7 +13,7 @@ import { ImageDrawer } from './ImageDrawer';
  *
  * @returns {JSX.Element} The rendered download actions.
  */
-const DownloadButton = (): JSX.Element => {
+export default function DownloadButton(): JSX.Element {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   const download = useImageDownload();
@@ -77,6 +77,4 @@ const DownloadButton = (): JSX.Element => {
       />
     </>
   );
-};
-
-export default DownloadButton;
+}

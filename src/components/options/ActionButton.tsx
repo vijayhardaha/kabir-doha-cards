@@ -13,7 +13,7 @@ export type ActionType = 'download' | 'copy';
 /**
  * Defines the props used to render the action button icon.
  */
-interface ActionButtonIconProps {
+export interface ActionButtonIconProps {
   type: ActionType;
   loading: boolean;
   done: boolean;

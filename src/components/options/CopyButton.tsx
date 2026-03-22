@@ -12,7 +12,7 @@ import { ActionButtonIcon } from './ActionButton';
  *
  * @returns {JSX.Element} The rendered copy actions.
  */
-const CopyButton = (): JSX.Element => {
+export default function CopyButton(): JSX.Element {
   const [copying, setCopying] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -75,6 +75,4 @@ const CopyButton = (): JSX.Element => {
       </button>
     </>
   );
-};
-
-export default CopyButton;
+}

@@ -11,7 +11,7 @@ const MOBILE_BREAKPOINT = 640;
 /**
  * Describes the state and actions for downloading and sharing generated images.
  */
-interface ImageDownloadState {
+export interface ImageDownloadState {
   blobUrl: string | null;
   isDownloading: boolean;
   isSharing: boolean;
@@ -28,7 +28,7 @@ interface ImageDownloadState {
  *
  * @returns {ImageDownloadState} The download and share state and actions.
  */
-const useImageDownload = (): ImageDownloadState => {
+export function useImageDownload(): ImageDownloadState {
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
@@ -114,7 +114,4 @@ const useImageDownload = (): ImageDownloadState => {
   const canShare = typeof navigator !== 'undefined' && 'canShare' in navigator;
 
   return { blobUrl, isDownloading, isSharing, canShare, handleDownload, handleOpen, handleShare, releaseBlobUrl };
-};
-
-export { useImageDownload };
-export type { ImageDownloadState };
+}

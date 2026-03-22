@@ -17,7 +17,7 @@ import { showToast } from '@/utils/toast';
  * @param {RandomButtonProps} props - The current options and updater.
  * @returns {JSX.Element} The rendered randomize button.
  */
-const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Element => {
+export default function RandomButton({ options, updateOptions }: RandomButtonProps): JSX.Element {
   const handleClick = async (): Promise<void> => {
     // Prevent concurrent fetches while the component is already loading.
     if (options.loading) return;
@@ -60,6 +60,4 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
       </button>
     </>
   );
-};
-
-export default RandomButton;
+}

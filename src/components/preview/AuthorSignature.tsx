@@ -5,7 +5,7 @@ import type { JSX } from 'react';
  *
  * @returns {JSX.Element} The rendered author signature.
  */
-const AuthorSignature = (): JSX.Element => {
+export default function AuthorSignature(): JSX.Element {
   const screenReaderText = 'Quote by Sant Kabir Das';
 
   return (
@@ -27,6 +27,4 @@ const AuthorSignature = (): JSX.Element => {
       </span>
     </div>
   );
-};
-
-export default AuthorSignature;
+}

@@ -13,7 +13,7 @@ import RandomButton from './options/RandomButton';
 // Keep in sync with CSS rules that expect a 600px design width.
 const BASE_WIDTH = 600;
 
-interface MainContentProps {
+export interface MainContentProps {
   initialCouplets: Couplet[];
   initialCouplet?: string;
 }
@@ -27,7 +27,7 @@ interface MainContentProps {
  * @param {MainContentProps} props - Initial couplets and optional initial selection.
  * @returns {JSX.Element} The rendered main content area.
  */
-const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX.Element => {
+export default function MainContent({ initialCouplets, initialCouplet }: MainContentProps): JSX.Element {
   const [options, setOptions] = useState<CardOptions>({
     ...DEFAULT_CARD_OPTIONS,
     couplet: initialCouplet || initialCouplets[0] || '',
@@ -92,6 +92,4 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
       <OptionsBox options={options} updateOptions={updateOptions} couplets={initialCouplets} />
     </main>
   );
-};
-
-export default MainContent;
+}

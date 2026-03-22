@@ -12,7 +12,7 @@ import SearchDrawer from './SearchDrawer';
  * @param {SearchInputProps} props - The component props.
  * @returns {JSX.Element} The rendered search input controls.
  */
-const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element => {
+export default function SearchInput({ updateOptions, couplets }: SearchInputProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectDoha = useCallback(
@@ -46,6 +46,4 @@ const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element
       <SearchDrawer open={isOpen} onClose={() => setIsOpen(false)} couplets={couplets} onSelect={handleSelectDoha} />
     </div>
   );
-};
-
-export default SearchInput;
+}

@@ -10,7 +10,11 @@ import { cn } from '@/utils/classnames';
  * @param {ColorInputProps} props - The component props.
  * @returns {JSX.Element} The rendered color picker.
  */
-const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a color' }: ColorInputProps): JSX.Element => {
+export default function ColorInput({
+  options,
+  updateOptions,
+  screenReaderLabel = 'Choose a color',
+}: ColorInputProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const colorPickerRef = useRef<HTMLDivElement>(null);
 
@@ -93,6 +97,4 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
       )}
     </div>
   );
-};
-
-export default ColorInput;
+}

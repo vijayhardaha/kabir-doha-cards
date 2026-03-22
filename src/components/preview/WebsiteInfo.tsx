@@ -8,7 +8,7 @@ import { getBaseUrl } from '@/utils/seo';
  * @component
  * @returns {JSX.Element} The rendered website info message.
  */
-const WebsiteInfo = (): JSX.Element => {
+export default function WebsiteInfo(): JSX.Element {
   const siteUrl = getBaseUrl().replace(/^https?:\/\//, '');
 
   return (
@@ -18,6 +18,4 @@ const WebsiteInfo = (): JSX.Element => {
       </span>
     </div>
   );
-};
-
-export default WebsiteInfo;
+}
