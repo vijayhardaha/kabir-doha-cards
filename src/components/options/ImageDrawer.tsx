@@ -27,7 +27,7 @@ const ImageDrawer = (): JSX.Element | null => {
 
   return (
     <>
-      <div className="image-drawer__overlay" aria-hidden="true" onClick={handleClose} />
+      <div className="image-drawer__overlay" aria-hidden="true" />
       <div className="image-drawer" ref={drawerRef} role="dialog" aria-modal="true" aria-label="Download options">
         <div className="image-drawer__content">
           <div className="image-drawer__image-wrapper">
