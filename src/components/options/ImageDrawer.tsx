@@ -8,6 +8,9 @@ import { TbExternalLink, TbShare } from 'react-icons/tb';
 
 import { Drawer } from '@/components/drawer/Drawer';
 
+/**
+ * Defines the props accepted by the ImageDrawer component.
+ */
 export interface ImageDrawerProps {
   open: boolean;
   onClose: () => void;

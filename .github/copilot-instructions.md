@@ -11,8 +11,7 @@ You are an expert Senior Developer in a Next.js 16 environment. Your role is to 
 | Framework       | Next.js 16 (App Router)  |
 | Language        | TypeScript (Strict mode) |
 | API             | External REST API        |
-| Validation      | Zod                      |
-| Styling         | Tailwind CSS + SCSS      |
+| Styling         | Custom SCSS only         |
 | Icons           | React Icons              |
 | UI Library      | Custom components        |
 | Testing         | Vitest                   |
@@ -30,15 +29,18 @@ src/
 │   └── globals.css        # Global styles (CSS variables)
 │
 ├── components/             # Reusable UI components
+│   ├── drawer/           # Drawer component for modals
+│   │   └── Drawer.tsx
 │   ├── options/          # Card customization controls
+│   │   ├── ActionButton.tsx
 │   │   ├── ColorInput.tsx
 │   │   ├── CopyButton.tsx
 │   │   ├── DownloadButton.tsx
+│   │   ├── ImageDrawer.tsx
 │   │   ├── OptionsBox.tsx
 │   │   ├── RandomButton.tsx
-│   │   ├── RangeSliderInput.tsx
-│   │   ├── SearchInput.tsx
-│   │   └── SearchModal.tsx
+│   │   ├── SearchDrawer.tsx
+│   │   └── SearchInput.tsx
 │   ├── preview/          # Card preview components
 │   │   ├── AuthorSignature.tsx
 │   │   ├── BackgroundElement.tsx
@@ -53,38 +55,55 @@ src/
 │   ├── Logo.tsx
 │   └── MainContent.tsx
 │
-├── constants/             # Site configuration and SEO
-│   ├── colors.ts         # Color constants
-│   └── seo.ts           # SEO metadata and site config
+├── constants/              # Site configuration and constants
+│   ├── card.ts
+│   ├── colors.ts
+│   └── seo.ts
 │
-├── styles/                # Global styles
-│   └── globals.scss      # SCSS styles
+├── hooks/                  # Custom React hooks
+│   ├── useImageDownload.tsx
+│   └── useSearchCouplets.tsx
 │
-└── utils/                 # Utility functions
-    ├── classNameUtils.ts # Class name utilities (clsx)
-    ├── download.ts       # Image download functionality
-    ├── fetchCouplets.ts  # Fetch Doha from external API
-    ├── preview.ts        # Preview calculations
-    ├── share.ts          # Share functionality
-    ├── toast.ts          # Toast notifications
-    └── url.ts            # URL utilities
+├── styles/                 # Global styles
+│   ├── _variables.scss    # SCSS variables
+│   ├── _mixins.scss       # SCSS mixins
+│   ├── globals.scss       # Global imports
+│   └── components/        # Component styles
+│       ├── _drawer.scss
+│       └── options/       # Option component styles
+│
+├── types/                  # TypeScript type definitions
+│   ├── api.ts
+│   ├── common.ts
+│   ├── components.ts
+│   ├── couplet.ts
+│   └── index.ts
+│
+└── utils/                  # Utility functions
+    ├── classnames.ts      # Class name utilities
+    ├── download.ts        # Image download functionality
+    ├── fetch-couplets.ts  # Fetch Doha from external API
+    ├── preview.ts         # Preview calculations
+    ├── seo.ts             # SEO utilities
+    ├── share.ts           # Share functionality
+    └── toast.ts           # Toast notifications
 ```
 
 ---
 
 ## 3. External API Integration
 
-This project uses the Kabir Ke Dohe API as an external data source via `fetchCouplets()` utility:
+This project uses the Kabir Ke Dohe API as an external data source:
 
 - **Base URL**: `https://kabir-ke-dohe-api.vercel.app`
 - **Endpoint**: `/api/couplets`
 - **Method**: POST
 
 ```typescript
-import { fetchCouplets } from "@/utils/fetchCouplets";
+import fetchCouplets from "@/utils/fetch-couplets";
 
 // Fetch random Doha
-const couplets = await fetchCouplets();
+const { data, error } = await fetchCouplets("random");
 ```
 
 ---
@@ -93,7 +112,7 @@ const couplets = await fetchCouplets();
 
 ```bash
 # Development
-bun run dev              # Start development server with turbopack
+bun run dev              # Start dev server with turbopack
 bun run build            # Build for production
 bun run start            # Start production server
 
@@ -102,6 +121,10 @@ bun run lint             # Lint all files
 bun run lint:fix         # Fix auto-fixable issues
 bun run format           # Format files
 bun run format:check     # Check formatting
+
+# SCSS Linting
+bun run lint:scss        # Lint SCSS files
+bun run lint:scss:fix    # Fix SCSS lint issues
 
 # Testing
 bun run test             # Run tests once
@@ -119,18 +142,15 @@ bun run indexnow         # Submit sitemap to IndexNow
 
 ### Utility Functions (`src/utils/`)
 
-| File                | Function                         | Description                                     |
-| ------------------- | -------------------------------- | ----------------------------------------------- |
-| `classNameUtils.ts` | `cn(...classes)`                 | Merge class names using clsx and tailwind-merge |
-| `download.ts`       | `downloadImage(dataUrl)`         | Download preview as PNG image                   |
-| `fetchCouplets.ts`  | `fetchCouplets()`                | Fetch random Doha from external API             |
-| `preview.ts`        | `calcFontSize(screenWidth, ...)` | Calculate dynamic font size for preview         |
-| `preview.ts`        | `formatCouplet(couplet)`         | Format couplet into max 4 lines                 |
-| `share.ts`          | `shareOnTwitter(text, url)`      | Open Twitter share dialog                       |
-| `share.ts`          | `copyToClipboard(text)`          | Copy text to clipboard                          |
-| `toast.ts`          | `toast.success(message)`         | Show success toast notification                 |
-| `toast.ts`          | `toast.error(message)`           | Show error toast notification                   |
-| `url.ts`            | `getCanonicalUrl()`              | Get base URL for the application                |
+| File                | Function                    | Description                        |
+| ------------------- | --------------------------- | ---------------------------------- |
+| `classnames.ts`     | `cn(...classes)`            | Merge class names                  |
+| `download.ts`       | `generateBlob()`            | Generate image blob from preview   |
+| `download.ts`       | `triggerDownloadFromBlob()` | Trigger download from blob         |
+| `fetch-couplets.ts` | `fetchCouplets()`           | Fetch Doha from external API       |
+| `preview.ts`        | `formatCouplet()`           | Format couplet into max 4 lines    |
+| `share.ts`          | `getShareUrl()`             | Get share URL for WhatsApp/Twitter |
+| `toast.ts`          | `showToast()`               | Show toast notifications           |
 
 ---
 
@@ -138,12 +158,13 @@ bun run indexnow         # Submit sitemap to IndexNow
 
 ### Naming Conventions
 
-| Type                | Convention           | Example            |
-| ------------------- | -------------------- | ------------------ |
-| Components          | PascalCase           | `OptionsBox.tsx`   |
-| Functions/Variables | camelCase            | `fetchCouplets`    |
-| Files               | PascalCase/camelCase | `fetchCouplets.ts` |
-| Constants           | SCREAMING_SNAKE_CASE | `MAX_RETRIES`      |
+| Type       | Convention             | Example            |
+| ---------- | ---------------------- | ------------------ |
+| Components | PascalCase             | `OptionsBox.tsx`   |
+| Functions  | camelCase              | `fetchCouplets`    |
+| Hooks      | camelCase + use prefix | `useImageDownload` |
+| Files      | PascalCase/camelCase   | `fetchCouplets.ts` |
+| Constants  | SCREAMING_SNAKE_CASE   | `MAX_RETRIES`      |
 
 ### Import Order
 
@@ -154,24 +175,27 @@ bun run indexnow         # Submit sitemap to IndexNow
 
 ---
 
-## 7. Formatting (Prettier)
+## 7. Function Declaration Rules
 
-Follow the project's Prettier configuration. Check `prettier.config.mjs` before generating code.
+CRITICAL: All functions, interfaces, and types MUST use named declarations with inline exports:
 
-```json
-{
-  "printWidth": 120,
-  "tabWidth": 2,
-  "useTabs": false,
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "es5",
-  "bracketSpacing": true,
-  "arrowParens": "always"
-}
+```typescript
+// CORRECT - Named function with inline export
+export function useImageDownload(): ImageDownloadState { ... }
+export default function SearchDrawer(props): JSX.Element { ... }
+
+// CORRECT - Interface/type with inline export
+export interface ImageDrawerProps { ... }
+export type DrawerDirection = 'bottom' | 'right';
+
+// INCORRECT - const arrow functions
+const useImageDownload = (): ImageDownloadState => { ... };
+const SearchDrawer = (props) => { ... };
+
+// INCORRECT - Separate export statements
+function useImageDownload() { ... }
+export { useImageDownload };
 ```
-
-**Important**: Always format code blocks according to these rules.
 
 ---
 
@@ -181,13 +205,13 @@ Follow the project's Prettier configuration. Check `prettier.config.mjs` before 
 
 ```typescript
 // Use interface for object shapes
-interface UserSettings {
+export interface UserSettings {
   color: string;
   fontSize: number;
 }
 
 // Use type for unions and tuples
-type Status = "idle" | "loading" | "success" | "error";
+export type Status = "idle" | "loading" | "success" | "error";
 ```
 
 ### Strict Rules
@@ -200,8 +224,8 @@ type Status = "idle" | "loading" | "success" | "error";
 
 ## 9. React Best Practices
 
-- **Components**: Functional components only
-- **Hooks**: Extract logic to custom hooks
+- **Components**: Functional components only with named declarations
+- **Hooks**: Extract logic to custom hooks with `use` prefix
 - **Props**: Destructure in function signature
 - **Memoization**: Use `useMemo` for expensive calculations, `useCallback` only when necessary
 
@@ -227,39 +251,13 @@ bun run test
 
 ---
 
-## 11. JSDoc Documentation
-
-Add JSDoc comments for:
-
-- Exported functions and hooks
-- Complex utility functions
-- Types and interfaces
-
-Skip for:
-
-- Obvious props (`className`, `children`)
-- Simple interfaces
-
-```typescript
-/**
- * Fetches random Doha couplets from the server.
- *
- * @returns {Promise<Array<string> | null>} The fetched couplets or null in case of error.
- */
-export async function fetchCouplets(): Promise<Array<string> | null> {
-  // implementation
-}
-```
-
----
-
-## 12. Commit Message Format
+## 11. Commit Message Format
 
 ```
 # Subject line: lowercase, max 50 characters
 fix: standardize react types in components
 
-# Body: can have normal case, describe changes
+# Body: can have normal case, max 72 characters per line
 - Add react import for consistent type usage
 - Use React.JSX.Element for return types
 ```
@@ -269,10 +267,16 @@ fix: standardize react types in components
 - Subject line: lowercase only, max 50 characters
 - Body: normal case allowed, max 72 characters per line
 - Use conventional commits format (type: subject)
+- Max subject: 50 characters
+- Max body line: 72 characters
 
 ---
 
-## 13. Committing Changes
+## 12. Committing Changes
+
+NEVER commit or stage automatically unless user explicitly asks once for a specific task.
+
+If user asks to commit ONCE, then commit ONCE. After the commit is done, the permission is revoked - the user must ask again for another commit. Do NOT assume permission persists across the session.
 
 After completing a task:
 
@@ -281,11 +285,8 @@ After completing a task:
    - **One file changed**: Single commit
    - **Multiple files with similar changes**: One commit per logical change
    - **Unrelated changes**: Separate commits
-3. Prepare `git add` and `git commit` commands following commitlint rules:
-   - Max subject: 50 characters
-   - Max body line: 72 characters
-   - Subject must be lowercase
+3. Prepare `git add` and `git commit` commands following commitlint rules
 4. Update git.md with the new prepared commands
 5. Remove stale commits from git.md when changes are committed
 
-Output the exact git commands. Do NOT commit automatically.
+Output the exact git commands. Do NOT commit or stage automatically.

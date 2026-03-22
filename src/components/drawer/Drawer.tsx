@@ -16,12 +16,21 @@ import { createPortal } from 'react-dom';
 
 import { cn } from '@/utils/classnames';
 
+/**
+ * Defines the available slide directions for the drawer animation.
+ */
 export type DrawerDirection = 'bottom' | 'right';
 
+/**
+ * Describes the context value provided by the Drawer to its children.
+ */
 export interface DrawerContextValue {
   close: () => void;
 }
 
+/**
+ * React context for passing the animated close handler to nested components.
+ */
 const DrawerContext = createContext<DrawerContextValue | null>(null);
 
 /**
@@ -38,6 +47,9 @@ export function useDrawerClose(): DrawerContextValue {
   return context;
 }
 
+/**
+ * Defines the props accepted by the Drawer component.
+ */
 export interface DrawerProps {
   open: boolean;
   onClose: () => void;
@@ -65,9 +77,13 @@ export function Drawer({
   ariaLabel,
   ariaLabelledBy,
 }: DrawerProps): JSX.Element | null {
+  /** Reference to the outermost drawer container element. */
   const containerRef = useRef<HTMLDivElement>(null);
+
+  /** Prevents multiple simultaneous close animations. */
   const closingRef = useRef(false);
 
+  /** Triggers the exit animation before calling the parent's onClose. */
   const handleClose = useCallback((): void => {
     if (closingRef.current) return;
 
@@ -89,6 +105,7 @@ export function Drawer({
     );
   }, [onClose]);
 
+  /** Resets the closing flag when the drawer opens. */
   useLayoutEffect(() => {
     if (open) {
       closingRef.current = false;
@@ -122,6 +139,7 @@ export function Drawer({
     };
   }, [open, handleClose]);
 
+  /** Memoized context value to prevent unnecessary re-renders. */
   const value = useMemo(() => ({ close: handleClose }), [handleClose]);
 
   if (!open || typeof window === 'undefined') return null;

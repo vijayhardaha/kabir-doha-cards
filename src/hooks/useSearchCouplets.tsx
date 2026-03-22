@@ -56,6 +56,7 @@ export function useSearchCouplets(couplets: string[]): SearchCoupletsState {
     };
   }, [searchTerm, couplets]);
 
+  /** Clears the search term to show all couplets. */
   const resetSearch = useCallback((): void => {
     setSearchTerm('');
   }, []);

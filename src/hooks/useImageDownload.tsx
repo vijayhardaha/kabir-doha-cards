@@ -111,6 +111,7 @@ export function useImageDownload(): ImageDownloadState {
     }
   }, [blobUrl]);
 
+  /** Caches whether the current device supports native file sharing. */
   const canShare = typeof navigator !== 'undefined' && 'canShare' in navigator;
 
   return { blobUrl, isDownloading, isSharing, canShare, handleDownload, handleOpen, handleShare, releaseBlobUrl };

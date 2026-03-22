@@ -10,6 +10,9 @@ import { useSearchCouplets } from '@/hooks/useSearchCouplets';
 import { cn } from '@/utils/classnames';
 import { formatCouplet } from '@/utils/preview';
 
+/**
+ * Defines the props accepted by the SearchDrawer component.
+ */
 export interface SearchDrawerProps {
   open: boolean;
   onClose: () => void;
@@ -30,13 +33,17 @@ function SearchDrawerInner({
 }): JSX.Element {
   const { searchTerm, searchResults, loading, setSearchTerm, resetSearch } = useSearchCouplets(couplets);
   const { close } = useDrawerClose();
+
+  /** Reference to the search input for auto-focus. */
   const inputRef = useRef<HTMLInputElement>(null);
 
+  /** Closes the drawer and resets the search term. */
   const handleClose = (): void => {
     resetSearch();
     close();
   };
 
+  /** Selects a doha, resets search, and closes the drawer. */
   const handleSelect = (text: string): void => {
     resetSearch();
     onSelect(text);
@@ -114,18 +121,35 @@ function SearchDrawerInner({
   );
 }
 
+/** Media query string for detecting mobile viewports. */
 const MOBILE_QUERY = '(max-width: 639px)';
 
+/**
+ * Subscribes to media query changes and calls the callback on change.
+ *
+ * @param callback - Function to call when the media query changes.
+ * @returns Unsubscribe function.
+ */
 function subscribeToMediaQuery(callback: () => void): () => void {
   const mql = window.matchMedia(MOBILE_QUERY);
   mql.addEventListener('change', callback);
   return () => mql.removeEventListener('change', callback);
 }
 
+/**
+ * Returns the drawer direction based on the current viewport.
+ *
+ * @returns {DrawerDirection} 'bottom' on mobile, 'right' on desktop.
+ */
 function getDirectionSnapshot(): DrawerDirection {
   return window.matchMedia(MOBILE_QUERY).matches ? 'bottom' : 'right';
 }
 
+/**
+ * Server-side snapshot for useSyncExternalStore (always returns 'right').
+ *
+ * @returns {DrawerDirection} Always 'right' for SSR.
+ */
 function getServerSnapshot(): DrawerDirection {
   return 'right';
 }
