@@ -100,7 +100,7 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
     const handleMouseEnter = (): void => {
       setIsHovered(true);
       if (isPressedRef.current) return;
-      startAnimation(-15, 1.1);
+      startAnimation(-45, 1.1);
     };
 
     const handleMouseLeave = (): void => {
