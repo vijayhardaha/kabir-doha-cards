@@ -1,3 +1,8 @@
+/**
+ * Preset color palette for the card color picker.
+ *
+ * @see https://kabirke-dohe.com
+ */
 export const PICKER_COLORS = [
   '#12b848',
   '#8bc34a',
