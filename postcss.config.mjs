@@ -11,6 +11,6 @@
 const browserslist = ['>0.3%', 'last 4 versions', 'not dead'];
 
 /** @type {import('postcss-load-config').Config} */
-const config = { plugins: { autoprefixer: { browserslist } } };
+const config = { plugins: { autoprefixer: { overrideBrowserslist: browserslist } } };
 
 export default config;
