@@ -1,0 +1,45 @@
+# =======================================================================
+# Stylelint Ignore
+# =======================================================================
+# Purpose: Defines the files and directories that the Stylelint engine
+#          should skip to prevent linting build artifacts or external
+#          libraries.
+# Docs: https://stylelint.io/user-guide/ignore
+# =======================================================================
+
+# ----------------------------------------------------------------------
+# Dependencies & Vendor
+# ----------------------------------------------------------------------
+# We never want to lint external dependencies or third-party code
+node_modules/
+vendor/
+
+# ----------------------------------------------------------------------
+# Build & Output
+# ----------------------------------------------------------------------
+# Compiled code and build artifacts should be skipped
+dist/
+build/
+.out/
+coverage/
+
+# ----------------------------------------------------------------------
+# Next.js Specific
+# ----------------------------------------------------------------------
+# Next.js generates these directories automatically
+.next/
+
+# ----------------------------------------------------------------------
+# Static Assets & Public
+# ----------------------------------------------------------------------
+# Binary files and static assets cannot be linted
+public/
+assets/
+*.min.css
+
+# ----------------------------------------------------------------------
+# Configuration & IDE
+# ----------------------------------------------------------------------
+# These directories contain editor-specific settings
+.vscode/
+.pnpm-store/
