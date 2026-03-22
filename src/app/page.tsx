@@ -5,7 +5,7 @@ import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import MainContent from '@/components/MainContent';
 import { SITE_METADATA } from '@/constants/seo';
-import fetchCouplets from '@/utils/fetchCouplets';
+import fetchCouplets from '@/utils/fetch-couplets';
 
 // Reuse the shared site metadata for the home page route.
 export const metadata: Metadata = SITE_METADATA;

@@ -5,9 +5,13 @@ import { useState, useEffect, useRef, useMemo, type JSX } from 'react';
 import OptionsBox from '@/components/options/OptionsBox';
 import PreviewBox from '@/components/preview/PreviewBox';
 import { DEFAULT_CARD_OPTIONS } from '@/constants/card';
+import { ImageDrawerProvider } from '@/hooks/useImageDrawer';
 import type { CardOptions, Couplet, Setter } from '@/types';
 import { calcFontSize } from '@/utils/preview';
 
+/**
+ * Defines the props used to render the main content area.
+ */
 interface MainContentProps {
   initialCouplets: Couplet[];
   initialCouplet?: string;
@@ -48,6 +52,7 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
     };
   }, []);
 
+  // Memoized function to calculate responsive font sizes based on the preview width.
   const gs = useMemo(() => (rem: number) => calcFontSize(elementWidth, rem), [elementWidth]);
 
   useEffect(() => {
@@ -92,7 +97,9 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
         </div>
       </div>
 
-      <OptionsBox options={options} updateOptions={updateOptions} couplets={initialCouplets} />
+      <ImageDrawerProvider>
+        <OptionsBox options={options} updateOptions={updateOptions} couplets={initialCouplets} />
+      </ImageDrawerProvider>
     </main>
   );
 };

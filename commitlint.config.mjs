@@ -22,6 +22,9 @@ const config = {
     // Ensure the body doesn't wrap awkwardly in terminal views
     'body-max-line-length': [2, 'always', 72],
 
+    // Allow mixed case for technical terms like useImageDrawer
+    'body-case': [2, 'always', ['sentence-case', 'lower-case']],
+
     // Maintain a clean, lowercase style for the subject line
     'subject-case': [2, 'always', ['lower-case']],
   },

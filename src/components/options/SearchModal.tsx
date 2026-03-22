@@ -6,7 +6,7 @@ import { RiSearchLine } from 'react-icons/ri';
 
 import type { SearchModalProps } from '@/types';
 import { cn } from '@/utils/classnames';
-import fetchCouplets from '@/utils/fetchCouplets';
+import fetchCouplets from '@/utils/fetch-couplets';
 import { formatCouplet } from '@/utils/preview';
 
 /**

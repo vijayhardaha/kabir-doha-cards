@@ -2,7 +2,7 @@ import { useState, type JSX } from 'react';
 
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { generateBlob } from '@/utils/image';
+import { generateBlob } from '@/utils/download';
 import { showToast } from '@/utils/toast';
 
 import { ActionButtonIcon } from './ActionButton';

@@ -2,10 +2,11 @@ import { useState, type JSX } from 'react';
 
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
+import { useImageDrawer } from '@/hooks/useImageDrawer';
 import { showToast } from '@/utils/toast';
 
 import { ActionButtonIcon } from './ActionButton';
-import { ImageDrawer, useImageDrawer } from './ImageDrawer';
+import { ImageDrawer } from './ImageDrawer';
 
 /**
  * Downloads the rendered doha card image to the local device.
@@ -14,8 +15,7 @@ import { ImageDrawer, useImageDrawer } from './ImageDrawer';
  */
 const DownloadButton = (): JSX.Element => {
   const [downloaded, setDownloaded] = useState(false);
-  const { blobUrl, isDrawerOpen, isDownloading, handleDownload, handleOpen, handleShare, handleClose, canShare } =
-    useImageDrawer();
+  const { isDownloading, handleDownload } = useImageDrawer();
 
   const onDownloadSuccess = (): void => {
     setDownloaded(true);
@@ -60,15 +60,7 @@ const DownloadButton = (): JSX.Element => {
         {isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
       </button>
 
-      <ImageDrawer
-        blobUrl={blobUrl || ''}
-        isOpen={isDrawerOpen}
-        isDownloading={isDownloading}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        onShare={handleShare}
-        canShare={canShare}
-      />
+      <ImageDrawer />
     </>
   );
 };

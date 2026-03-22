@@ -4,7 +4,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-import fetchCouplets from './fetchCouplets';
+import fetchCouplets from './fetch-couplets';
 
 // Group the couplet fetching tests by module.
 describe('fetchCouplets', () => {
