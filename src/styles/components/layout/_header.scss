@@ -6,22 +6,12 @@
   position: sticky;
   top: 0;
   z-index: vars.$z-sticky;
-  padding-block: vars.$spacing-2;
+  padding-block: vars.$spacing-2 * 0.5;
   background-color: vars.$color-white;
   box-shadow: vars.$shadow-sm;
-
-  &__container {
-    margin-inline: auto;
-    padding-inline: vars.$spacing-4;
-
-    @include sm {
-      padding-inline: vars.$spacing-6;
-    }
-
-    @include lg {
-      padding-inline: vars.$spacing-8;
-    }
-  }
+  padding: vars.$spacing-2 vars.$spacing-4;
+  border-bottom: 1px solid vars.$color-stone-200;
+  z-index: vars.$z-header;
 
   &__row {
     @include flex-between;
@@ -33,6 +23,7 @@
     gap: vars.$spacing-2;
     font-weight: 700;
     color: vars.$color-stone-900;
+    margin: 0;
   }
 
   &__logo {

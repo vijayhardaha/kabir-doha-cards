@@ -8,19 +8,6 @@
     color: $color-stone-800;
   }
 
-  &__container {
-    margin-inline: auto;
-    padding-inline: $spacing-4;
-
-    @include sm {
-      padding-inline: $spacing-6;
-    }
-
-    @include lg {
-      padding-inline: $spacing-8;
-    }
-  }
-
   &__intro {
     margin-bottom: $spacing-12;
     font-size: 1.125rem;
@@ -51,10 +38,6 @@
     align-items: center;
     color: $color-primary-600;
     text-decoration: underline;
-
-    &-icon {
-      margin-left: $spacing-1;
-    }
   }
 
   &__bottom {
@@ -74,9 +57,5 @@
     align-items: center;
     color: $color-primary-600;
     text-decoration: underline;
-
-    &-icon {
-      margin-left: $spacing-1;
-    }
   }
 }

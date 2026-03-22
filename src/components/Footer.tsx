@@ -18,7 +18,7 @@ const Footer = () => (
     </span>
 
     <div className="footer__top">
-      <div className="footer__container">
+      <div className="container">
         <p className="footer__intro">
           Kabir Doha Cards is an innovative platform that allows you to create beautiful and personalized Kabir Doha
           cards effortlessly. Whether for inspiration, sharing wisdom, or celebrating special occasions, our tool
@@ -112,7 +112,7 @@ const Footer = () => (
     </div>
 
     <div className="footer__bottom">
-      <div className="footer__container">
+      <div className="container">
         <p className="footer__copyright">
           Copyright &copy; 2024 {SITE_CONFIG.name}. All rights reserved.
           <br />

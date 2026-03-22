@@ -13,7 +13,7 @@ import { getShareUrl } from '@/utils/share';
  */
 const Header = () => (
   <header className="header" aria-label="Site header">
-    <div className="header__container">
+    <div className="container">
       <div className="header__row">
         <h1 className="header__brand">
           <Logo aria-hidden="true" className="header__logo" />
