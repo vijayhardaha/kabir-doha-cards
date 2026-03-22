@@ -30,6 +30,12 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
+/**
+ * Renders the shared document shell, fonts, and global site chrome.
+ *
+ * @param {{ children: ReactNode }} props - The layout props.
+ * @returns {JSX.Element} The root document layout.
+ */
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
     <html lang="en" className={`${space.variable} ${poppins.variable} ${montserrat.variable}`}>

@@ -34,7 +34,7 @@ export const SITE_CONFIG = {
 };
 
 /**
- * The default metadata object used for SEO, Open Graph, and Twitter cards.
+ * Stores the default keyword list used in site metadata.
  */
 export const SEO_KEYWORDS = [
   'Kabir Doha',
@@ -50,25 +50,23 @@ export const SEO_KEYWORDS = [
 ];
 
 /**
- * The base URL of the site, retrieved from environment variables.
- * Defaults to an empty string if the environment variable is not set.
- * @type {string}
+ * Stores the canonical site URL resolved from the runtime environment.
  */
 export const SITE_URL: string = getCanonicalUrl();
 
 /**
- * Google Search Console verification code for the site
+ * Stores the Google Search Console verification token.
  */
 export const GOOGLE_SITE_VERIFICATION = '4CyrCxZi9TWgvS-GzB1QUhgEl0bKoIzT36368e_vlx0';
 export const GOOGLE_ANALYTICS_ID = 'G-GM50Y47GMH';
 
 /**
- * Title and description used for SEO, Open Graph, and Twitter cards.
+ * Shares the title and description across metadata variants.
  */
 const titleAndDescription = { title: SITE_CONFIG.title, description: SITE_CONFIG.description };
 
 /**
- * The main metadata object containing all SEO-related information for the website.
+ * Defines the full metadata payload for the site.
  */
 export const SITE_METADATA: Metadata = {
   ...titleAndDescription,

@@ -9,6 +9,11 @@ import fetchCouplets from '@/utils/fetchCouplets';
 
 export const metadata: Metadata = SITE_METADATA;
 
+/**
+ * Fetches an initial random doha and renders the interactive client shell.
+ *
+ * @returns {Promise<JSX.Element>} The server-rendered main content.
+ */
 async function KabirDohaCards(): Promise<JSX.Element> {
   const { data } = await fetchCouplets('random');
   const selectedCouplet = data?.[0] || '';
@@ -26,6 +31,11 @@ function LoadingFallback(): JSX.Element {
   );
 }
 
+/**
+ * Renders the landing page for generating customized Kabir doha cards.
+ *
+ * @returns {JSX.Element} The rendered home page.
+ */
 export default function Home(): JSX.Element {
   return (
     <div className="container">
