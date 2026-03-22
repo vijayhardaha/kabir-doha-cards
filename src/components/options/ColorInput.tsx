@@ -4,12 +4,19 @@ import { PICKER_COLORS } from '@/constants/colors';
 import type { ColorInputProps } from '@/types';
 import { cn } from '@/utils/classnames';
 
+/**
+ * Renders the color picker used to update the card accent color.
+ *
+ * @param {ColorInputProps} props - The component props.
+ * @returns {JSX.Element} The rendered color picker.
+ */
 const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a color' }: ColorInputProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const colorPickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
+      // Close the popover when focus moves outside the picker container.
       if (colorPickerRef.current && !colorPickerRef?.current?.contains(event.target as Node)) {
         setIsOpen(false);
       }
@@ -27,6 +34,7 @@ const ColorInput = ({ options, updateOptions, screenReaderLabel = 'Choose a colo
     setIsOpen(!isOpen);
   };
 
+  // Chunk the flat palette into rows so the dropdown layout stays consistent.
   const groupedColors: (typeof PICKER_COLORS)[number][][] = PICKER_COLORS.reduce(
     (acc, color, index) => {
       const rowIndex = Math.floor(index / 6);

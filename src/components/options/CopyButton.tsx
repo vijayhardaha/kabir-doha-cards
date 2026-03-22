@@ -11,6 +11,12 @@ interface CopyButtonProps {
   type?: ActionType;
 }
 
+/**
+ * Copies the rendered doha card image to the clipboard.
+ *
+ * @param {CopyButtonProps} props - The component props.
+ * @returns {JSX.Element} The rendered copy actions.
+ */
 const CopyButton = ({ type = 'copy' }: CopyButtonProps): JSX.Element => {
   const [copying, setCopying] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
@@ -25,6 +31,7 @@ const CopyButton = ({ type = 'copy' }: CopyButtonProps): JSX.Element => {
         return;
       }
 
+      // ClipboardItem preserves image mime type so paste targets receive an actual image.
       const clipboardItem = new ClipboardItem({ [blob.type]: blob });
       await navigator.clipboard.write([clipboardItem]);
 

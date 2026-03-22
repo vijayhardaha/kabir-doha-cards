@@ -1,19 +1,16 @@
 import type { JSX } from 'react';
 
 /**
- * AuthorSignature component displays the author's signature with dynamic font sizing.
+ * Renders the author signature shown beneath the selected couplet.
  *
- * @component
- * @param {Object} props - The component props.
- * @param {string} [props.customAuthor] - Optional custom author name.
  * @returns {JSX.Element} The rendered author signature.
  */
-const AuthorSignature = ({ customAuthor = 'Sant Kabir Das' }: { customAuthor?: string }): JSX.Element => {
-  const screenReaderText = `Quote by ${customAuthor}`;
+const AuthorSignature = (): JSX.Element => {
+  const screenReaderText = 'Quote by Sant Kabir Das';
 
   return (
     <div className="author-sign" aria-label={screenReaderText}>
-      <span className="author-sign__name">&mdash; {customAuthor}</span>
+      <span className="author-sign__name">&mdash; Sant Kabir Das</span>
       <span className="author-sign__underline" aria-hidden="true">
         <svg
           className="author-sign__svg"

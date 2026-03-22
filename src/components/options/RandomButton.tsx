@@ -10,14 +10,22 @@ import { showToast } from '@/utils/toast';
 
 const ANIMATION_DURATION = 150;
 
+/**
+ * Loads a random doha and animates the refresh button state.
+ *
+ * @param {RandomButtonProps} props - The component props.
+ * @returns {JSX.Element} The rendered random button.
+ */
 const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Element => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isPressed, setIsPressed] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Refs keep transient interaction state readable inside animation frames.
   const isPressedRef = useRef(false);
   const isHoveredRef = useRef(false);
 
+  // Store animation values outside React state to avoid rerendering every frame.
   const state = useRef({
     angle: 0,
     scale: 1,
@@ -50,6 +58,7 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
       const elapsed = timestamp - s.animStartTime;
       const progress = Math.min(elapsed / ANIMATION_DURATION, 1);
 
+      // Ease out so the spin and scale settle naturally near the end.
       const easeOut = 1 - Math.pow(1 - progress, 3);
 
       s.angle = s.startAngle + (s.targetAngle - s.startAngle) * easeOut;
@@ -143,6 +152,7 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
     } else if (data && data.length > 0) {
       updateOptions({ couplet: data[0], loading: false });
     } else {
+      // Keep the UI responsive even when the API returns an empty success payload.
       console.warn('No results found for random Doha.');
       showToast('No Doha found, try again!', 'error');
       updateOptions({ loading: false });

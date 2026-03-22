@@ -13,12 +13,10 @@ import { formatCouplet } from '@/utils/preview';
 const hind = Hind({ weight: ['400', '700'], subsets: ['latin', 'devanagari'] });
 
 /**
- * Modal component for search input and results, styled similarly to Algolia's search box.
- * Provides accessibility features including keyboard navigation and screen reader support.
+ * Renders the modal used to search and select available couplets.
  *
- * @component
- * @param props - The component props
- * @returns The search modal component or null if closed
+ * @param {SearchModalProps} props - The component props.
+ * @returns {JSX.Element | null} The rendered search modal.
  */
 const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps): JSX.Element | null => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -36,6 +34,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps):
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
+      // Move focus directly to search so keyboard users can start typing immediately.
       inputRef.current.focus();
     }
   }, [isOpen]);
@@ -49,6 +48,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps):
       }
     };
 
+    // Lock background scroll while the modal is active.
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', handleKeyDown);
 
@@ -78,6 +78,7 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps):
       }
     }, 1000);
 
+    // Debounce network search requests so typing does not trigger one request per keystroke.
     fetchSearchResults(searchTerm);
 
     return () => {

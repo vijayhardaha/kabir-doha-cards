@@ -7,11 +7,9 @@ import Logo from '@/components/Logo';
 import { getShareUrl } from '@/utils/share';
 
 /**
- * Header component displaying the site's branding, navigation links, and social sharing options.
- * Contains the site logo, title, a link to the GitHub repository, and a WhatsApp share button.
+ * Renders the site header with branding, source, and share links.
  *
- * @component
- * @returns {JSX.Element} The rendered header component.
+ * @returns {JSX.Element} The rendered header.
  */
 const Header = (): JSX.Element => (
   <header className="header" aria-label="Site header">

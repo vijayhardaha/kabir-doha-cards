@@ -6,11 +6,10 @@ import type { CoupletTextProps } from '@/types';
 import { formatCouplet } from '@/utils/preview';
 
 /**
- * CoupletText component displays the formatted text of a couplet.
+ * Renders the formatted lines for the selected couplet.
  *
- * @component
- * @param props - The component props
- * @returns The rendered couplet text component
+ * @param {CoupletTextProps} props - The component props.
+ * @returns {JSX.Element} The rendered couplet text.
  */
 const CoupletText = ({ couplet }: CoupletTextProps): JSX.Element => {
   const formattedLines = useMemo(() => formatCouplet(couplet, 4), [couplet]);

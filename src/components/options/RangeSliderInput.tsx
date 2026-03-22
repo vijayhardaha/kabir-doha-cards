@@ -5,11 +5,10 @@ import { Range } from 'react-range';
 import type { RangeSliderInputProps } from '@/types';
 
 /**
- * RangeSliderInput component allows users to select a range of values with custom styling.
+ * Renders a styled single-value range slider control.
  *
- * @component
- * @param props - The component props
- * @returns The rendered range slider component
+ * @param {RangeSliderInputProps} props - The component props.
+ * @returns {JSX.Element} The rendered range slider.
  */
 const RangeSliderInput = ({
   min,

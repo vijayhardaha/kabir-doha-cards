@@ -11,6 +11,12 @@ interface DownloadButtonProps {
   type?: ActionType;
 }
 
+/**
+ * Downloads the rendered doha card image to the local device.
+ *
+ * @param {DownloadButtonProps} props - The component props.
+ * @returns {JSX.Element} The rendered download actions.
+ */
 const DownloadButton = ({ type = 'download' }: DownloadButtonProps): JSX.Element => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);

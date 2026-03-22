@@ -7,11 +7,10 @@ import WebsiteInfo from '@/components/preview/WebsiteInfo';
 import type { CoupletContentProps } from '@/types';
 
 /**
- * CoupletContent component displays the couplet with a quote icon, text, author signature, underline, and website information.
+ * Renders the composed content inside the doha card preview.
  *
- * @component
- * @param props - The component props
- * @returns The rendered couplet content
+ * @param {CoupletContentProps} props - The component props.
+ * @returns {JSX.Element} The rendered couplet content.
  */
 const CoupletContent = ({ couplet }: CoupletContentProps): JSX.Element => (
   <div className="couplet-content">

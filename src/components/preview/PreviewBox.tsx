@@ -7,12 +7,10 @@ import SideAuthor from '@/components/preview/SideAuthor';
 import type { PreviewBoxProps } from '@/types';
 
 /**
- * PreviewBox component displays a formatted preview of a Kabir Doha card.
- * It dynamically adjusts the font size and layout based on the container width.
+ * Renders the live preview for the current doha card settings.
  *
- * @component
- * @param props - The component props
- * @returns The rendered preview box
+ * @param {PreviewBoxProps} props - The component props.
+ * @returns {JSX.Element} The rendered preview box.
  */
 const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element => {
   return (

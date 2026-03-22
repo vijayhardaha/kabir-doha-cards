@@ -13,6 +13,12 @@ interface MainContentProps {
   initialCouplet?: string;
 }
 
+/**
+ * Coordinates card state and responsive preview sizing for the generator.
+ *
+ * @param {MainContentProps & { initialCouplet?: string }} props - The component props.
+ * @returns {JSX.Element} The rendered generator layout.
+ */
 const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX.Element => {
   const [options, setOptions] = useState<CardOptions>({
     ...DEFAULT_CARD_OPTIONS,
@@ -32,6 +38,7 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
       }
     };
 
+    // Seed the preview width once and keep it synced with resize events.
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -45,6 +52,8 @@ const MainContent = ({ initialCouplets, initialCouplet }: MainContentProps): JSX
 
   useEffect(() => {
     const root = document.documentElement;
+
+    // Push calculated preview measurements into CSS variables used by SCSS.
     root.style.setProperty('--kdc-color', options.color);
     root.style.setProperty('--kdc-blob-t', gs(-6.5));
     root.style.setProperty('--kdc-blob-r', gs(-6.5));

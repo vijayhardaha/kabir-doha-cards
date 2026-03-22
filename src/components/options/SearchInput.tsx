@@ -6,12 +6,10 @@ import SearchModal from '@/components/options/SearchModal';
 import type { SearchInputProps } from '@/types';
 
 /**
- * SearchInput component allows users to search and select a Doha from a list.
- * Provides both desktop and mobile interfaces for searching.
+ * Opens the searchable modal for selecting a different doha.
  *
- * @component
- * @param props - The component props
- * @returns The rendered search input component
+ * @param {SearchInputProps} props - The component props.
+ * @returns {JSX.Element} The rendered search input controls.
  */
 const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);

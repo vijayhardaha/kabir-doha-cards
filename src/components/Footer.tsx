@@ -7,11 +7,9 @@ import { SITE_CONFIG } from '@/constants/seo';
 import { getShareUrl } from '@/utils/share';
 
 /**
- * Footer component displays information about the app, details about Kabir Das, and contact information.
- * Includes sections for about the site, Kabir Das biography, contact information, and sharing options.
+ * Renders the site footer with background information and outbound links.
  *
- * @component
- * @returns {JSX.Element} The rendered footer section.
+ * @returns {JSX.Element} The rendered footer.
  */
 const Footer = (): JSX.Element => (
   <footer className="footer" aria-labelledby="footer-heading">

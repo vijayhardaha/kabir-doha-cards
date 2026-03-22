@@ -5,6 +5,9 @@ import { PiSpinnerGapLight } from 'react-icons/pi';
 
 import { cn } from '@/utils/classnames';
 
+/**
+ * Lists the available visual variants for action button icons.
+ */
 type ActionType = 'download' | 'copy';
 
 interface ActionButtonIconProps {
@@ -14,6 +17,12 @@ interface ActionButtonIconProps {
   textBtn?: boolean;
 }
 
+/**
+ * Renders the icon for the current action button state.
+ *
+ * @param {ActionButtonIconProps} props - The component props.
+ * @returns {JSX.Element} The rendered action icon.
+ */
 const ActionButtonIcon = ({ type, loading, done, textBtn = false }: ActionButtonIconProps): JSX.Element => {
   const size = textBtn ? 20 : 24;
   const iconClass = textBtn ? 'text-btn__icon' : '';

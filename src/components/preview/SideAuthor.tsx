@@ -5,13 +5,10 @@ import { Montserrat } from 'next/font/google';
 const montserrat = Montserrat({ weight: ['400', '500'], subsets: ['latin'], variable: '--font-montserrat' });
 
 /**
- * SideAuthor component displays a vertically rotated title text with a decorative line.
+ * Renders the rotated side label used in the card preview.
  *
- * @component
- * @param {Object} props - Component props
- * @param {string} [props.title="Kabir Ke Dohe"] - The title text to display
- * @param {string} [props.screenReaderTitle] - Optional alternate text for screen readers
- * @returns {JSX.Element} The rendered side author title component
+ * @param {{ title?: string; screenReaderTitle?: string }} props - The component props.
+ * @returns {JSX.Element} The rendered side label.
  */
 const SideAuthor = ({
   title = 'Kabir Ke Dohe',

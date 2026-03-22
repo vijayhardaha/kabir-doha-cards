@@ -12,12 +12,10 @@ import RangeSliderInput from './RangeSliderInput';
 import SearchInput from './SearchInput';
 
 /**
- * OptionsBox component renders the UI for color picker, Doha input, and action buttons.
- * It provides controls for customizing the appearance and content of the Doha display.
+ * Renders the controls used to customize the current doha card.
  *
- * @component
- * @param props - The component props
- * @returns The rendered options box component
+ * @param {OptionsBoxProps} props - The component props.
+ * @returns {JSX.Element} The rendered options toolbar.
  */
 const OptionsBox = ({ options, updateOptions, couplets }: OptionsBoxProps): JSX.Element => {
   return (
