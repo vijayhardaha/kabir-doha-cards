@@ -35,7 +35,6 @@ const SearchInput = ({ updateOptions, couplets }: SearchInputProps): JSX.Element
           className="search-input__toggle"
         >
           <RiSearchLine aria-hidden="true" className="search-input__toggle-icon" />
-          <span className="sr-only">Search for doha</span>
         </button>
       </div>
 

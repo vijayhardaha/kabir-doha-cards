@@ -117,7 +117,6 @@ const SearchModal = ({ isOpen, onClose, couplets, onSelect }: SearchModalProps):
 
             <button onClick={onClose} className="search-modal__close" aria-label="Close search">
               <span aria-hidden="true">Esc</span>
-              <span className="sr-only">Close search dialog</span>
             </button>
           </div>
 

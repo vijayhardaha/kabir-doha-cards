@@ -72,7 +72,6 @@ const CopyButton = ({
         ) : (
           <AiOutlineCopy aria-hidden="true" size={24} />
         )}
-        <span className="sr-only">{screenReaderText}</span>
       </button>
 
       <button

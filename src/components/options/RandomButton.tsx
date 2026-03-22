@@ -162,7 +162,6 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
         data-tooltip-content="Get a random Doha"
       >
         <TfiReload aria-hidden="true" size={30} />
-        <span className="sr-only">Get Random Doha</span>
       </button>
     </>
   );
