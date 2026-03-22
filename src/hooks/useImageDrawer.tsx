@@ -13,6 +13,7 @@ interface ImageDrawerContext {
   blobUrl: string | null;
   isDrawerOpen: boolean;
   isDownloading: boolean;
+  isSharing: boolean;
   canShare: boolean;
   handleDownload: (onSuccess?: () => void) => Promise<void>;
   handleOpen: () => void;
@@ -42,6 +43,7 @@ const ImageDrawerProvider = ({ children }: ImageDrawerProviderProps): ReactNode 
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useLayoutEffect(() => {
@@ -98,8 +100,9 @@ const ImageDrawerProvider = ({ children }: ImageDrawerProviderProps): ReactNode 
    * @returns {Promise<void>} A promise that resolves when sharing finishes.
    */
   const handleShare = async (): Promise<void> => {
-    if (!blobUrl) return;
+    if (!blobUrl || isSharing) return;
 
+    setIsSharing(true);
     try {
       const blob = await fetch(blobUrl).then((r) => r.blob());
       const file = new File([blob], 'kabir-doha-card.png', { type: 'image/png' });
@@ -119,6 +122,8 @@ const ImageDrawerProvider = ({ children }: ImageDrawerProviderProps): ReactNode 
         console.error('Failed to share: ', error);
         showToast('Failed to share, try again!', 'error');
       }
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -142,6 +147,7 @@ const ImageDrawerProvider = ({ children }: ImageDrawerProviderProps): ReactNode 
     blobUrl,
     isDrawerOpen,
     isDownloading,
+    isSharing,
     canShare,
     handleDownload,
     handleOpen,
