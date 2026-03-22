@@ -1,7 +1,5 @@
 import type { JSX } from 'react';
 
-import { PiSpinnerGapLight } from 'react-icons/pi';
-
 import RandomButton from '@/components/options/RandomButton';
 import BackgroundElement from '@/components/preview/BackgroundElement';
 import CoupletContent from '@/components/preview/CoupletContent';
@@ -38,7 +36,6 @@ const PreviewBox = ({ options, updateOptions }: PreviewBoxProps): JSX.Element =>
         {options.loading && (
           <div className="preview-box__loading">
             <span className="sr-only">Loading new couplet...</span>
-            <PiSpinnerGapLight aria-hidden="true" className="preview-box__spinner animate-spin" />
           </div>
         )}
       </div>
