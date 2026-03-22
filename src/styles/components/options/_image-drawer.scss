@@ -1,0 +1,96 @@
+@use "../../variables" as vars;
+@use "../../mixins" as *;
+
+.image-drawer {
+  position: fixed;
+  z-index: vars.$z-modal;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: vars.$spacing-6;
+  border-radius: vars.$radius-2xl vars.$radius-2xl 0 0;
+  background-color: vars.$color-white;
+
+  @include sm {
+    display: none;
+  }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: vars.$z-modal-backdrop;
+    background-color: rgb(0 0 0 / 50%);
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-4;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    max-width: 100%;
+    margin-top: vars.$spacing-4;
+    margin-inline: auto;
+    overflow: hidden;
+    border: vars.$border-thin solid vars.$color-stone-200;
+    border-radius: vars.$radius-lg;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    min-height: 10.5rem;
+    max-height: 28rem;
+    border-radius: vars.$radius-md;
+    object-fit: contain;
+  }
+
+  &__actions {
+    display: flex;
+    gap: vars.$spacing-3;
+  }
+
+  &__btn {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: vars.$spacing-2;
+    height: 2.75rem;
+    padding-inline: vars.$spacing-4;
+    transition: background-color vars.$transition-base;
+    border: none;
+    border-radius: vars.$radius-lg;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &-icon {
+      flex-shrink: 0;
+    }
+
+    &--primary {
+      background-color: vars.$color-primary-600;
+      color: vars.$color-white;
+
+      &:hover {
+        background-color: vars.$color-primary-700;
+      }
+    }
+
+    &--secondary {
+      background-color: vars.$color-stone-200;
+      color: vars.$color-stone-700;
+
+      &:hover {
+        background-color: vars.$color-stone-300;
+      }
+    }
+  }
+}

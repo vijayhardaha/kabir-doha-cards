@@ -2,10 +2,10 @@ import { useState, type JSX } from 'react';
 
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { generateBlob, triggerDownload } from '@/utils/image';
 import { showToast } from '@/utils/toast';
 
 import { ActionButtonIcon } from './ActionButton';
+import { ImageDrawer, useImageDrawer } from './ImageDrawer';
 
 /**
  * Downloads the rendered doha card image to the local device.
@@ -13,33 +13,21 @@ import { ActionButtonIcon } from './ActionButton';
  * @returns {JSX.Element} The rendered download actions.
  */
 const DownloadButton = (): JSX.Element => {
-  const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const { blobUrl, isDrawerOpen, isDownloading, handleDownload, handleOpen, handleShare, handleClose, canShare } =
+    useImageDrawer();
 
-  const handleDownload = async (): Promise<void> => {
-    try {
-      setDownloading(true);
-      const blob = await generateBlob();
-
-      if (!blob) {
-        showToast('Failed: Element not found!', 'error');
-        return;
-      }
-
-      triggerDownload(blob);
-
-      setDownloaded(true);
-      showToast('Image downloaded successfully!');
-      setTimeout(() => setDownloaded(false), 1000);
-    } catch (error) {
-      console.error('Failed to download: ', error);
-      showToast('Download failed, try again!', 'error');
-    } finally {
-      setDownloading(false);
-    }
+  const onDownloadSuccess = (): void => {
+    setDownloaded(true);
+    showToast('Image downloaded successfully!');
+    setTimeout(() => setDownloaded(false), 1000);
   };
 
-  const screenReaderText = downloading
+  const handleClick = async (): Promise<void> => {
+    await handleDownload(onDownloadSuccess);
+  };
+
+  const screenReaderText = isDownloading
     ? 'Downloading your Doha card as an image'
     : downloaded
       ? 'Doha card successfully downloaded'
@@ -50,27 +38,37 @@ const DownloadButton = (): JSX.Element => {
       <ReactTooltip id="download-doha-tooltip" />
 
       <button
-        onClick={handleDownload}
+        onClick={handleClick}
         className="icon-btn"
         aria-label={screenReaderText}
         data-tooltip-id="download-doha-tooltip"
-        data-tooltip-content={downloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download image'}
-        disabled={downloading}
-        aria-busy={downloading}
+        data-tooltip-content={isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download image'}
+        disabled={isDownloading}
+        aria-busy={isDownloading}
       >
-        <ActionButtonIcon type="download" loading={downloading} done={downloaded} />
+        <ActionButtonIcon type="download" loading={isDownloading} done={downloaded} />
       </button>
 
       <button
-        onClick={handleDownload}
+        onClick={handleClick}
         className="text-btn"
         aria-label={screenReaderText}
-        disabled={downloading}
-        aria-busy={downloading}
+        disabled={isDownloading}
+        aria-busy={isDownloading}
       >
-        <ActionButtonIcon type="download" loading={downloading} done={downloaded} textBtn />
-        {downloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
+        <ActionButtonIcon type="download" loading={isDownloading} done={downloaded} textBtn />
+        {isDownloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
       </button>
+
+      <ImageDrawer
+        blobUrl={blobUrl || ''}
+        isOpen={isDrawerOpen}
+        isDownloading={isDownloading}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        onShare={handleShare}
+        canShare={canShare}
+      />
     </>
   );
 };
