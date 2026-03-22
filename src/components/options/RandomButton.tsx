@@ -35,7 +35,7 @@ const RandomButton = ({ options, updateOptions }: RandomButtonProps): JSX.Elemen
 
       <button
         onClick={handleClick}
-        className="random-btn"
+        className="icon-btn"
         aria-label="Get Random Doha"
         aria-busy={options.loading}
         data-tooltip-id="random-doha-tooltip"

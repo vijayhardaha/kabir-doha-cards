@@ -151,26 +151,3 @@ button {
     margin-right: vars.$spacing-2;
   }
 }
-
-// Random button
-.random-btn {
-  @include flex-center;
-
-  width: 3.75rem;
-  height: 3.75rem;
-  padding: vars.$spacing-2;
-  border-radius: vars.$radius-full;
-  background-color: vars.$color-primary-600;
-  color: vars.$color-white;
-  font-size: 1.25rem;
-  touch-action: manipulation;
-
-  &:hover {
-    box-shadow: 0 0 0 4px rgba(vars.$color-primary-300, 0.65);
-  }
-
-  &--loading {
-    opacity: 0.7;
-    cursor: wait;
-  }
-}
