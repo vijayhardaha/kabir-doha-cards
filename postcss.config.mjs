@@ -2,25 +2,15 @@
  * ======================================================================
  * Postcss Configuration
  * ======================================================================
- * Purpose: Configure PostCSS plugins used to transform project styles
- *          (Tailwind, autoprefixer, etc.). Changes may require
- *          restarting the dev server.
+ * Purpose: Configure PostCSS plugins used to transform project styles.
+ *          Autoprefixer adds vendor prefixes based on browserslist.
  * Docs: https://github.com/postcss/postcss/blob/main/docs/config.md
  * ======================================================================
  */
 
-/** @type {import('postcss-load-config').Config} */
-const config = {
-  // ---- PostCSS plugins ----
-  // List plugins in execution order. Tailwind should run before other
-  // processors that rely on generated utilities.
-  plugins: [
-    // Tailwind PostCSS plugin to transform utility classes
-    '@tailwindcss/postcss',
+const browserslist = ['>0.3%', 'last 4 versions', 'not dead'];
 
-    // Optional browser prefixing plugin (enable if targeting older browsers)
-    // "autoprefixer": {},
-  ],
-};
+/** @type {import('postcss-load-config').Config} */
+const config = { plugins: { autoprefixer: { browserslist } } };
 
 export default config;
