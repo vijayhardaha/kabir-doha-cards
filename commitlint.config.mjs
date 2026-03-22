@@ -25,8 +25,8 @@ const config = {
     // Allow mixed case for technical terms like useImageDrawer
     'body-case': [2, 'always', ['sentence-case', 'lower-case']],
 
-    // Maintain a clean, lowercase style for the subject line
-    'subject-case': [2, 'always', ['lower-case']],
+    // Disable subject-case rule to allow camelCase identifiers
+    'subject-case': [0],
   },
 };
 
