@@ -7,6 +7,7 @@ import MainContent from '@/components/MainContent';
 import { SITE_METADATA } from '@/constants/seo';
 import fetchCouplets from '@/utils/fetchCouplets';
 
+// Reuse the shared site metadata for the home page route.
 export const metadata: Metadata = SITE_METADATA;
 
 /**
@@ -20,6 +21,11 @@ async function KabirDohaCards(): Promise<JSX.Element> {
   return <MainContent initialCouplets={data} initialCouplet={selectedCouplet} />;
 }
 
+/**
+ * Renders the suspense fallback shown while the page content loads.
+ *
+ * @returns {JSX.Element} The rendered loading fallback.
+ */
 function LoadingFallback(): JSX.Element {
   return (
     <div className="loading-fallback">
