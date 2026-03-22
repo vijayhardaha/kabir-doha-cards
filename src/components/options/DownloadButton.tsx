@@ -1,25 +1,24 @@
 import { useState, type JSX } from 'react';
 
-import { AiOutlineCloudDownload, AiOutlineCheck } from 'react-icons/ai';
-import { PiSpinnerGapLight } from 'react-icons/pi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { ELEMENT_ID, SCALE_FACTOR } from '@/constants/dom-to-image';
-import type { DownloadButtonProps } from '@/types';
-import { generateBlob, triggerDownload } from '@/utils/dom-to-image';
+import { generateBlob, triggerDownload } from '@/utils/image';
 import { showToast } from '@/utils/toast';
 
-const DownloadButton = ({
-  elementId = ELEMENT_ID.DOHA_PREVIEW,
-  scaleFactor = SCALE_FACTOR.PREVIEW,
-}: DownloadButtonProps): JSX.Element => {
+import { ActionButtonIcon, type ActionType } from './ActionButton';
+
+interface DownloadButtonProps {
+  type?: ActionType;
+}
+
+const DownloadButton = ({ type = 'download' }: DownloadButtonProps): JSX.Element => {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
   const handleDownload = async (): Promise<void> => {
     try {
       setDownloading(true);
-      const blob = await generateBlob(elementId, scaleFactor);
+      const blob = await generateBlob();
 
       if (!blob) {
         showToast('Failed: Element not found!', 'error');
@@ -58,13 +57,7 @@ const DownloadButton = ({
         disabled={downloading}
         aria-busy={downloading}
       >
-        {downloading ? (
-          <PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
-        ) : downloaded ? (
-          <AiOutlineCheck aria-hidden="true" size={24} />
-        ) : (
-          <AiOutlineCloudDownload aria-hidden="true" size={24} />
-        )}
+        <ActionButtonIcon type={type} loading={downloading} done={downloaded} />
       </button>
 
       <button
@@ -74,13 +67,7 @@ const DownloadButton = ({
         disabled={downloading}
         aria-busy={downloading}
       >
-        {downloading ? (
-          <PiSpinnerGapLight aria-hidden="true" size={20} className="text-btn__icon animate-spin" />
-        ) : downloaded ? (
-          <AiOutlineCheck aria-hidden="true" size={20} className="text-btn__icon" />
-        ) : (
-          <AiOutlineCloudDownload aria-hidden="true" size={20} className="text-btn__icon" />
-        )}
+        <ActionButtonIcon type={type} loading={downloading} done={downloaded} textBtn />
         {downloading ? 'Downloading...' : downloaded ? 'Downloaded!' : 'Download'}
       </button>
     </>

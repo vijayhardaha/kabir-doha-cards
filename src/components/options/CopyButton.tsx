@@ -1,27 +1,24 @@
 import { useState, type JSX } from 'react';
 
-import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
-import { PiSpinnerGapLight } from 'react-icons/pi';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import { ELEMENT_ID, SCALE_FACTOR } from '@/constants/dom-to-image';
-import type { CopyButtonProps } from '@/types';
-import { generateBlob } from '@/utils/dom-to-image';
+import { generateBlob } from '@/utils/image';
 import { showToast } from '@/utils/toast';
 
-const CopyButton = ({
-  elementId = ELEMENT_ID.DOHA_PREVIEW,
-  scaleFactor = SCALE_FACTOR.PREVIEW,
-}: CopyButtonProps): JSX.Element | null => {
+import { ActionButtonIcon, type ActionType } from './ActionButton';
+
+interface CopyButtonProps {
+  type?: ActionType;
+}
+
+const CopyButton = ({ type = 'copy' }: CopyButtonProps): JSX.Element => {
   const [copying, setCopying] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
-
-  const isSupported = 'clipboard' in navigator && 'write' in navigator.clipboard;
 
   const handleCopy = async (): Promise<void> => {
     try {
       setCopying(true);
-      const blob = await generateBlob(elementId, scaleFactor);
+      const blob = await generateBlob();
 
       if (!blob) {
         showToast('Failed: Element not found!', 'error');
@@ -42,10 +39,6 @@ const CopyButton = ({
     }
   };
 
-  if (!isSupported) {
-    return null;
-  }
-
   const screenReaderText = copying
     ? 'Copying image to clipboard'
     : isCopied
@@ -65,13 +58,7 @@ const CopyButton = ({
         disabled={copying}
         aria-busy={copying}
       >
-        {copying ? (
-          <PiSpinnerGapLight aria-hidden="true" size={24} className="animate-spin" />
-        ) : isCopied ? (
-          <AiOutlineCheck aria-hidden="true" size={24} />
-        ) : (
-          <AiOutlineCopy aria-hidden="true" size={24} />
-        )}
+        <ActionButtonIcon type={type} loading={copying} done={isCopied} />
       </button>
 
       <button
@@ -81,13 +68,7 @@ const CopyButton = ({
         disabled={copying}
         aria-busy={copying}
       >
-        {copying ? (
-          <PiSpinnerGapLight aria-hidden="true" size={20} className="text-btn__icon animate-spin" />
-        ) : isCopied ? (
-          <AiOutlineCheck aria-hidden="true" size={20} className="text-btn__icon" />
-        ) : (
-          <AiOutlineCopy aria-hidden="true" size={20} className="text-btn__icon" />
-        )}
+        <ActionButtonIcon type={type} loading={copying} done={isCopied} textBtn />
         {copying ? 'Copying...' : isCopied ? 'Copied!' : 'Copy'}
       </button>
     </>
