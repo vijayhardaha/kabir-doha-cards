@@ -27,7 +27,11 @@ function LoadingFallback(): JSX.Element {
 
 export default function Home(): JSX.Element {
   return (
-    <div className="page-container">
+    <div className="container">
+      <p className="site-description">
+        Create beautiful, personalized Kabir Doha cards with ease. Share spiritual wisdom and celebrate special
+        occasions with timeless teachings from Kabir.
+      </p>
       <Suspense fallback={<LoadingFallback />}>
         <KabirDohaCards />
       </Suspense>
