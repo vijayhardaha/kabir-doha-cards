@@ -15,7 +15,8 @@
 
   "editor.codeActionsOnSave": {
     // Automatically fix lint errors and trigger Prettier on every save
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
 
   // ---- Linter Integration ----
@@ -25,5 +26,8 @@
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
 
   "scss.validate": true,
-  "scss.lint.unknownAtRules": "ignore"
+  "scss.lint.unknownAtRules": "ignore",
+
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss"]
 }
