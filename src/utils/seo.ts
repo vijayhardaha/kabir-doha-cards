@@ -1,20 +1,7 @@
 /**
- * Return a normalized base URL for the running application.
- *
- * Preference order:
- * 1. `NEXT_PUBLIC_SITE_URL` (custom env var)
- * 2. `process.env.VERCEL_PROJECT_PRODUCTION_URL`
- * 3. `process.env.VERCEL_BRANCH_URL`
- * 4. `process.env.VERCEL_URL`
- * 5. Fallback to `http://localhost:{PORT}` where PORT defaults to 3000
- *
- * Normalization ensures a scheme is present and removes a trailing slash.
+ * Returns the normalized base URL for the running application.
  *
  * @returns {string} The normalized base URL.
- *
- * @example
- * // When no env vars are set and PORT is 3000
- * getBaseUrl() // -> 'http://localhost:3000'
  */
 export const getBaseUrl = (): string => {
   const url =
@@ -30,42 +17,20 @@ export const getBaseUrl = (): string => {
 };
 
 /**
- * Normalizes a slug for canonical usage.
+ * Normalizes a slug for canonical URL generation.
  *
- * - Removes leading and trailing slashes
- * - Returns empty string for root
- *
- * @param {string} [slug=""] - The input path or slug.
- * @returns {string} A clean relative path without leading slash.
- *
- * @example
- * safeCanonical("about")      // "about"
- * safeCanonical("/about")     // "about"
- * safeCanonical("/about/")    // "about"
- * safeCanonical("")           // ""
- * safeCanonical("/")          // ""
+ * @param {string} [slug=''] - The input path or slug.
+ * @returns {string} The cleaned relative path.
  */
 export const safeCanonical = (slug: string = ''): string => {
   return slug.trim().replace(/^\/+/, '').replace(/\/+$/, '');
 };
 
 /**
- * Generates a fully qualified canonical URL.
+ * Builds a canonical URL from the base URL and an optional slug.
  *
- * Combines the application's base URL with a normalized slug.
- * Leading and trailing slashes in the slug are handled safely.
- * If no slug is provided, the base URL is returned.
- *
- * @param {string} [slug=""] - Optional path segment to append to the base URL.
+ * @param {string} [slug=''] - The path segment to append.
  * @returns {string} The canonical absolute URL.
- *
- * @example
- * // Assuming getBaseUrl() returns "https://example.com"
- * getCanonicalUrl("about") 	// → "https://example.com/about"
- * getCanonicalUrl("/about") 	// → "https://example.com/about"
- * getCanonicalUrl("/about/") 	// → "https://example.com/about"
- * getCanonicalUrl("") 			// → "https://example.com"
- * getCanonicalUrl("/") 		// → "https://example.com"
  */
 export const getCanonicalUrl = (slug: string = ''): string => {
   return [getBaseUrl(), safeCanonical(slug)].filter(Boolean).join('/');

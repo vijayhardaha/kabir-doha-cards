@@ -3,9 +3,9 @@ import type { FetchCoupletsResponse, FetchType } from '@/types';
 /**
  * Fetches Doha couplets from the server.
  *
- * @param type - The type of fetch: 'random' or 'search'
- * @param search - Optional search term for search type
- * @returns The fetched couplets with any error message
+ * @param {FetchType} type - The fetch mode to use.
+ * @param {string} [search] - The optional search term.
+ * @returns {Promise<FetchCoupletsResponse>} The fetched couplets and any error message.
  */
 export async function fetchCouplets(type: FetchType, search?: string): Promise<FetchCoupletsResponse> {
   const randomNumber = Math.round(Math.random() * (200 - 1)) + 1;
