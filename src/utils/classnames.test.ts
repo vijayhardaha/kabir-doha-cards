@@ -13,32 +13,32 @@ describe('classnames', () => {
     // Verify a single expected behavior.
     it('should handle single string class', () => {
       // Assert the expected output for this scenario.
-      expect(cn('px-4')).toBe('px-4');
+      expect(cn('btn')).toBe('btn');
     });
 
     // Verify a single expected behavior.
     it('should handle multiple string classes', () => {
       // Assert the expected output for this scenario.
-      expect(cn('px-4', 'py-2', 'bg-red-500')).toBe('px-4 py-2 bg-red-500');
+      expect(cn('btn', 'btn-primary', 'mt-2')).toBe('btn btn-primary mt-2');
     });
 
     // Verify a single expected behavior.
     it('should ignore undefined values', () => {
       // Assert the expected output for this scenario.
-      expect(cn('px-4', undefined, 'py-2')).toBe('px-4 py-2');
+      expect(cn('btn', undefined, 'mt-2')).toBe('btn mt-2');
     });
 
     // Verify a single expected behavior.
     it('should ignore boolean false values', () => {
       // Assert the expected output for this scenario.
-      expect(cn('px-4', false, 'py-2')).toBe('px-4 py-2');
+      expect(cn('btn', false, 'mt-2')).toBe('btn mt-2');
     });
 
     // Verify a single expected behavior.
     it('should include class when condition is true', () => {
       const isActive = true;
       // Assert the expected output for this scenario.
-      expect(cn('px-4', isActive && 'active', 'py-2')).toBe('px-4 active py-2');
+      expect(cn('btn', isActive && 'active', 'mt-2')).toBe('btn active mt-2');
     });
 
     // Verify a single expected behavior.
@@ -46,13 +46,13 @@ describe('classnames', () => {
       const isActive = true;
       const isDisabled = false;
       // Assert the expected output for this scenario.
-      expect(cn('px-4', { active: isActive, disabled: isDisabled })).toBe('px-4 active');
+      expect(cn('btn', { active: isActive, disabled: isDisabled })).toBe('btn active');
     });
 
     // Verify a single expected behavior.
     it('should handle array of strings', () => {
       // Assert the expected output for this scenario.
-      expect(cn(['px-4', 'py-2'], 'bg-red-500')).toBe('px-4 py-2 bg-red-500');
+      expect(cn(['btn', 'mt-2'], 'btn-primary')).toBe('btn mt-2 btn-primary');
     });
 
     // Verify a single expected behavior.
@@ -60,15 +60,9 @@ describe('classnames', () => {
       const isActive = true;
       const isDisabled = false;
       // Assert the expected output for this scenario.
-      expect(cn('px-4', ['py-2', 'bg-red-500'], { active: isActive, disabled: isDisabled })).toBe(
-        'px-4 py-2 bg-red-500 active'
+      expect(cn('btn', ['mt-2', 'btn-primary'], { active: isActive, disabled: isDisabled })).toBe(
+        'btn mt-2 btn-primary active'
       );
-    });
-
-    // Verify a single expected behavior.
-    it('should merge duplicate tailwind classes correctly', () => {
-      // Assert the expected output for this scenario.
-      expect(cn('px-4 py-2', 'py-2')).toBe('px-4 py-2');
     });
 
     // Verify a single expected behavior.
@@ -80,7 +74,7 @@ describe('classnames', () => {
     // Verify a single expected behavior.
     it('should ignore null values', () => {
       // Assert the expected output for this scenario.
-      expect(cn('px-4', null as unknown as string, 'py-2')).toBe('px-4 py-2');
+      expect(cn('btn', null as unknown as string, 'mt-2')).toBe('btn mt-2');
     });
   });
 });

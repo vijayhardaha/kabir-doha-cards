@@ -1,7 +1,18 @@
 import { CARD_IMAGE } from '@/constants/image';
 
+/**
+ * Pads a number to two digits for timestamp-based filename segments.
+ *
+ * @param {number} n - The number to pad.
+ * @returns {string} The padded two-character string.
+ */
 const pad = (n: number): string => n.toString().padStart(2, '0');
 
+/**
+ * Builds a timestamped filename for generated doha card images.
+ *
+ * @returns {string} The generated PNG filename.
+ */
 export const getFileName = (): string => {
   const now = new Date();
   const parts = [
@@ -19,7 +30,7 @@ export const getFileName = (): string => {
 /**
  * Retrieves the DOM element used for generating card images.
  *
- * @returns The DOM element if found, otherwise logs error and returns null
+ * @returns {HTMLElement | null} The target element or null when not found.
  */
 export const getDownloadElement = (): HTMLElement | null => {
   const node = document.getElementById(CARD_IMAGE.element_id);
@@ -33,8 +44,8 @@ export const getDownloadElement = (): HTMLElement | null => {
 /**
  * Generates a PNG blob from the card preview element using dom-to-image.
  *
- * @returns A PNG blob of the captured element, or null if element not found
- * @throws Error if dom-to-image fails to generate the blob
+ * @returns {Promise<Blob | null>} A PNG blob of the captured element or null.
+ * @throws {Error} When blob generation fails.
  */
 export const generateBlob = async (): Promise<Blob | null> => {
   const node = getDownloadElement();
@@ -44,6 +55,7 @@ export const generateBlob = async (): Promise<Blob | null> => {
   const width = rect.width * CARD_IMAGE.scale_factor;
   const height = rect.height * CARD_IMAGE.scale_factor;
 
+  // Scale the preview before capture so the exported image stays sharp.
   const options = {
     width,
     height,
@@ -59,7 +71,8 @@ export const generateBlob = async (): Promise<Blob | null> => {
 /**
  * Triggers a file download from a blob using a generated filename.
  *
- * @param blob - The blob to download
+ * @param {Blob} blob - The blob to download.
+ * @returns {void} Nothing.
  */
 export const triggerDownloadFromBlob = (blob: Blob): void => {
   const link = document.createElement('a');
@@ -72,7 +85,8 @@ export const triggerDownloadFromBlob = (blob: Blob): void => {
 /**
  * Triggers a file download from a URL.
  *
- * @param url - The URL of the file to download
+ * @param {string} url - The URL of the file to download.
+ * @returns {void} Nothing.
  */
 export const triggerDownloadFromUrl = (url: string): void => {
   const link = document.createElement('a');
