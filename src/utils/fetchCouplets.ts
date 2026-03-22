@@ -9,10 +9,7 @@ import type { FetchCoupletsResponse, FetchType } from '@/types';
  */
 export async function fetchCouplets(type: FetchType, search?: string): Promise<FetchCoupletsResponse> {
   const randomNumber = Math.round(Math.random() * (200 - 1)) + 1;
-  const body =
-    type === 'search'
-      ? { search: String(search), per_page: String(10) }
-      : { per_page: String(1), page: String(randomNumber) };
+  const body = type === 'search' ? { search: String(search) } : { page: String(randomNumber) };
 
   let errorMessage: string | null = null;
   let results: string[] = [];
