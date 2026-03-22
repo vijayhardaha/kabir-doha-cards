@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }): JSX.E
         <Header />
         <main>{children}</main>
         <Footer />
-        <Toaster position="bottom-center" reverseOrder={true} />
+        <Toaster position="top-center" reverseOrder={true} />
       </body>
     </html>
   );
