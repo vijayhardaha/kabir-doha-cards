@@ -12,7 +12,7 @@
 // ----------------------------------------------------------------------
 // Global Settings
 // ----------------------------------------------------------------------
-const siteDomain = 'https://kabir-ke-dohe-api.vercel.app';
+const siteDomain = 'https://kabirdohacards.vercel.app';
 
 /** @type {import('next-sitemap').IConfig} */
 const config = {
